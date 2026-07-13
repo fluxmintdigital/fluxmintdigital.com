@@ -30,7 +30,8 @@ Nine pages, all driven by editable data files where possible:
    git add .
    git commit -m "Initial site build"
    git branch -M main
-   git remote add origin https://github.com/<your-username>/fluxmintdigital-com.git
+   git remote add origin https://github.com/fluxmintdigital/fluxmintdigital.com.git
+   git config --global credential.helper store
    git push -u origin main
    ```
 
