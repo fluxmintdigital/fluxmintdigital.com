@@ -1,0 +1,35 @@
+---
+layout: default
+title: Studio Blog
+description: Architecture concepts, framework explanations, app updates, and behind-the-scenes development from the FluxMintDigital studio.
+permalink: /studio-blog/
+---
+<div class="archive-page">
+  <div class="container">
+    <div class="archive-header">
+      <h1>Studio Blog</h1>
+      <p>Frameworks, app updates, architecture concepts, and behind-the-scenes development from FluxMintDigital.</p>
+    </div>
+    <div class="posts-grid">
+      {% assign studio_posts = site.posts %}
+      {% for post in studio_posts %}
+      <article class="post-card">
+        <div class="post-card-body">
+          {% if post.categories %}<span class="post-card-category">{{ post.categories | first }}</span>{% endif %}
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          <p>{{ post.description | default: post.excerpt | strip_html | truncate: 120 }}</p>
+          <div class="post-card-meta">
+            <span>{{ post.date | date: "%b %d, %Y" }}</span>
+            <a href="{{ post.url | relative_url }}" class="read-more">Read more →</a>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+      {% if studio_posts.size == 0 %}
+      <div class="empty-archive">
+        <p>The first Studio Blog post is on its way — check back shortly.</p>
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>

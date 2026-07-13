@@ -1,0 +1,16 @@
+- name: "Cognitive Frameworks"
+  description: "Tools that help people understand themselves, navigate decisions, reduce drift, and maintain clarity."
+  examples:
+    - "Identity architecture models"
+    - "Drift detection frameworks"
+    - "Cognitive contradiction engines"
+- name: "Math & Science Frameworks"
+  description: "Tools that compress scientific or mathematical concepts into structured, usable systems."
+  examples:
+    - "In development"
+- name: "Historical & Cultural Frameworks"
+  description: "Tools that compress large historical or cultural patterns into teachable structures."
+  examples:
+    - "Cultural Signature System"
+    - "Origin Story Engine"
+    - "Compression Trees"

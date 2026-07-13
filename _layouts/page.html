@@ -1,0 +1,24 @@
+---
+layout: default
+---
+<section class="hero">
+  <div class="container">
+    <h1>{{ page.hero_title | default: page.title }}</h1>
+    {% if page.hero_sub %}<p>{{ page.hero_sub }}</p>{% endif %}
+    {% if page.hero_ctas %}
+    <div class="hero-ctas">
+      {% for cta in page.hero_ctas %}
+      <a href="{{ cta.url | relative_url }}" class="btn-primary">{{ cta.label }}</a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="page-body">
+  <div class="container">
+    <div class="post-content">
+      {{ content }}
+    </div>
+  </div>
+</section>
