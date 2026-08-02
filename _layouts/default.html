@@ -6,9 +6,10 @@
   <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
   <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/assets/css/rooms.css' | relative_url }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   {% include head-custom.html %}
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
   {% seo %}
   {% feed_meta %}
 </head>
@@ -42,25 +43,37 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <span class="logo-text">{{ site.title }}</span>
-          <p>Architecture for minds, systems, stories, tools, and apps — built by DJ Boswell.</p>
+          <p>Thank you for spending time inside the studio. Whether you arrived looking for clarity, inspiration, or simply a thoughtful place to explore, I hope you leave with something valuable. Keep exploring.</p>
         </div>
         <div class="footer-links">
-          <h4>Studio</h4>
-          <a href="{{ '/books/' | relative_url }}">Books</a>
-          <a href="{{ '/apps/' | relative_url }}">Apps</a>
-          <a href="{{ '/tools/' | relative_url }}">Tools</a>
-          <a href="{{ '/science/' | relative_url }}">Science</a>
+          <h4>Explore the Studio</h4>
+          <a href="{{ '/about/' | relative_url }}">Meet DJ</a>
+          <a href="{{ '/science/' | relative_url }}">The Architecture Wall</a>
+          <a href="{{ '/blog/' | relative_url }}">The Observatory</a>
+          <a href="{{ '/books/' | relative_url }}">The Library</a>
+          <a href="{{ '/apps/' | relative_url }}">The Workshop</a>
+          <a href="{{ '/services/' | relative_url }}">The Meeting Table</a>
+          <a href="{{ '/store/' | relative_url }}">Explorer Outfitters</a>
         </div>
         <div class="footer-links">
-          <h4>More</h4>
-          <a href="{{ '/services/' | relative_url }}">Services</a>
-          <a href="{{ '/blog/' | relative_url }}">Blog</a>
-          <a href="{{ '/store/' | relative_url }}">Store</a>
-          <a href="{{ '/about/' | relative_url }}">About</a>
+          <h4>Explore the Ecosystem</h4>
+          <a href="{{ '/books/' | relative_url }}">DJ Field Guide Series</a>
+          <a href="{{ '/books/' | relative_url }}">Walk on the Wild Side with DJ</a>
+          <a href="{{ '/books/' | relative_url }}">The Architecture Series</a>
+          <a href="{{ '/apps/' | relative_url }}">Studio Applications</a>
+          <a href="{{ '/blog/' | relative_url }}">Studio Journal</a>
+        </div>
+        <div class="footer-links">
+          <h4>Connect</h4>
+          <a href="{{ '/services/' | relative_url }}">Begin the Exploration</a>
+          <a href="#">Newsletter (coming soon)</a>
+          <a href="mailto:fluxmintdigital@gmail.com">Contact</a>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>© {{ site.time | date: '%Y' }} {{ site.title }}. All rights reserved.</p>
+        <p style="font-style: italic;">Helping people become more capable explorers of complexity through curiosity, clarity, and Architectural Thinking™.</p>
+        <p>© {{ site.time | date: '%Y' }} FluxMintDigital™. Architectural Thinking™. Objective-First Architecture™. All rights reserved.</p>
+        <p>Curiosity is always welcome here.</p>
       </div>
     </div>
   </footer>

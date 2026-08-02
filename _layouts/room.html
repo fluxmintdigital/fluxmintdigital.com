@@ -1,0 +1,46 @@
+---
+layout: default
+---
+<div class="container">
+  <header class="room-page-head">
+    <span class="room-eyebrow-page">{{ page.eyebrow }}</span>
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.subhead }}</p>
+  </header>
+
+  <div class="stage-wrap">
+    <div class="stage" id="stage">
+      <img src="{{ page.room_image | relative_url }}" alt="{{ page.room_alt }}" loading="eager">
+      <div class="hotspot-layer">
+        {% for hs in page.hotspots %}
+        <div class="hotspot{% if hs.nav %} nav-hotspot{% endif %}" data-key="{{ hs.key }}" style="left:{{ hs.x }}%; top:{{ hs.y }}%; width:{{ hs.w }}%; height:{{ hs.h }}%;">
+          <span class="hotspot-label">{{ hs.label }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="photo-caption">
+        <span>ROOM: {{ page.room_caption }}</span>
+        <span>STUDIO: FLUXMINTDIGITAL</span>
+      </div>
+    </div>
+
+    <div class="panel" id="panel" aria-live="polite">
+      <div class="panel-empty">
+        <span class="room-eyebrow-page">Waiting</span>
+        Click something in the room to see what it holds.
+      </div>
+    </div>
+  </div>
+
+  <div class="room-supplement">
+    {{ content }}
+  </div>
+
+  <div class="room-nav">
+    <a href="{{ page.prev_href | relative_url }}">&larr; {{ page.prev_label }}</a>
+    <a href="{{ page.next_href | relative_url }}">{{ page.next_label }} &rarr;</a>
+  </div>
+</div>
+
+<script>window.roomContent = {{ page.content_data | jsonify }};</script>
+<script src="{{ '/assets/js/rooms.js' | relative_url }}"></script>

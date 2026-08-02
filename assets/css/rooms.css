@@ -1,0 +1,170 @@
+/* ── Room pages: hero photo scenes with interactive hotspots ────────────────
+   Shared by the homepage arrival sequence and all division "room" pages.
+   Uses the same CSS variables as main.css so retheming happens in one place.
+─────────────────────────────────────────────────────────────────────────── */
+
+.room-eyebrow-page {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brand);
+  display: inline-block;
+  margin-bottom: 0.75rem;
+}
+
+/* ── Full-bleed photo scenes (homepage arrival sequence) ─────────────────── */
+.photo-scene {
+  height: 92vh;
+  min-height: 540px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.photo-scene .kenburns {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  animation: kb 26s ease-in-out infinite alternate;
+}
+@keyframes kb { 0% { transform: scale(1); } 100% { transform: scale(1.07); } }
+
+.scrim-bottom { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,12,9,0.05) 0%, rgba(15,12,9,0.15) 40%, rgba(15,12,9,0.78) 100%); }
+.scrim-top { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(15,12,9,0.1) 0%, rgba(15,12,9,0.2) 45%, rgba(15,12,9,0.7) 100%); }
+.scrim-full { position: absolute; inset: 0; background: rgba(15,12,9,0.4); }
+
+.scene-copy { position: relative; z-index: 5; text-align: center; max-width: 560px; padding: 0 1.5rem; }
+.scene-copy h1 { font-family: var(--font-serif); font-weight: 500; font-size: clamp(1.7rem, 4.4vw, 2.6rem); line-height: 1.25; color: var(--text); }
+.scene-copy h2 { font-family: var(--font-serif); font-weight: 500; font-size: clamp(1.3rem, 3vw, 1.9rem); color: var(--text); }
+.scene-copy p { color: var(--text-muted); margin-top: 1rem; font-size: 1.02rem; }
+
+.scroll-cue { position: absolute; bottom: 2.2rem; left: 50%; transform: translateX(-50%); font-family: var(--font-sans); font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.1em; text-transform: uppercase; display: flex; flex-direction: column; align-items: center; gap: 0.4rem; z-index: 5; }
+.scroll-cue-line { width: 1px; height: 24px; background: var(--text-light); animation: cueMove 1.8s ease-in-out infinite; }
+@keyframes cueMove { 0%,100% { transform: scaleY(1); opacity: 0.5; } 50% { transform: scaleY(1.4); opacity: 1; } }
+
+.glow-pulse { position: absolute; width: 260px; height: 220px; left: 50%; top: 40%; transform: translate(-50%,-50%); background: radial-gradient(ellipse at center, rgba(232,147,90,0.3), transparent 70%); animation: flicker 3.6s ease-in-out infinite; pointer-events: none; }
+@keyframes flicker { 0%,100% { opacity: 0.7; } 45% { opacity: 1; } 50% { opacity: 0.55; } 55% { opacity: 0.9; } }
+.smoke { position: absolute; width: 10px; height: 10px; border-radius: 50%; background: rgba(241,231,210,0.28); filter: blur(5px); animation: smokeRise 6s linear infinite; }
+@keyframes smokeRise { 0% { transform: translate(0,0) scale(1); opacity: 0; } 15% { opacity: 0.5; } 100% { transform: translate(14px,-160px) scale(2.6); opacity: 0; } }
+
+.photo-tag { position: absolute; bottom: 0.6rem; right: 0.9rem; font-family: var(--font-sans); font-size: 0.62rem; color: rgba(241,231,210,0.55); z-index: 6; letter-spacing: 0.03em; }
+
+.compass { position: fixed; right: 1.5rem; bottom: 1.5rem; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--border); background: rgba(23,19,15,0.82); display: flex; align-items: center; justify-content: center; z-index: 500; }
+.compass svg { width: 22px; height: 22px; transition: transform 0.2s linear; }
+
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.9s ease, transform 0.9s ease; }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* ── Interactive room stage (division pages) ─────────────────────────────── */
+.room-page-head { padding: 2.5rem 0 1.5rem; text-align: center; }
+.room-page-head h1 { font-family: var(--font-serif); font-weight: 500; font-size: clamp(1.8rem, 4vw, 2.5rem); }
+.room-page-head p { color: var(--text-muted); max-width: 500px; margin: 0.75rem auto 0; font-size: 0.95rem; }
+
+.stage-wrap { display: grid; grid-template-columns: 1.6fr 1fr; gap: 1.5rem; align-items: start; margin: 2rem 0 1rem; }
+.stage { position: relative; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: #000; }
+.stage img { display: block; width: 100%; height: auto; }
+.hotspot-layer { position: absolute; inset: 0; }
+.hotspot {
+  position: absolute;
+  border: 1px solid rgba(201,162,75,0.35);
+  background: rgba(201,162,75,0.04);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.hotspot:hover, .hotspot.active {
+  border-color: var(--brand);
+  background: rgba(201,162,75,0.16);
+  box-shadow: 0 0 18px rgba(201,162,75,0.35) inset;
+}
+.hotspot-label {
+  position: absolute; bottom: -1.9rem; left: 0;
+  font-family: var(--font-sans); font-size: 0.66rem; color: var(--text);
+  background: rgba(0,0,0,0.75); padding: 0.2rem 0.5rem; border-radius: 2px;
+  white-space: nowrap; opacity: 0; transition: opacity 0.2s; pointer-events: none;
+}
+.hotspot:hover .hotspot-label { opacity: 1; }
+.hotspot.nav-hotspot { border-style: dashed; }
+.hotspot.nav-hotspot:hover, .hotspot.nav-hotspot.active { border-color: #9fd6b4; background: rgba(159,214,180,0.14); box-shadow: 0 0 18px rgba(159,214,180,0.3) inset; }
+
+.photo-caption { border-top: 1px solid var(--border); padding: 0.6rem 0.9rem; font-family: var(--font-sans); font-size: 0.65rem; color: var(--text-muted); letter-spacing: 0.03em; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.4rem; }
+
+.panel { border: 1px solid var(--border); background: var(--bg-alt); border-radius: var(--radius); padding: 1.5rem; min-height: 360px; display: flex; flex-direction: column; }
+.panel-empty { color: var(--text-muted); font-size: 0.9rem; margin: auto 0; text-align: center; }
+.panel-empty .room-eyebrow-page { display: block; margin-bottom: 0.75rem; }
+.panel-eyebrow { font-family: var(--font-sans); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand); margin-bottom: 0.5rem; }
+.panel h2 { font-family: var(--font-serif); font-weight: 500; font-size: 1.35rem; margin-bottom: 0.4rem; color: var(--text); }
+.panel .badge { display: inline-block; font-family: var(--font-sans); font-size: 0.65rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text); border: 1px solid var(--border); padding: 0.15rem 0.5rem; border-radius: 2px; margin-bottom: 0.85rem; }
+.panel p { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 0.75rem; }
+
+.tab-row { display: flex; gap: 0.4rem; margin-bottom: 1rem; flex-wrap: wrap; }
+.tab-btn { font-family: var(--font-sans); font-size: 0.68rem; padding: 0.35rem 0.7rem; border: 1px solid var(--border); border-radius: 2px; background: transparent; color: var(--text-muted); cursor: pointer; }
+.tab-btn.active, .tab-btn:hover { border-color: var(--brand); color: var(--text); background: rgba(201,162,75,0.12); }
+
+.link-btn { display: inline-block; font-family: var(--font-sans); font-size: 0.7rem; padding: 0.45rem 0.8rem; border: 1px solid var(--border); border-radius: 2px; color: var(--text); text-decoration: none; margin: 0.25rem 0.4rem 0.25rem 0; }
+.link-btn:hover { border-color: var(--brand); background: rgba(201,162,75,0.12); text-decoration: none; }
+
+.room-supplement { margin: 3rem 0 2rem; border-top: 1px solid var(--border); padding-top: 2rem; }
+.room-supplement h2 { font-family: var(--font-serif); font-weight: 500; font-size: 1.3rem; margin-bottom: 0.75rem; }
+.room-supplement p { color: var(--text-muted); max-width: 640px; font-size: 0.95rem; }
+.room-series-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+.room-series-card { border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem; background: var(--bg-alt); }
+.room-series-card h3 { font-size: 1rem; font-family: var(--font-serif); font-weight: 500; margin-bottom: 0.4rem; }
+.room-series-card p { font-size: 0.85rem; color: var(--text-muted); }
+
+.room-nav { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding: 1.5rem 0 3rem; font-family: var(--font-sans); font-size: 0.78rem; flex-wrap: wrap; gap: 1rem; }
+.room-nav a { color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border); padding-bottom: 2px; }
+.room-nav a:hover { color: var(--brand); border-color: var(--brand); }
+
+/* ── FAQ (native details/summary — accessible by default) ───────────────── */
+.faq-list { display: flex; flex-direction: column; gap: 0.6rem; margin: 1.5rem 0; }
+.faq-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-alt);
+  padding: 0;
+}
+.faq-item summary {
+  cursor: pointer;
+  padding: 1rem 1.25rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  font-size: 0.96rem;
+  color: var(--text);
+  list-style: none;
+  position: relative;
+  padding-right: 2.5rem;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+  content: "+";
+  position: absolute;
+  right: 1.25rem;
+  top: 1rem;
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  color: var(--brand);
+  transition: transform 0.2s;
+}
+.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item summary:hover { color: var(--brand); }
+.faq-item summary:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+.faq-item p {
+  padding: 0 1.25rem 1.1rem;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+.faq-item p + p { padding-top: 0; margin-top: -0.6rem; }
+
+/* ── Studio map / status badges ───────────────────────────────────────────── */
+.room-status { display: inline-block; font-family: var(--font-sans); font-size: 0.6rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 0.12rem 0.4rem; border-radius: 2px; margin-top: 0.5rem; }
+.status-ready { background: rgba(120,180,140,0.18); color: #9fd6b4; }
+.status-soon { background: rgba(201,162,75,0.18); color: var(--brand); }
+
+@media (max-width: 780px) {
+  .stage-wrap { grid-template-columns: 1fr; }
+}

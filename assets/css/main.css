@@ -2,22 +2,22 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --brand:       #2563eb;
-  --brand-dark:  #1d4ed8;
-  --brand-light: #eff6ff;
-  --text:        #111827;
-  --text-muted:  #6b7280;
-  --text-light:  #9ca3af;
-  --bg:          #ffffff;
-  --bg-alt:      #f9fafb;
-  --border:      #e5e7eb;
+  --brand:       #c9a24b;
+  --brand-dark:  #a9843a;
+  --brand-light: rgba(201,162,75,0.12);
+  --text:        #f1e7d2;
+  --text-muted:  #cbbfa6;
+  --text-light:  #8a7440;
+  --bg:          #17130f;
+  --bg-alt:      #1f1a15;
+  --border:      #3e2c1c;
   --radius:      8px;
   --radius-lg:   14px;
   --shadow:      0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
   --shadow-md:   0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
   --shadow-lg:   0 10px 15px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.05);
   --font-sans:   'Inter', system-ui, sans-serif;
-  --font-serif:  'Merriweather', Georgia, serif;
+  --font-serif:  'Fraunces', Georgia, serif;
   --max-width:   1100px;
 }
 
@@ -71,7 +71,7 @@ a:hover { text-decoration: underline; }
 .logo-icon { font-size: 1.3rem; }
 
 .logo-text {
-  background: linear-gradient(135deg, var(--brand), #7c3aed);
+  background: linear-gradient(135deg, var(--brand), #e8935a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -98,7 +98,7 @@ a:hover { text-decoration: underline; }
 
 /* ── Hero ─────────────────────────────────────────────────────────────────── */
 .hero {
-  background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 100%);
+  background: linear-gradient(135deg, #1c1712 0%, #221a12 100%);
   padding: 5rem 0 4rem;
   border-bottom: 1px solid var(--border);
 }
@@ -112,7 +112,7 @@ a:hover { text-decoration: underline; }
 }
 
 .hero .accent {
-  background: linear-gradient(135deg, var(--brand), #7c3aed);
+  background: linear-gradient(135deg, var(--brand), #e8935a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -472,14 +472,14 @@ a:hover { text-decoration: underline; }
 
 /* ── Footer ───────────────────────────────────────────────────────────────── */
 .site-footer {
-  background: var(--text);
-  color: #d1d5db;
+  background: #0f0c09;
+  color: #cbbfa6;
   padding: 3rem 0 1.5rem;
 }
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 1.6fr 1fr 1fr 1fr;
   gap: 2rem;
   margin-bottom: 2rem;
   padding-bottom: 2rem;
@@ -495,7 +495,7 @@ a:hover { text-decoration: underline; }
 .footer-brand p {
   font-size: 0.85rem;
   line-height: 1.6;
-  color: #9ca3af;
+  color: #a9997e;
 }
 
 .footer-links h4 {
@@ -503,14 +503,14 @@ a:hover { text-decoration: underline; }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  color: #e5e7eb;
+  color: #e7dcc4;
   margin-bottom: 0.75rem;
 }
 
 .footer-links a {
   display: block;
   font-size: 0.85rem;
-  color: #9ca3af;
+  color: #a9997e;
   text-decoration: none;
   margin-bottom: 0.4rem;
   transition: color 0.15s;
@@ -520,7 +520,7 @@ a:hover { text-decoration: underline; }
 
 .footer-bottom {
   font-size: 0.78rem;
-  color: #6b7280;
+  color: #8a7a5e;
   display: flex;
   flex-direction: column;
   gap: 0.35rem;
@@ -628,7 +628,7 @@ a:hover { text-decoration: underline; }
 
 /* ── CTA banner (mid-page conversion sections) ───────────────────────────── */
 .cta-banner {
-  background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 100%);
+  background: linear-gradient(135deg, #1c1712 0%, #221a12 100%);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 2rem;
