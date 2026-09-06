@@ -45,10 +45,10 @@ The original `Explorer_DJ_HighRes_Frame_Pack_v1` remains unchanged. The eleven d
 
 The full package is **not ready for broader Explorer integration** because the declared animation grammar is incomplete. A complete sequence may still be approved independently for a limited context.
 
-## Approved limited idle integration
+## Approved infrastructure; production disabled
 
-The complete 12-frame idle sequence has been integrated at Explorer Entry only. It uses 320px, 512px, and 768px WebP derivatives plus a 512px PNG static fallback; source masters remain unchanged and excluded from the public build. The controller loads the selected resolution only near the character region, plays one 1.68-second cycle at 140ms per frame, pauses 9–18 seconds between optional cycles, suspends offscreen/hidden work, cancels timers and animation frames on lifecycle changes, and restores the static frame after a delivery failure.
+The complete 12-frame idle sequence previously validated the reusable Explorer Entry architecture. The integration now remains behind the disabled canonical feature flag in `_config.yml`; no character markup, controller, or delivery frames appear in the production build. Source masters and tooling remain unchanged and excluded. When explicitly enabled against controlled fixtures, the controller loads the selected resolution only near the character region, plays one 1.68-second cycle at 140ms per frame, pauses 9–18 seconds between optional cycles, suspends offscreen/hidden work, cancels timers and animation frames on lifecycle changes, and restores the static frame after a delivery failure.
 
 Reduced motion and no-JavaScript presentations remain static. The character is decorative, unfocusable, `aria-hidden`, and has empty alternative text. Browser validation passed at 1440×1000, 1024×768, 768×1024, and 390×844 with zero horizontal overflow. Blocked-frame simulation returned safely to the static fallback; repeated offscreen/onscreen transitions left no accumulated timers or animation frames; restricted-network testing retained a stable reserved character box.
 
-This limited Explorer Entry idle slice is ready for human experience review. It does not change the incomplete status of wave, blink, head-turn, expression, or useful-pose families and does not authorize Explorer elsewhere.
+The infrastructure is ready to receive a newly validated delivery set. Production remains intentionally OFF. This does not change the incomplete status of wave, blink, head-turn, expression, or useful-pose families and does not authorize Explorer elsewhere.

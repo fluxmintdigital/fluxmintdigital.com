@@ -1,6 +1,6 @@
 # Explorer DJ Animation Implementation Contract
 
-This contract describes a future progressive enhancement. It does not authorize public-site integration.
+This contract describes a future progressive enhancement. The reusable integration is retained behind `_config.yml` → `features.explorer_entry_idle.enabled`, which is canonically `false`. Production must remain non-animated until replacement delivery assets pass validation and the flag is deliberately enabled. Current frame evidence and derivative tooling remain excluded from the public build.
 
 ## Lifecycle
 

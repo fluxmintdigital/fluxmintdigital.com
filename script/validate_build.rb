@@ -72,6 +72,10 @@ end
 errors << "Entry sequence order changed" unless home_html.index('id="forest"') < home_html.index('id="cabin"') && home_html.index('id="cabin"') < home_html.index('id="explorer-entry"')
 errors << "Legacy entry truth leaked" if home_html.match?(/(?:in progress|Identity Architecture, Vol\. V|central hub for every book|Falsifiable, testable)/i)
 errors << "Entry must expose direct semantic Room navigation" unless home_html.include?("class=\"room-navigation\"")
+errors << "Disabled Explorer feature emitted character markup" if home_html.include?("data-explorer-idle")
+errors << "Disabled Explorer feature emitted controller code" if home_html.include?("explorerInitialized")
+errors << "Disabled Explorer feature requested delivery frames" if home_html.include?("FMD_CHAR_EXPLORERENTRY_DJ_IDLE")
+errors << "Disabled Explorer delivery directory was emitted" if SITE.join("assets/images/explorer-entry").exist?
 explorer_sources = SITE.glob("FluxMintDigital_Website_Canonical_Package/Explorer_DJ_*") + SITE.glob("FluxMintDigital_Website_Canonical_Package/Explorer DJ Regeneration Pack v1.1")
 errors << "Explorer source/evidence package was emitted into public build" unless explorer_sources.empty?
 errors << "Main Studio desktop source missing" unless studio_html.include?("FMD_SCENE_MAINSTUDIO_BASE_DESKTOP_DEFAULT_v001.png")

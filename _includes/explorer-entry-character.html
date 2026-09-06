@@ -1,0 +1,7 @@
+{% assign explorer_feature = site.features.explorer_entry_idle %}
+<div class="entry-explorer-character" data-explorer-idle data-frame-base="{{ explorer_feature.asset_base | relative_url }}" data-frame-count="{{ explorer_feature.frame_count }}" aria-hidden="true">
+  <picture>
+    <source type="image/webp" srcset="{{ explorer_feature.asset_base | append: 'FMD_CHAR_EXPLORERENTRY_DJ_IDLE_F01_320W_v001.webp' | relative_url }} 320w, {{ explorer_feature.asset_base | append: 'FMD_CHAR_EXPLORERENTRY_DJ_IDLE_F01_512W_v001.webp' | relative_url }} 512w, {{ explorer_feature.asset_base | append: 'FMD_CHAR_EXPLORERENTRY_DJ_IDLE_F01_768W_v001.webp' | relative_url }} 768w" sizes="(max-width: 767px) 46vw, (max-width: 1023px) 25vw, 24vw">
+    <img src="{{ explorer_feature.asset_base | append: 'FMD_CHAR_EXPLORERENTRY_DJ_IDLE_F01_512W_v001.png' | relative_url }}" width="512" height="512" alt="" loading="lazy" decoding="async">
+  </picture>
+</div>

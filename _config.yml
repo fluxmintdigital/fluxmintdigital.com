@@ -3,6 +3,14 @@ description: FluxMintDigital Architecture Studio — books, apps, tools, and fra
 url: "https://fluxmintdigital.com"
 baseurl: ""
 
+# Progressive experience features. Explorer Entry remains intentionally still
+# until a replacement delivery set has passed the production asset gate.
+features:
+  explorer_entry_idle:
+    enabled: false
+    asset_base: /assets/images/explorer-entry/idle/
+    frame_count: 12
+
 author:
   name: DJ Boswell
 
