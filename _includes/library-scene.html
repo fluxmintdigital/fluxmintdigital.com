@@ -1,0 +1,43 @@
+{% assign series_placements = site.data.surface_placements | where: 'surface', 'library-series-access' | sort: 'order' %}
+{% assign publication_placements = site.data.surface_placements | where: 'surface', 'library-primary-workspace' | sort: 'order' %}
+<section class="library-scene" aria-labelledby="library-scene-heading">
+  <div class="library-scene__viewport">
+    <picture class="library-scene__picture">
+      <source media="(max-width: 767px)" srcset="{{ '/FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_LIBRARY_BASE_MOBILE_DEFAULT_v002.png' | relative_url }}" width="942" height="1670">
+      <img src="{{ '/FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_LIBRARY_BASE_DESKTOP_DEFAULT_v001.png' | relative_url }}" width="1536" height="1024" alt="A warm timber library with bookshelves, reading tables, mountain views, and the Library's approved resting dog." fetchpriority="high">
+    </picture>
+    <div class="library-scene__shade" aria-hidden="true"></div>
+
+    <header class="library-scene__identity">
+      <p class="semantic-kicker">The Library · Read</p>
+      <h1 id="library-scene-heading">Ideas become explorable structure.</h1>
+      <p>Follow a publication, its sequence, or the larger lineage it belongs to.</p>
+    </header>
+
+    {% for placement in publication_placements %}
+      {% assign publication = site.artifacts | where: 'artifact_id', placement.artifact | first %}
+      {% if publication and publication.visibility == 'public' %}
+      <a class="library-publication" href="{{ publication.url | relative_url }}" aria-label="Read {{ publication.title }}, Volume {{ publication.sequence }}">
+        <img src="{{ publication.cover | relative_url }}" alt="" width="1086" height="1448" decoding="async">
+        <span><strong>{{ publication.title }}</strong><small>Volume {{ publication.sequence }} · {{ publication.lifecycle }}</small></span>
+      </a>
+      {% endif %}
+    {% endfor %}
+
+    <nav class="library-scene__hotspots" aria-label="Library scene access">
+      {% for placement in series_placements %}
+        {% assign series = site.artifacts | where: 'artifact_id', placement.artifact | first %}
+        {% if series and series.visibility == 'public' %}
+        <a class="library-hotspot library-hotspot--{{ series.artifact_id }}" href="{{ series.url | relative_url }}" aria-label="Explore {{ series.title }}">
+          <span class="library-hotspot__marker" aria-hidden="true"></span>
+          <span class="library-hotspot__label"><strong>{{ series.title }}</strong><small>Explore series</small></span>
+        </a>
+        {% endif %}
+      {% endfor %}
+      <a class="library-hotspot library-hotspot--return" href="{{ '/studio/' | relative_url }}" aria-label="Return to the Main Studio">
+        <span class="library-hotspot__marker" aria-hidden="true"></span>
+        <span class="library-hotspot__label"><strong>Main Studio</strong><small>Return</small></span>
+      </a>
+    </nav>
+  </div>
+</section>

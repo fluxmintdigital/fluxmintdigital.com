@@ -1,0 +1,26 @@
+id: fluxmintdigital-studio
+name: FluxMintDigital
+short_name: FluxMintDigital
+purpose: >-
+  A Studio for discovering the hidden architecture behind minds, systems,
+  stories, tools, and apps through exploration, creativity, and practical work.
+root_url: /studio/
+entry_url: /
+owner:
+  id: dj-boswell
+  name: D.J. Boswell
+  public_name: DJ Boswell
+  roles:
+    - author
+    - builder
+    - researcher
+    - collaborator
+    - steward
+identity:
+  corporate_mark: aperture
+  environmental_motif: mountain
+  explorer_character: explorer-dj
+  human_representation: realistic-dj
+external_boundaries:
+  omnishell_public: false
+  forgespark_relationship: sibling-studio

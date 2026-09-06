@@ -1,0 +1,23 @@
+current_observation: /the-value-of-wonder/
+featured:
+  - /the-value-of-wonder/
+  - /the-view-changes-when-you-climb/
+  - /everything-is-connected-but-not-everything-is-related/
+  - /the-difference-between-information-and-understanding/
+forms:
+  - id: essays
+    label: Essays
+    artifact_type: Essay
+    description: Sustained exploratory interpretation and reflection.
+  - id: discoveries
+    label: Discoveries
+    artifact_type: Discovery
+    description: A newly noticed connection or possibility worth preserving.
+  - id: field-notes
+    label: Field Notes
+    artifact_type: Field Note
+    description: Direct observations recorded close to the moment of noticing.
+  - id: workshop-notes
+    label: Workshop Notes
+    artifact_type: Workshop Note
+    description: Reflection arising from making, testing, or implementation work.

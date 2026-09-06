@@ -1,0 +1,47 @@
+lifecycle:
+  - seed
+  - on_the_workbench
+  - under_examination
+  - in_revision
+  - published
+  - released
+  - maintained
+  - dormant
+  - archived
+  - superseded
+  - retired
+visibility:
+  - private
+  - internal
+  - unlisted
+  - public
+availability:
+  - available
+  - unavailable
+  - private
+  - not_offered
+governance:
+  - working
+  - proposed
+  - canonical
+relationship_types:
+  - belongs_to
+  - expands
+  - explains
+  - applies
+  - companion_to
+  - derived_from
+  - supports
+  - challenges
+  - supersedes
+  - inspired_by
+  - available_through
+  - precedes
+  - follows
+  - edition_of
+  - version_of
+  - authored_by
+  - built_by
+  - owned_by
+  - published_by
+  - maintained_by

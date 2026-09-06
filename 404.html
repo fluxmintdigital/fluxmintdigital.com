@@ -4,11 +4,9 @@ title: Trail Not Found
 description: This page could not be found.
 permalink: /404.html
 ---
-<section style="min-height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 4rem 1.5rem;">
-  <div>
-    <span class="room-eyebrow-page">404</span>
-    <h1 style="font-family: var(--font-serif); font-weight: 500; font-size: clamp(1.6rem, 4vw, 2.2rem); margin-bottom: 1rem;">Looks like this trail hasn't been mapped yet.</h1>
-    <p style="color: var(--text-muted); max-width: 440px; margin: 0 auto 2rem;">Let's head back to camp.</p>
-    <a href="{{ '/' | relative_url }}" class="btn-primary">Back to Main Studio</a>
-  </div>
+<section class="system-state container" aria-labelledby="not-found-heading">
+  <p class="semantic-kicker">404 · Location unknown</p>
+  <h1 id="not-found-heading">This trail has not been mapped.</h1>
+  <p>The requested location does not correspond to a current public Surface. Nothing about an Artifact’s lifecycle or availability is inferred from this missing route.</p>
+  <nav class="relationship-exits" aria-label="Not-found options"><a href="{{ '/search/' | relative_url }}">Search the Studio</a><a href="{{ '/studio/' | relative_url }}">Return to Main Studio</a></nav>
 </section>

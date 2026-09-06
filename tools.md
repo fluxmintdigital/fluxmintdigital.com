@@ -1,5 +1,7 @@
 ---
-layout: room
+layout: redirect
+redirect_to: /workshop/
+redirect_label: the Workshop
 title: Tools
 description: The FluxMintDigital Tools Division — cognitive, math, and historical frameworks that help people think clearly and navigate complexity.
 permalink: /tools/

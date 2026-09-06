@@ -1,5 +1,7 @@
 ---
-layout: room
+layout: redirect
+redirect_to: /library/
+redirect_label: the Library
 title: Books
 description: The FluxMintDigital Books Division — multi-domain books that make the world clearer through structure, compassion, and systems thinking.
 permalink: /books/

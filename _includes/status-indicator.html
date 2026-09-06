@@ -1,0 +1,5 @@
+{% assign status_value = include.value | default: 'unknown' %}
+<span class="status-indicator status-indicator--{{ include.kind | default: 'lifecycle' }} status-indicator--{{ status_value | slugify }}">
+  <span class="status-indicator__dot" aria-hidden="true"></span>
+  <span class="status-indicator__label">{{ include.label | default: status_value | replace: '_', ' ' | capitalize }}</span>
+</span>

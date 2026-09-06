@@ -1,0 +1,7 @@
+<nav class="room-navigation" aria-label="{{ include.label | default: 'Rooms' }}">
+  <ul>
+    {% for room in site.data.rooms %}
+    <li><a href="{{ room.route | relative_url }}"{% if page.canonical_room == room.id %} aria-current="page"{% endif %}><span>{{ room.name }}</span><small>{{ room.verb }}</small></a></li>
+    {% endfor %}
+  </ul>
+</nav>

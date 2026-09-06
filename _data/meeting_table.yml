@@ -1,0 +1,37 @@
+primary_verb: Collaborate
+backend_configured: false
+public_client_artifacts: false
+attribution_assumed: false
+implementation_automatic: false
+stages:
+  - id: describe
+    label: Describe
+    description: Begin with the real problem, opportunity, or decision as you understand it now.
+  - id: clarify
+    label: Clarify
+    description: Identify the objective, context, constraints, unknowns, and people affected.
+  - id: scope
+    label: Scope
+    description: Define what architectural guidance would need to resolve and what remains outside it.
+  - id: decide
+    label: Decide
+    description: Choose architecture only, consider a separate implementation scope, or decide there is no fit.
+decisions:
+  - id: architecture-only
+    label: Architecture or guidance only
+    description: Leave with clearer structure, decisions, and an architectural outcome; implementation is not included.
+  - id: architecture-and-implementation
+    label: Architecture, then consider implementation
+    description: Decide the architecture first. A separate Workshop scope may be considered afterward, but is never automatic.
+  - id: no-engagement
+    label: No engagement or not a fit
+    description: A sound outcome may be to pause, choose another path, or conclude that FluxMintDigital is not the right fit.
+boundaries:
+  - title: Architecture is an outcome
+    description: The Table may produce clarified objectives, constraints, a system map, a decision record, or an implementation-ready blueprint when agreed.
+  - title: Implementation is a separate decision
+    description: Workshop work begins only after fit, architecture, scope, expectations, and mutual agreement are established.
+  - title: Examination belongs at the Wall
+    description: Claims requiring evidence, confidence, contradiction handling, or warrant belong to Architecture Wall—not client intake.
+  - title: Privacy remains the default
+    description: Client work may remain private and custom. Public attribution or “Powered by FluxMintDigital” is never assumed and requires explicit contractual agreement.

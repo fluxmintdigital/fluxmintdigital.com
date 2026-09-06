@@ -1,0 +1,24 @@
+{% if page.url != '/' and page.url != '/studio/' %}
+<nav class="location-receipt" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="{{ '/studio/' | relative_url }}">Studio</a></li>
+    {% if page.canonical_room %}
+      {% assign receipt_room = site.data.rooms | where: 'id', page.canonical_room | first %}
+      {% if receipt_room and page.url != receipt_room.route %}
+      <li><a href="{{ receipt_room.route | relative_url }}">{{ receipt_room.name }}</a></li>
+      {% elsif receipt_room %}
+      <li aria-current="page">{{ receipt_room.name }}</li>
+      {% endif %}
+    {% endif %}
+    {% if page.series_id %}
+      {% assign receipt_series = site.artifacts | where: 'artifact_id', page.series_id | first %}
+      {% if receipt_series and page.url != receipt_series.url %}
+      <li><a href="{{ receipt_series.url | relative_url }}">{{ receipt_series.title }}</a></li>
+      {% endif %}
+    {% endif %}
+    {% if page.canonical_room == nil or page.url != receipt_room.route %}
+    <li aria-current="page">{{ page.title }}</li>
+    {% endif %}
+  </ol>
+</nav>
+{% endif %}

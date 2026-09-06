@@ -1,0 +1,64 @@
+<section class="studio-scene" aria-labelledby="main-studio-heading">
+  <div class="studio-scene__viewport">
+    <picture class="studio-scene__picture">
+      <source media="(max-width: 767px)" srcset="{{ '/FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_MAINSTUDIO_BASE_MOBILE_DEFAULT_v003.png' | relative_url }}" width="853" height="1844">
+      <img src="{{ '/FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_MAINSTUDIO_BASE_DESKTOP_DEFAULT_v001.png' | relative_url }}" alt="The inhabited Main Studio overlooking a mountain lake, with a central desk and landmarks for reading, making, examining, noticing, collaborating, and taking useful work onward." width="1536" height="1024" fetchpriority="high">
+    </picture>
+    <div class="studio-scene__shade" aria-hidden="true"></div>
+
+    <header class="studio-scene__identity">
+      <p class="semantic-kicker">FluxMintDigital · Main Studio</p>
+      <h1 id="main-studio-heading">Ideas find a home here.</h1>
+      <p>Choose a Room, see what is happening now, or open the Studio Map.</p>
+    </header>
+
+    <div class="studio-scene__controls">
+      <details class="scene-panel scene-panel--now" name="studio-panel">
+        <summary><span>Desk</span><strong>Now</strong></summary>
+        <div class="scene-panel__content">
+          <p class="semantic-kicker">On the desk</p>
+          <h2>What is happening now</h2>
+          {% assign now_placements = site.data.surface_placements | where: 'surface', 'studio-desk-now' | sort: 'order' %}
+          <div class="scene-panel__items">
+          {% for placement in now_placements limit: 5 %}
+            {% assign artifact = site.artifacts | where: 'artifact_id', placement.artifact | first %}
+            {% if artifact and artifact.visibility == 'public' %}
+            <article>
+              <p>{{ artifact.artifact_type }}</p>
+              <h3><a href="{{ artifact.url | relative_url }}">{{ artifact.title }}</a></h3>
+              {% include status-indicator.html kind='lifecycle' value=artifact.lifecycle %}
+            </article>
+            {% endif %}
+          {% endfor %}
+          </div>
+        </div>
+      </details>
+
+      <details class="scene-panel scene-panel--map" name="studio-panel">
+        <summary><span>Open</span><strong>Studio Map</strong></summary>
+        <div class="scene-panel__content">
+          <p class="semantic-kicker">Semantic orientation</p>
+          <h2>Explore the Studio</h2>
+          {% include room-navigation.html label='Studio Map' %}
+        </div>
+      </details>
+    </div>
+
+    <nav class="scene-thresholds" aria-label="Main Studio Room thresholds">
+      {% for room in site.data.rooms %}
+      <a class="scene-threshold scene-threshold--{{ room.id }}" href="{{ room.route | relative_url }}" aria-label="Enter the {{ room.name }} — {{ room.verb }}">
+        <span class="scene-threshold__marker" aria-hidden="true"></span>
+        <span class="scene-threshold__label"><strong>{{ room.name }}</strong><small>{{ room.verb }}</small></span>
+      </a>
+      {% endfor %}
+    </nav>
+  </div>
+
+  <noscript>
+    <div class="studio-scene__fallback surface-panel">
+      <h2>Explore the Studio</h2>
+      <p>The scene is optional. Every Room remains available here.</p>
+      {% include room-navigation.html label='Studio Map fallback' %}
+    </div>
+  </noscript>
+</section>

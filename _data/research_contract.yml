@@ -1,0 +1,22 @@
+assertion_kinds:
+  - id: alignment
+    label: Alignment
+    description: Whether an assertion aligns with its stated objective or reference context.
+  - id: equivalence
+    label: Equivalence
+    description: Whether two representations preserve the same meaning under an explicitly stated comparison.
+  - id: generation
+    label: Generation
+    description: Whether a specified structure or process generates the stated result within its validity envelope.
+rules:
+  independent: true
+  mutually_entailing: false
+  combined_score: false
+  ai_self_promotes_warrant: false
+  visual_prominence_confers_truth: false
+  direction_implies_causation: false
+public_records:
+  claims: []
+  evidence: []
+  contradictions: []
+  validity_envelopes: []

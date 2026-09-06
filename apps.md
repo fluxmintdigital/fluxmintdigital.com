@@ -1,5 +1,7 @@
 ---
-layout: room
+layout: redirect
+redirect_to: /workshop/
+redirect_label: the Workshop
 title: Apps
 description: The FluxMintDigital Apps Division — practical, structured, architecture-driven tools designed to help people work smarter and organize their lives.
 permalink: /apps/

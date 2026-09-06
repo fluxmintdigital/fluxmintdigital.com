@@ -11,6 +11,13 @@ markdown: kramdown
 highlighter: rouge
 permalink: /:year/:month/:day/:title/
 
+# Canonical Studio content. Artifact front matter is the authority for
+# identity, classification, lifecycle, visibility, and availability.
+collections:
+  artifacts:
+    output: true
+    permalink: /artifacts/:name/
+
 # Plugins
 plugins:
   - jekyll-feed
@@ -25,6 +32,36 @@ exclude:
   - node_modules
   - vendor
   - README.md
+  - script
+  - FluxMintDigital_AAA_Asset_Master_Manifest.csv
+  - FluxMintDigital_AAA_Remaining_Production_Checklist.md
+  - FluxMintDigital_AAA_Treatment_Matrix.md
+  - FluxMintDigital_Implementation_Readiness_Gaps.md
+  - FluxMintDigital_Interactive_Object_Register.csv
+  - FluxMintDigital_Mobile_Composition_Requirements.md
+  - FluxMintDigital_Scene_Decomposition_Plan.md
+  - FluxMintDigital_Website_Canonical_Package/Docs
+  - FluxMintDigital_Website_Canonical_Package/Assets/archived
+  - FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_UI_*
+  - FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SOURCE_*
+  - FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_MAINSTUDIO_BASE_MOBILE_DEFAULT_v002.png
+  - FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_ARCHITECTUREWALL_BASE_DESKTOP_DEFAULT_v001.png
+  - FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_ARCHITECTUREWALL_BASE_MOBILE_DEFAULT_v002.png
+  - FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_OBSERVATORY_BASE_DESKTOP_DEFAULT_v001.png
+  - FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_OBSERVATORY_BASE_MOBILE_DEFAULT_v002.png
+  - FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_FOREST_BASE_MOBILE_DEFAULT_v001.png
+  - FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_CABINEXTERIOR_BASE_MOBILE_DEFAULT_v001.png
+  - FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_EXPLORERENTRY_BASE_MOBILE_DEFAULT_v001.png
+  - FluxMintDigital_Website_Canonical_Package/Assets/final/The_Architecture_of_Being_Human_Cover.jpeg
+  - FluxMintDigital_Website_Canonical_Package/Assets/source/FMD_SOURCE_MEETDJ_APPROVED_LIKENESS_REFERENCE_v001.jpg
+  - FMD_UI_ARTIFACT_BOOK_DETAIL_MOBILE_DEFAULT_v001.png
+  - FluxMintDigital_Website_Canonical_Package/README_Canonical_Package_Guide.docx
+  - FluxMintDigital_Website_Canonical_Package/01_FluxMintDigital_Studio_Architecture.docx
+  - FluxMintDigital_Website_Canonical_Package/02_FluxMintDigital_Content_and_Data_Architecture.docx
+  - FluxMintDigital_Website_Canonical_Package/03_FluxMintDigital_Experience_and_Navigation_Architecture.docx
+  - FluxMintDigital_Website_Canonical_Package/04_FluxMintDigital_Design_Language.docx
+  - FluxMintDigital_Website_Canonical_Package/05_FluxMintDigital_Visual_Scene_and_Asset_Architecture.docx
+  - FluxMintDigital_Website_Canonical_Package/06_FluxMintDigital_Implementation_and_Validation_Standard.docx
 
 # Pagination (used once the Studio Blog has posts)
 paginate: 10
@@ -44,6 +81,18 @@ defaults:
     values:
       layout: "post"
       author: "DJ Boswell"
+      artifact_type: "Essay"
+      canonical_room: "observatory"
+      lifecycle: "published"
+      visibility: "public"
+      governance: "canonical"
+  - scope:
+      path: ""
+      type: "artifacts"
+    values:
+      layout: "artifact"
+      governance: "canonical"
+      visibility: "public"
   - scope:
       path: ""
     values:

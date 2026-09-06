@@ -1,0 +1,42 @@
+{% assign current_build_placements = site.data.surface_placements | where: 'surface', 'workshop-current-build' | sort: 'order' %}
+<section class="workshop-scene" aria-labelledby="workshop-scene-heading">
+  <div class="workshop-scene__viewport">
+    <picture class="workshop-scene__picture">
+      <source media="(max-width: 767px)" srcset="{{ '/FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_WORKSHOP_BASE_MOBILE_DEFAULT_v002.png' | relative_url }}" width="942" height="1669">
+      <img src="{{ '/FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_WORKSHOP_BASE_DESKTOP_DEFAULT_v001.png' | relative_url }}" width="1536" height="1024" alt="A warm timber workshop with workbenches, hand tools, a computer, prototype equipment, mountain views, and the approved small dog." fetchpriority="high">
+    </picture>
+    <div class="workshop-scene__shade" aria-hidden="true"></div>
+
+    <header class="workshop-scene__identity">
+      <p class="semantic-kicker">The Workshop · Build</p>
+      <h1 id="workshop-scene-heading">Ideas become usable things.</h1>
+      <p>A curated public workbench for applications, tools, instruments, and making experiments.</p>
+    </header>
+
+    {% for placement in current_build_placements %}
+      {% assign current_build = site.artifacts | where: 'artifact_id', placement.artifact | first %}
+      {% if current_build and current_build.visibility == 'public' %}
+      <a class="workshop-current-build" href="{{ current_build.url | relative_url }}" aria-label="Inspect current Workshop build: {{ current_build.title }}">
+        <span class="semantic-kicker">Current Build</span>
+        <strong>{{ current_build.title }}</strong>
+        {% include status-indicator.html kind='lifecycle' value=current_build.lifecycle %}
+      </a>
+      {% endif %}
+    {% endfor %}
+
+    <nav class="workshop-scene__hotspots" aria-label="Workshop scene access">
+      <a class="workshop-hotspot workshop-hotspot--applications" href="#workshop-applications" aria-label="Explore public Workshop applications">
+        <span class="workshop-hotspot__marker" aria-hidden="true"></span>
+        <span class="workshop-hotspot__label"><strong>Applications</strong><small>Explore</small></span>
+      </a>
+      <a class="workshop-hotspot workshop-hotspot--tools" href="#workshop-tool-access" aria-label="Explore Workshop tools and instruments">
+        <span class="workshop-hotspot__marker" aria-hidden="true"></span>
+        <span class="workshop-hotspot__label"><strong>Tools &amp; instruments</strong><small>Workbench access</small></span>
+      </a>
+      <a class="workshop-hotspot workshop-hotspot--return" href="{{ '/studio/' | relative_url }}" aria-label="Return to the Main Studio">
+        <span class="workshop-hotspot__marker" aria-hidden="true"></span>
+        <span class="workshop-hotspot__label"><strong>Main Studio</strong><small>Return</small></span>
+      </a>
+    </nav>
+  </div>
+</section>

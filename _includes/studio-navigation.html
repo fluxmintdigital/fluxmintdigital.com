@@ -1,0 +1,12 @@
+<nav class="studio-navigation" aria-label="Studio">
+  <ul class="studio-navigation__list">
+    {% for item in site.data.navigation.primary %}
+    <li><a href="{{ item.url | relative_url }}"{% if page.url == item.url or item.room and page.canonical_room == item.room %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+    {% endfor %}
+  </ul>
+  <ul class="studio-navigation__utilities" aria-label="Studio utilities">
+    {% for item in site.data.navigation.utilities %}
+    <li><a href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>

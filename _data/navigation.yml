@@ -1,0 +1,26 @@
+primary:
+  - label: Studio
+    url: /studio/
+  - label: Library
+    url: /library/
+    room: library
+  - label: Workshop
+    url: /workshop/
+    room: workshop
+  - label: Architecture Wall
+    url: /architecture-wall/
+    room: architecture-wall
+  - label: Observatory
+    url: /observatory/
+    room: observatory
+  - label: Meeting Table
+    url: /meeting-table/
+    room: meeting-table
+  - label: Explorer Outfitters
+    url: /explorer-outfitters/
+    room: explorer-outfitters
+utilities:
+  - label: Meet DJ
+    url: /meet-dj/
+  - label: Search
+    url: /search/

@@ -1,0 +1,15 @@
+<section class="aeg-contract surface-panel" aria-labelledby="aeg-contract-heading">
+  <p class="semantic-kicker">Assertion contract</p>
+  <h2 id="aeg-contract-heading">Independent AEG warrants</h2>
+  <p>Alignment, Equivalence, and Generation are evaluated independently. One never entails another, and no combined AEG score exists.</p>
+  <dl class="aeg-contract__kinds">
+    {% for kind in site.data.research_contract.assertion_kinds %}
+    <div>
+      <dt>{{ kind.label }}</dt>
+      <dd>{{ kind.description }}</dd>
+      <dd class="aeg-contract__state">Public assertion state: not asserted</dd>
+    </div>
+    {% endfor %}
+  </dl>
+  <p class="aeg-contract__note">AI may propose records for authorized review; it cannot promote its own proposal to warrant.</p>
+</section>

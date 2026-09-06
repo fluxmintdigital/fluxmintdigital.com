@@ -1,0 +1,9 @@
+<article class="observatory-card surface-card" data-artifact-id="{{ include.post.artifact_id | default: include.post.slug }}">
+  <p class="semantic-kicker">{{ include.post.artifact_type }}{% if include.current %} · Current observation{% endif %}</p>
+  <h3><a class="card-link" href="{{ include.post.url | relative_url }}">{{ include.post.title }}</a></h3>
+  <p>{{ include.post.description }}</p>
+  <div class="observatory-card__meta">
+    <time datetime="{{ include.post.date | date_to_xmlschema }}">{{ include.post.date | date: "%B %-d, %Y" }}</time>
+    {% if include.post.tags %}<span>{{ include.post.tags | join: ', ' }}</span>{% endif %}
+  </div>
+</article>

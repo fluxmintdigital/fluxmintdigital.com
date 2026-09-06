@@ -1,0 +1,77 @@
+---
+layout: default
+---
+{% assign artifact_room = site.data.rooms | where: 'id', page.canonical_room | first %}
+<article class="artifact-detail container">
+  <header class="artifact-detail__header">
+    <p class="semantic-kicker">{{ page.artifact_type }}{% if artifact_room %} · {{ artifact_room.name }}{% endif %}</p>
+    <h1>{{ page.title }}</h1>
+    {% if page.subtitle %}<p class="artifact-subtitle">{{ page.subtitle }}</p>{% endif %}
+    <dl class="artifact-facts">
+      <div><dt>Lifecycle</dt><dd>{{ page.lifecycle | replace: '_', ' ' | capitalize }}</dd></div>
+      <div><dt>Visibility</dt><dd>{{ page.visibility | capitalize }}</dd></div>
+      <div><dt>Governance</dt><dd>{{ page.governance | capitalize }}</dd></div>
+      {% if page.sequence %}<div><dt>Series sequence</dt><dd>Volume {{ page.sequence }}</dd></div>{% endif %}
+      {% if page.availability %}<div><dt>Availability</dt><dd>{{ page.availability.status | replace: '_', ' ' | capitalize }}</dd></div>{% endif %}
+    </dl>
+  </header>
+  <div class="artifact-detail__content">
+    {% if page.cover %}<figure><img src="{{ page.cover | relative_url }}" alt="Cover of {{ page.title }}{% if page.sequence %}, Volume {{ page.sequence }}{% endif %}" width="1086" height="1448" loading="eager"><figcaption>Canonical publication cover</figcaption></figure>{% endif %}
+    <div class="prose">{{ content }}</div>
+  </div>
+  {% if page.canonical_room == 'architecture-wall' %}
+  <aside class="research-boundary-note" aria-label="Research warrant boundary">
+    <strong>Canonical representation is not scientific warrant.</strong>
+    <span>No claim-level confidence or AEG warrant is inferred from this Artifact’s lifecycle, visibility, governance, placement, or visual prominence.</span>
+  </aside>
+  {% assign artifact_relationships = site.data.relationships | where: 'source', page.artifact_id %}
+  {% if artifact_relationships.size > 0 %}
+  <section class="artifact-lineage" aria-labelledby="framework-lineage-heading">
+    <p class="semantic-kicker">Provenance and lineage</p>
+    <h2 id="framework-lineage-heading">Typed relationships</h2>
+    <ul class="research-relationship-list">
+      {% for relationship in artifact_relationships %}
+        {% assign relationship_target = site.artifacts | where: 'artifact_id', relationship.target | first %}
+        {% if relationship_target %}
+        <li>
+          <a href="{{ relationship_target.url | relative_url }}">{{ relationship.type | replace: '_', ' ' | capitalize }}: {{ relationship_target.title }}</a>
+          <span>Provenance: {{ relationship.provenance }}. Direction records the authored relationship and does not by itself assert causation.</span>
+        </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+  {% endif %}
+  {% if page.artifact_type == 'Series' %}
+    {% assign series_members = site.artifacts | where: 'series_id', page.artifact_id | where: 'visibility', 'public' | sort: 'sequence' %}
+    <section class="artifact-lineage" aria-labelledby="series-lineage-heading">
+      <p class="semantic-kicker">Ordered lineage</p>
+      <h2 id="series-lineage-heading">Volumes in this series</h2>
+      {% if series_members.size > 0 %}
+      <ol class="artifact-lineage__list">
+        {% for member in series_members %}
+        <li>{% include artifact-summary.html artifact=member %}</li>
+        {% endfor %}
+      </ol>
+      {% else %}
+      <p>No volumes are announced in canonical data.</p>
+      {% endif %}
+    </section>
+  {% elsif page.series_id %}
+    {% assign parent_series = site.artifacts | where: 'artifact_id', page.series_id | first %}
+    {% if parent_series %}
+    <section class="artifact-lineage" aria-labelledby="book-lineage-heading">
+      <p class="semantic-kicker">Series lineage</p>
+      <h2 id="book-lineage-heading">Part of {{ parent_series.title }}</h2>
+      <p>Volume {{ page.sequence }} in the canonical sequence.</p>
+      {% include relationship-link.html url=parent_series.url type='Belongs to' label=parent_series.title %}
+    </section>
+    {% endif %}
+  {% endif %}
+  <nav class="relationship-exits" aria-label="Continue exploring">
+    {% if artifact_room %}{% include relationship-link.html url=artifact_room.route type='Canonical Room' label=artifact_room.name %}{% endif %}
+    {% include relationship-link.html url='/studio/' type='Return' label='Main Studio' %}
+    {% include relationship-link.html url='/relationships/' type='Explore' label='Relationship Explorer' %}
+  </nav>
+</article>

@@ -1,5 +1,7 @@
 ---
-layout: room
+layout: redirect
+redirect_to: /observatory/
+redirect_label: the Observatory
 title: Blog
 description: The FluxMintDigital Blog Division — the Studio Blog and the Work-at-Home Equipment Blog, together forming one publishing ecosystem.
 permalink: /blog/

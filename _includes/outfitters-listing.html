@@ -1,0 +1,21 @@
+{% assign item = include.artifact %}
+{% assign availability = site.data.availability.records | where: 'artifact', item.artifact_id | first %}
+<article class="outfitters-listing surface-card" id="outfitters-{{ item.canonical_room }}">
+  {% if item.cover %}<img src="{{ item.cover | relative_url }}" width="1086" height="1448" alt="Cover of {{ item.title }}" loading="lazy">{% endif %}
+  <div>
+    <p class="semantic-kicker">{{ item.artifact_type }} · {{ item.canonical_room | replace: '-', ' ' | capitalize }}</p>
+    <h3><a href="{{ item.url | relative_url }}">{{ item.title }}</a></h3>
+    <p>{{ item.description }}</p>
+    <dl class="outfitters-facts">
+      <div><dt>Canonical Room</dt><dd>{{ item.canonical_room | replace: '-', ' ' | capitalize }}</dd></div>
+      <div><dt>Lifecycle</dt><dd>{{ item.lifecycle | replace: '_', ' ' | capitalize }}</dd></div>
+      <div><dt>Availability</dt><dd>{% if availability %}{{ availability.status | replace: '_', ' ' | capitalize }}{% else %}No approved channel represented{% endif %}</dd></div>
+    </dl>
+    <div class="outfitters-actions">
+      <a class="button button--quiet" href="{{ item.url | relative_url }}">View canonical Artifact</a>
+      {% if availability and availability.status == 'available' %}
+        {% for channel in availability.channels %}<a class="button" href="{{ channel.url }}" rel="external noopener">{{ channel.action }} through {{ channel.name }}<span class="visually-hidden"> (external)</span></a>{% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</article>

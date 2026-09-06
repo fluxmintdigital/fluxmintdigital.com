@@ -1,0 +1,37 @@
+---
+layout: default
+---
+{% assign room = site.data.rooms | where: 'id', page.canonical_room | first %}
+<article class="semantic-room">
+  <header class="semantic-hero container">
+    <p class="semantic-kicker">{{ room.name }} · {{ room.verb }}</p>
+    <h1>{{ room.name }}</h1>
+    <p class="semantic-lede">{{ room.description }}</p>
+  </header>
+
+  <div class="semantic-room__body container">
+    <section aria-labelledby="workspace-heading">
+      <h2 id="workspace-heading">{{ page.workspace_title | default: 'Inside this Room' }}</h2>
+      {{ content }}
+    </section>
+
+    {% if page.canonical_room == 'library' %}
+    <section aria-labelledby="library-artifacts-heading">
+      <h2 id="library-artifacts-heading">Published work</h2>
+      <div class="artifact-list">
+      {% assign room_artifacts = site.artifacts | where: 'canonical_room', 'library' | sort: 'sequence' %}
+      {% for artifact in room_artifacts %}
+        {% if artifact.visibility == 'public' and artifact.artifact_type != 'Series' %}
+        {% include artifact-summary.html artifact=artifact %}
+        {% endif %}
+      {% endfor %}
+      </div>
+    </section>
+    {% endif %}
+
+    <nav class="relationship-exits" aria-label="Room exits">
+      <a href="{{ '/studio/' | relative_url }}">Return to Main Studio</a>
+      <a href="{{ '/search/' | relative_url }}">Search this Studio</a>
+    </nav>
+  </div>
+</article>

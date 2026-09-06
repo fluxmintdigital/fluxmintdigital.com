@@ -1,0 +1,18 @@
+{% assign dj = site.data.studio.owner %}
+<section class="dj-scene" aria-labelledby="dj-scene-heading">
+  <div class="dj-scene__viewport">
+    <picture class="dj-scene__picture">
+      <source media="(max-width: 767px)" srcset="{{ '/FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_MEETDJ_BASE_MOBILE_DEFAULT_v002.png' | relative_url }}" width="1024" height="1536">
+      <img src="{{ '/FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_MEETDJ_BASE_DESKTOP_DEFAULT_v001.png' | relative_url }}" width="1536" height="1024" alt="A pet-free, person-free timber workspace with a writing table, books, cameras, maps, tools, warm light, and a mountain horizon." fetchpriority="high">
+    </picture>
+    <div class="dj-scene__shade" aria-hidden="true"></div>
+    <img class="dj-scene__character" src="{{ '/FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_CHAR_MEETDJ_REALISTIC_RESPONSIVE_IDLE_v001.png' | relative_url }}" width="1024" height="1536" alt="" aria-hidden="true">
+    <header class="dj-scene__identity">
+      <p class="semantic-kicker">Person Surface · Author · Builder · Collaborator</p>
+      <h1 id="dj-scene-heading">Meet {{ dj.public_name }}</h1>
+      <p>The real person responsible for the work, choices, and collaborations inside FluxMintDigital.</p>
+    </header>
+    <a class="dj-scene__return" href="{{ '/studio/' | relative_url }}"><span aria-hidden="true">◆</span><span><strong>Main Studio</strong><small>Return</small></span></a>
+  </div>
+  <p class="scene-context container">The workspace is atmospheric. Identity, authorship, roles, work, and relationships are represented by the live content below.</p>
+</section>

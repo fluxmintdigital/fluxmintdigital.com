@@ -1,0 +1,38 @@
+{% assign current_observation = site.posts | where: 'url', site.data.observatory.current_observation | first %}
+<section class="observatory-scene" aria-labelledby="observatory-scene-heading">
+  <div class="observatory-scene__viewport">
+    <picture class="observatory-scene__picture">
+      <source media="(max-width: 767px)" srcset="{{ '/FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_OBSERVATORY_BASE_MOBILE_DEFAULT_v003.png' | relative_url }}" width="942" height="1669">
+      <img src="{{ '/FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_OBSERVATORY_BASE_DESKTOP_DEFAULT_v002.png' | relative_url }}" width="1536" height="1024" alt="A pet-free, person-free timber observatory with a telescope facing a mountain horizon, a star-filled sky, reading chairs, books, and a field notebook." fetchpriority="high">
+    </picture>
+    <div class="observatory-scene__shade" aria-hidden="true"></div>
+
+    <header class="observatory-scene__identity">
+      <p class="semantic-kicker">The Observatory · Notice</p>
+      <h1 id="observatory-scene-heading">Look long enough to notice.</h1>
+      <p>Observation, reflection, interpretation, and exploratory thought—without borrowing the Wall’s warrant.</p>
+    </header>
+
+    {% if current_observation %}
+    <a class="observatory-current" href="{{ current_observation.url | relative_url }}" aria-label="Read the current observation: {{ current_observation.title }}">
+      <span class="semantic-kicker">Current observation · {{ current_observation.artifact_type }}</span>
+      <strong>{{ current_observation.title }}</strong>
+      <time datetime="{{ current_observation.date | date_to_xmlschema }}">{{ current_observation.date | date: "%B %-d, %Y" }}</time>
+    </a>
+    {% endif %}
+
+    <nav class="observatory-scene__hotspots" aria-label="Observatory scene access">
+      {% for form in site.data.observatory.forms %}
+      <a class="observatory-hotspot observatory-hotspot--{{ form.id }}" href="#observatory-{{ form.id }}" aria-label="Explore Observatory {{ form.label }}">
+        <span class="observatory-hotspot__marker" aria-hidden="true"></span><span class="observatory-hotspot__label"><strong>{{ form.label }}</strong><small>Explore</small></span>
+      </a>
+      {% endfor %}
+      <a class="observatory-hotspot observatory-hotspot--archive" href="{{ '/studio-blog/' | relative_url }}" aria-label="Browse Observatory archive and history">
+        <span class="observatory-hotspot__marker" aria-hidden="true"></span><span class="observatory-hotspot__label"><strong>Archive</strong><small>History</small></span>
+      </a>
+      <a class="observatory-hotspot observatory-hotspot--return" href="{{ '/studio/' | relative_url }}" aria-label="Return to the Main Studio">
+        <span class="observatory-hotspot__marker" aria-hidden="true"></span><span class="observatory-hotspot__label"><strong>Main Studio</strong><small>Return</small></span>
+      </a>
+    </nav>
+  </div>
+</section>

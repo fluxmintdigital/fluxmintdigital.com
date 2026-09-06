@@ -1,0 +1,36 @@
+- id: library
+  name: Library
+  verb: Read
+  route: /library/
+  description: Where authored knowledge becomes explorable structure.
+  legacy_routes: [/books/]
+- id: workshop
+  name: Workshop
+  verb: Build
+  route: /workshop/
+  description: Where ideas become usable applications, tools, instruments, and prototypes.
+  legacy_routes: [/apps/, /tools/]
+- id: architecture-wall
+  name: Architecture Wall
+  verb: Examine
+  route: /architecture-wall/
+  description: Where frameworks, models, claims, evidence, and inquiry become inspectable.
+  legacy_routes: [/science/]
+- id: observatory
+  name: Observatory
+  verb: Notice
+  route: /observatory/
+  description: Where the Studio observes, interprets, reflects, and shares exploratory thought.
+  legacy_routes: [/blog/, /studio-blog/]
+- id: meeting-table
+  name: Meeting Table
+  verb: Collaborate
+  route: /meeting-table/
+  description: Where real problems are clarified, scoped, and architected together.
+  legacy_routes: [/services/]
+- id: explorer-outfitters
+  name: Explorer Outfitters
+  verb: Take
+  route: /explorer-outfitters/
+  description: A cross-Studio acquisition surface for meaningful things visitors can take with them.
+  legacy_routes: [/store/]

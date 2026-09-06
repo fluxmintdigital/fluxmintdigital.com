@@ -1,5 +1,7 @@
 ---
-layout: room
+layout: redirect
+redirect_to: /meet-dj/
+redirect_label: Meet DJ
 title: About
 description: FluxMintDigital is a multi-lane architecture studio built by DJ Boswell — books, apps, tools, and frameworks under one structured ecosystem.
 permalink: /about/

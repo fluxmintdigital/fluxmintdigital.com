@@ -1,0 +1,9 @@
+---
+layout: default
+---
+<section class="redirect-notice container">
+  <p class="semantic-kicker">Studio route updated</p>
+  <h1>{{ page.title }}</h1>
+  <p>This destination now lives at <a href="{{ page.redirect_to | relative_url }}">{{ page.redirect_label }}</a>.</p>
+</section>
+<script>window.location.replace({{ page.redirect_to | relative_url | jsonify }});</script>

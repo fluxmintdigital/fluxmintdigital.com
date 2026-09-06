@@ -6,8 +6,8 @@
 <meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
 <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
 <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-<meta property="og:url" content="{{ page.url | absolute_url }}">
-<link rel="canonical" href="{{ page.url | absolute_url }}">
+<meta property="og:url" content="{% if page.redirect_to %}{{ page.redirect_to | absolute_url }}{% else %}{{ page.url | absolute_url }}{% endif %}">
+<link rel="canonical" href="{% if page.redirect_to %}{{ page.redirect_to | absolute_url }}{% else %}{{ page.url | absolute_url }}{% endif %}">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
