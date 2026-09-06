@@ -1,0 +1,37 @@
+route_or_destination,type,source,layout_or_generation,surface,visual_asset,navigation_or_status,evidence
+/,page,index.md,home,"Forest > Cabin Exterior > Explorer Entry > Main Studio > content/map",forest_path.jpg;cabin_exterior.jpg;explorer_entry.jpg;main_studio.jpg,"header/footer; anchors #studio-map and #scene-main-studio",index.md:2-5;_layouts/home.html
+/about/,page,about.md,room,Meet DJ/About,architecture_wall_dj.jpg,"prev /blog/; next /science/",about.md:2-52
+/apps/,page,apps.md,room,Workshop/Apps,workshop.jpg,"prev /books/; next /tools/",apps.md:2-78
+/blog/,page,blog.md,room,Observatory/Blog,observatory.jpg,"prev /services/; next /about/; external legacy blog",blog.md:2-59
+/books/,page,books.md,room,Library/Books,"library.jpg;field-guide-wild-side-banner.jpg;architecture-series-banner.jpg","prev /; next /apps/",books.md:2-95
+/science/,page,science.md,room,Architecture Wall/Science,main_studio.jpg,"prev /tools/; next /services/",science.md:2-59
+/services/,page,services.md,room,Meeting Table/Architecture Services,services.jpg,"prev /science/; next /store/",services.md:2-63
+/store/,page,store.md,room,Explorer Outfitters/Store,store.jpg,"prev /services/; next /; placeholder commerce links",store.md:2-66
+/tools/,page,tools.md,room,Workshop/Tools,workshop.jpg,"prev /apps/; next /science/",tools.md:2-78
+/studio-blog/,archive,studio-blog/index.html,default,Observatory Studio Blog archive,none,"all posts newest-first; no pagination markup",studio-blog/index.html:1-35
+/404.html,error,404.html,default,Trail Not Found,none,Back to Main Studio,404.html:1-14
+/welcome-to-the-observatory/,article,_posts/2026-03-01-welcome-to-the-observatory.md,post,Observatory essay I,none,3 related links,_posts/2026-03-01-welcome-to-the-observatory.md:1-65
+/what-is-architectural-thinking/,article,_posts/2026-03-08-what-is-architectural-thinking.md,post,Observatory essay II,none,3 related links,_posts/2026-03-08-what-is-architectural-thinking.md:1-63
+/why-i-created-objective-first-architecture/,article,_posts/2026-03-15-why-i-created-objective-first-architecture.md,post,Observatory essay III,none,3 related links,_posts/2026-03-15-why-i-created-objective-first-architecture.md:1-65
+/what-does-it-mean-to-become-an-explorer/,article,_posts/2026-03-22-what-does-it-mean-to-become-an-explorer.md,post,Observatory essay IV,none,2 related links,_posts/2026-03-22-what-does-it-mean-to-become-an-explorer.md:1-58
+/the-difference-between-information-and-understanding/,article,_posts/2026-03-29-the-difference-between-information-and-understanding.md,post,Observatory essay V,none,3 related links,_posts/2026-03-29-the-difference-between-information-and-understanding.md:1-63
+/building-a-studio-instead-of-a-brand/,article,_posts/2026-04-05-building-a-studio-instead-of-a-brand.md,post,Observatory essay VI,none,2 related links,_posts/2026-04-05-building-a-studio-instead-of-a-brand.md:1-56
+/the-architecture-of-everyday-decisions/,article,_posts/2026-04-12-the-architecture-of-everyday-decisions.md,post,Observatory essay VII,none,3 related links,_posts/2026-04-12-the-architecture-of-everyday-decisions.md:1-63
+/the-architecture-of-learning/,article,_posts/2026-04-19-the-architecture-of-learning.md,post,Observatory essay VIII,none,3 related links,_posts/2026-04-19-the-architecture-of-learning.md:1-59
+/behind-the-studio/,article,_posts/2026-04-26-behind-the-studio.md,post,Observatory essay IX,none,3 related links,_posts/2026-04-26-behind-the-studio.md:1-59
+/why-most-problems-are-misunderstood/,article,_posts/2026-05-03-why-most-problems-are-misunderstood.md,post,Observatory essay X,none,3 related links,_posts/2026-05-03-why-most-problems-are-misunderstood.md:1-65
+/the-architecture-of-trust/,article,_posts/2026-05-10-the-architecture-of-trust.md,post,Observatory essay XI,none,3 related links,_posts/2026-05-10-the-architecture-of-trust.md:1-63
+/why-we-create/,article,_posts/2026-05-17-why-we-create.md,post,Observatory essay XII,none,3 related links,_posts/2026-05-17-why-we-create.md:1-63
+/the-courage-to-change-your-mind/,article,_posts/2026-05-24-the-courage-to-change-your-mind.md,post,Observatory essay XIII,none,3 related links,_posts/2026-05-24-the-courage-to-change-your-mind.md:1-67
+/nothing-meaningful-is-built-overnight/,article,_posts/2026-05-31-nothing-meaningful-is-built-overnight.md,post,Observatory essay XIV,none,3 related links,_posts/2026-05-31-nothing-meaningful-is-built-overnight.md:1-63
+/the-value-of-wonder/,article,_posts/2026-06-07-the-value-of-wonder.md,post,Observatory essay XV,none,3 related links,_posts/2026-06-07-the-value-of-wonder.md:1-63
+/everything-is-connected-but-not-everything-is-related/,article,_posts/2026-06-14-everything-is-connected-but-not-everything-is-related.md,post,Observatory essay XVI,none,3 related links,_posts/2026-06-14-everything-is-connected-but-not-everything-is-related.md:1-59
+/listening-for-what-isnt-being-said/,article,_posts/2026-06-21-listening-for-what-isnt-being-said.md,post,Observatory essay XVII,none,3 related links,_posts/2026-06-21-listening-for-what-isnt-being-said.md:1-59
+/building-a-life-worth-living/,article,_posts/2026-06-28-building-a-life-worth-living.md,post,Observatory essay XVIII,none,3 related links,_posts/2026-06-28-building-a-life-worth-living.md:1-63
+/the-view-changes-when-you-climb/,article,_posts/2026-07-05-the-view-changes-when-you-climb.md,post,Observatory essay XIX,none,3 related links,_posts/2026-07-05-the-view-changes-when-you-climb.md:1-63
+/living-an-examined-life/,article,_posts/2026-07-12-living-an-examined-life.md,post,Observatory essay XX,none,3 related links,_posts/2026-07-12-living-an-examined-life.md:1-59
+/feed.xml,generated,jekyll-feed plugin,generated,Atom feed,none,implicit,_config.yml:15-18;_layouts/default.html:14
+/sitemap.xml,generated,jekyll-sitemap plugin,generated,XML sitemap,none,implicit,_config.yml:15-18
+https://fluxmintdigital.github.io/,external destination,blog.md,n/a,Work-at-Home Equipment Blog,n/a,"hotspot panel and supplement links",blog.md:38-39;blog.md:74
+mailto:fluxmintdigital@gmail.com,external action,"default.html;about.md;services.md",n/a,email client,n/a,contact links,_layouts/default.html:70;about.md:68;services.md:58;services.md:146
+#,placeholder destination,"default.html;store.md",n/a,"Newsletter; Amazon KDP; Etsy; Google Play",n/a,"no navigation; returns/top behavior browser-dependent",_layouts/default.html:69;store.md:37;store.md:50;store.md:64-65

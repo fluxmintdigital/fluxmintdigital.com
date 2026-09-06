@@ -1,0 +1,39 @@
+surface,visual_object,source,mechanism,target_or_action,trigger,hover_focus_tap_treatment,baked_or_independent
+All pages,logo diamond + wordmark,_layouts/default.html:20-23,text glyph and gradient text,/,anchor,"generic underline hover may apply; no explicit focus style",independent
+All pages,global header links,_layouts/default.html:24-33,anchors,"/books/ /apps/ /tools/ /science/ /services/ /blog/ /store/ /about/",click,"dark hover fill/text; hidden <=768px; no replacement menu",independent
+All pages,footer link groups,_layouts/default.html:41-79,anchors,internal routes;email;placeholder newsletter,click,"white text hover; no explicit focus",independent
+Home,compass,_layouts/home.html:4-9;assets/js/rooms.js:79-87,inline SVG,needle rotates 0-360 degrees with document scroll,scroll,"0.2s linear transform; no input action",independent fixed overlay
+Home,scroll cue,_layouts/home.html:19;assets/css/rooms.css:43-45,CSS element,visual instruction only,none,"1.8s scale/opacity animation",independent overlay
+Home,Begin Exploring,_layouts/home.html:44,anchor,#studio-map,click/tap,"primary-button hover lift",independent
+Home,Meet DJ buttons,_layouts/home.html:45;129,anchors,/about/,click/tap,"ghost-button hover fill",independent
+Home,Architecture Wall text link,_layouts/home.html:91,anchor,/science/,click/tap,link-btn hover,both text/independent
+Home,8 studio-map cards,_layouts/home.html:102-111,anchors,8 division routes,click/tap,"border/gold fill/-2px lift/shadow",independent emoji/card UI
+Home,Begin the Exploration,_layouts/home.html:120,anchor,/services/,click/tap,primary-button hover lift,independent
+About,DJ,about.md:11-17,absolute hotspot,render DJ panel,click;Enter;Space,"gold active/hover overlay; label only on hover",visual baked in architecture_wall_dj.jpg; hit area independent
+About,Open notebook,about.md:18-23,absolute hotspot,render philosophy panel,click;Enter;Space,"gold active/hover overlay; label only on hover",visual baked; hit area independent
+About,Book stack,about.md:24-29,absolute hotspot,render related-reading panel then /books/ link,click;Enter;Space,"gold active/hover overlay; label only on hover",visual baked; hit area independent
+Apps and Tools,Tool wall,apps.md:11-17;tools.md:11-17,absolute hotspot,render 3-tab Tools panel,click;Enter;Space,"gold active/hover; generated tab selected/hover state",visual baked in workshop.jpg; hit area independent
+Apps and Tools,Products in Progress,apps.md:18-23;tools.md:18-23,absolute hotspot,render 4-tab Apps panel,click;Enter;Space,"gold active/hover; generated tab selected/hover state",visual baked; hit area independent
+Apps and Tools,Drafting table,apps.md:24-29;tools.md:24-29,absolute hotspot,render overview panel,click;Enter;Space,"gold active/hover",visual baked; hit area independent
+Apps and Tools,Main Studio doorway,apps.md:30-36;tools.md:30-36,absolute nav hotspot,render panel then /#scene-main-studio link,click;Enter;Space,"dashed green active/hover overlay",visual baked; hit area independent
+Observatory,Telescope/window,blog.md:11-17,absolute hotspot,render live external-blog panel,click;Enter;Space,"gold active/hover",visual baked in observatory.jpg; hit area independent
+Observatory,Book stack,blog.md:18-23,absolute hotspot,render Studio Blog panel then /studio-blog/ link,click;Enter;Space,"gold active/hover",visual baked; hit area independent
+Observatory,Main Studio hallway,blog.md:24-30,absolute nav hotspot,render panel then /#scene-main-studio link,click;Enter;Space,"dashed green active/hover",visual baked; hit area independent
+Library,Book stack,books.md:11-17,absolute hotspot,render 3-shelf tabs,click;Enter;Space,"gold active/hover; generated tab selected/hover",visual baked in library.jpg; hit area independent
+Library,Reading nook,books.md:18-23,absolute hotspot,render overview panel,click;Enter;Space,"gold active/hover",visual baked; hit area independent
+Library,Observatory doorway,books.md:24-30,absolute nav hotspot,render panel then /blog/ link,click;Enter;Space,"dashed green active/hover",visual baked; hit area independent
+Library,Main Studio doorway,books.md:31-37,absolute nav hotspot,render panel then /#scene-main-studio link,click;Enter;Space,"dashed green active/hover",visual baked; hit area independent
+Architecture Wall,Architecture Wall,science.md:11-17,absolute hotspot,render Architectural Thinking panel,click;Enter;Space,"gold active/hover",visual baked in main_studio.jpg; hit area independent
+Architecture Wall,Desk books,science.md:18-23,absolute hotspot,render 3-framework tabs,click;Enter;Space,"gold active/hover; generated tab selected/hover",visual baked; hit area independent
+Architecture Wall,Observatory doorway,science.md:24-30,absolute nav hotspot,render panel then /blog/ link,click;Enter;Space,"dashed green active/hover",visual baked; hit area independent
+Meeting Table,Architecture Services board,services.md:11-17,absolute hotspot,render 4-service tabs,click;Enter;Space,"gold active/hover; generated tab selected/hover",visual baked in services.jpg; hit area independent
+Meeting Table,Book stack,services.md:18-23,absolute hotspot,render related-reading panel then /books/ link,click;Enter;Space,"gold active/hover",visual baked; hit area independent
+Meeting Table,Desk,services.md:24-29,absolute hotspot,render preparation panel then mailto link,click;Enter;Space,"gold active/hover",visual baked; hit area independent
+Meeting Table,FAQ questions,services.md:74-135,native details/summary,toggle answer disclosure,click;keyboard,"plus pseudo-element rotates 45deg when open; brand hover; focus-visible outline",independent DOM over page
+Explorer Outfitters,Book stack,store.md:11-17,absolute hotspot,render Coming soon panel then # placeholder,click;Enter;Space,"gold active/hover",visual baked in store.jpg; hit area independent
+Explorer Outfitters,Field guides/maps,store.md:18-23,absolute hotspot,render Future panel,click;Enter;Space,"gold active/hover",visual baked; hit area independent
+Explorer Outfitters,Explorer Gear shelves,store.md:24-29,absolute hotspot,render POD panel then # placeholder,click;Enter;Space,"gold active/hover",visual baked; hit area independent
+All room pages,previous/next room links,_layouts/room.html:39-42,anchors,page-specific prev_href/next_href,click/tap,"brand text/border hover",independent
+Studio Blog,post cards/titles/read-more,studio-blog/index.html:13-27,anchors,20 article routes,click/tap,"card -3px lift/shadow/gold border; title color change",independent
+Articles,related-post links,_posts/*.md,Markdown anchors,explicit related routes,click/tap,"underlined; darker gold hover",independent
+All interactive rooms,panel tabs,assets/js/rooms.js:16-19;43-48,generated buttons,switch content tab locally,click/tap,"active and hover share gold border/fill; active resets on hotspot change",independent generated DOM

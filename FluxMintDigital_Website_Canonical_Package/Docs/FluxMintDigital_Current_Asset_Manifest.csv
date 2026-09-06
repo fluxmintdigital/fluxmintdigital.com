@@ -1,0 +1,13 @@
+filename,relative_path,width_px,height_px,format,file_size_bytes,transparency,referenced,render_mechanism,usage_evidence
+architecture-series-banner.jpg,assets/images/books/architecture-series-banner.jpg,1316,840,JPEG,208764,no,yes,img,"books.md:89; intrinsic dimensions absent"
+field-guide-wild-side-banner.jpg,assets/images/books/field-guide-wild-side-banner.jpg,1400,560,JPEG,191937,no,yes,img,"books.md:85; intrinsic dimensions absent"
+architecture_wall_dj.jpg,assets/images/rooms/architecture_wall_dj.jpg,1400,933,JPEG,325578,no,yes,img,"about.md:8 via _layouts/room.html:13; About/Meet DJ stage"
+cabin_exterior.jpg,assets/images/rooms/cabin_exterior.jpg,1400,933,JPEG,355038,no,yes,CSS background,"_layouts/home.html:22-33; homepage Cabin Exterior scene"
+explorer_entry.jpg,assets/images/rooms/explorer_entry.jpg,1400,933,JPEG,339693,no,yes,CSS background,"_layouts/home.html:35-48; homepage Explorer Entry scene"
+forest_path.jpg,assets/images/rooms/forest_path.jpg,1400,933,JPEG,358759,no,yes,CSS background,"_layouts/home.html:11-20; homepage Forest scene"
+library.jpg,assets/images/rooms/library.jpg,1400,933,JPEG,333634,no,yes,img,"books.md:8 via _layouts/room.html:13; Library/Books stage"
+main_studio.jpg,assets/images/rooms/main_studio.jpg,1400,933,JPEG,376840,no,yes,"CSS background; img","_layouts/home.html:50-58 Main Studio scene; science.md:8 via _layouts/room.html:13 Architecture Wall/Science stage"
+observatory.jpg,assets/images/rooms/observatory.jpg,1400,1120,JPEG,402237,no,yes,img,"blog.md:8 via _layouts/room.html:13; Observatory/Blog stage"
+services.jpg,assets/images/rooms/services.jpg,1400,933,JPEG,299301,no,yes,img,"services.md:8 via _layouts/room.html:13; Meeting Table/Services stage"
+store.jpg,assets/images/rooms/store.jpg,1400,933,JPEG,323475,no,yes,img,"store.md:8 via _layouts/room.html:13; Explorer Outfitters/Store stage"
+workshop.jpg,assets/images/rooms/workshop.jpg,1400,933,JPEG,360375,no,yes,img,"apps.md:8 and tools.md:8 via _layouts/room.html:13; Workshop Apps and Tools stages"
