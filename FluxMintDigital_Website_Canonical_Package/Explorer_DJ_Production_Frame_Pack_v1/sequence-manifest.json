@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "canvas": "1024x1024 RGBA PNG",
+  "production_status": "INCOMPLETE_REQUIRES_REGENERATION",
+  "registration": {
+    "anchor": "bottom-center",
+    "baseline_y": 976,
+    "scale_policy": "preserve source pixel scale within each sequence; do not upscale"
+  },
+  "sequences": {
+    "idle": {
+      "canonical_order": ["idle_01", "idle_02", "idle_03", "idle_04", "idle_05", "idle_06", "idle_07", "idle_08", "idle_09", "idle_10", "idle_11", "idle_12"],
+      "frame_duration_ms": 140,
+      "loop": true,
+      "hold": {"frame": "idle_01", "duration_ms_range": [1800, 4000]},
+      "transition_back_to_idle": "already idle",
+      "interruptible": true,
+      "status": "PRODUCTION_READY"
+    },
+    "wave": {
+      "canonical_order": ["wave_01", "wave_02", "wave_03", "wave_04", "wave_05", "wave_06", "wave_07", "wave_08"],
+      "frame_duration_ms": 105,
+      "loop": false,
+      "hold": {"frame": "wave_08", "duration_ms": 300},
+      "transition_back_to_idle": "crossfade to idle_01 in 120ms after final hold",
+      "interruptible": true,
+      "status": "REQUIRES_REGENERATION"
+    },
+    "point": {
+      "canonical_order": ["point_01", "point_02", "point_03", "point_04", "point_05", "point_06"],
+      "frame_duration_ms": 120,
+      "loop": false,
+      "hold": {"frame": "point_06", "duration_ms_range": [900, 1600]},
+      "transition_back_to_idle": "crossfade to idle_01 in 120ms after final hold",
+      "interruptible": true,
+      "status": "PRODUCTION_READY"
+    },
+    "blink": {
+      "canonical_order": ["blink_01", "blink_02", "blink_03", "blink_04", "blink_05", "blink_06"],
+      "frame_duration_ms": 85,
+      "loop": false,
+      "hold": null,
+      "transition_back_to_idle": "return to blink_01 close-up; do not cut directly to full-body idle",
+      "interruptible": false,
+      "status": "REQUIRES_REGENERATION",
+      "context_note": "Close-up framing is not registration-compatible with the full-body idle sequence."
+    },
+    "head_turn": {
+      "canonical_order": ["head_turn_01", "head_turn_02", "head_turn_03", "head_turn_04", "head_turn_05", "head_turn_06", "head_turn_07", "head_turn_08"],
+      "frame_duration_ms": 130,
+      "loop": false,
+      "hold": {"frame": "head_turn_08", "duration_ms": 500},
+      "transition_back_to_idle": "play canonical order in reverse to head_turn_01; do not cut directly to full-body idle",
+      "interruptible": true,
+      "status": "REQUIRES_REGENERATION",
+      "context_note": "Close-up framing is not registration-compatible with the full-body idle sequence."
+    },
+    "expressions": {
+      "canonical_order": ["expression_01", "expression_02", "expression_03", "expression_04", "expression_05", "expression_06", "expression_07"],
+      "frame_duration_ms": null,
+      "loop": false,
+      "hold": "author-controlled static pose",
+      "transition_back_to_idle": "crossfade only within an approved close-up context",
+      "interruptible": true,
+      "status": "REQUIRES_REGENERATION",
+      "context_note": "These are discrete expression masters, not interpolation frames. Do not play them as a sequence."
+    },
+    "useful": {
+      "canonical_order": ["pose_01", "pose_02", "pose_03", "pose_04", "pose_05"],
+      "frame_duration_ms": null,
+      "loop": false,
+      "hold": "author-controlled static pose",
+      "transition_back_to_idle": "crossfade to idle_01 only when scale and placement have been matched by the consuming composition",
+      "interruptible": true,
+      "status": "REQUIRES_REGENERATION",
+      "context_note": "These are discrete useful poses, not animation frames."
+    }
+  }
+}

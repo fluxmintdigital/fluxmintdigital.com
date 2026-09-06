@@ -1,0 +1,71 @@
+{
+  "master_canvas": "1024x1024 RGBA PNG",
+  "sequences": {
+    "idle": [
+      "animations/idle/idle_01.png",
+      "animations/idle/idle_02.png",
+      "animations/idle/idle_03.png",
+      "animations/idle/idle_04.png",
+      "animations/idle/idle_05.png",
+      "animations/idle/idle_06.png",
+      "animations/idle/idle_07.png",
+      "animations/idle/idle_08.png",
+      "animations/idle/idle_09.png",
+      "animations/idle/idle_10.png",
+      "animations/idle/idle_11.png",
+      "animations/idle/idle_12.png"
+    ],
+    "wave": [
+      "animations/wave/wave_01.png",
+      "animations/wave/wave_02.png",
+      "animations/wave/wave_03.png",
+      "animations/wave/wave_04.png",
+      "animations/wave/wave_05.png",
+      "animations/wave/wave_06.png",
+      "animations/wave/wave_07.png",
+      "animations/wave/wave_08.png"
+    ],
+    "point": [
+      "animations/point/point_01.png",
+      "animations/point/point_02.png",
+      "animations/point/point_03.png",
+      "animations/point/point_04.png",
+      "animations/point/point_05.png",
+      "animations/point/point_06.png"
+    ],
+    "blink": [
+      "animations/blink/blink_01.png",
+      "animations/blink/blink_02.png",
+      "animations/blink/blink_03.png",
+      "animations/blink/blink_04.png",
+      "animations/blink/blink_05.png",
+      "animations/blink/blink_06.png"
+    ],
+    "head_turn": [
+      "animations/head_turn/head_turn_01.png",
+      "animations/head_turn/head_turn_02.png",
+      "animations/head_turn/head_turn_03.png",
+      "animations/head_turn/head_turn_04.png",
+      "animations/head_turn/head_turn_05.png",
+      "animations/head_turn/head_turn_06.png",
+      "animations/head_turn/head_turn_07.png",
+      "animations/head_turn/head_turn_08.png"
+    ],
+    "expressions": [
+      "poses/expressions/expression_01.png",
+      "poses/expressions/expression_02.png",
+      "poses/expressions/expression_03.png",
+      "poses/expressions/expression_04.png",
+      "poses/expressions/expression_05.png",
+      "poses/expressions/expression_06.png",
+      "poses/expressions/expression_07.png"
+    ],
+    "useful": [
+      "poses/useful/pose_01.png",
+      "poses/useful/pose_02.png",
+      "poses/useful/pose_03.png",
+      "poses/useful/pose_04.png",
+      "poses/useful/pose_05.png"
+    ]
+  }
+}

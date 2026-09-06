@@ -1,0 +1,19 @@
+{
+  "package": "Explorer_DJ_Regeneration_Pack_v1_1",
+  "files": [
+    "blink_04.png",
+    "expression_03.png",
+    "expression_07.png",
+    "head_turn_04.png",
+    "head_turn_05.png",
+    "head_turn_06.png",
+    "pose_03.png",
+    "pose_05.png",
+    "wave_05.png",
+    "wave_06.png",
+    "wave_07.png",
+    "wave_08.png"
+  ],
+  "count": 12,
+  "notes": "12 replacement frames packaged under exact Codex filenames."
+}

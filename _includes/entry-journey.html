@@ -9,7 +9,10 @@
   </section>
   <section class="entry-stage entry-stage--explorer" id="explorer-entry" aria-labelledby="entry-heading">
     <picture><source media="(max-width: 767px)" srcset="{{ '/FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_EXPLORERENTRY_BASE_MOBILE_DEFAULT_v002.png' | relative_url }}" width="942" height="1670"><img src="{{ '/FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SCENE_EXPLORERENTRY_BASE_DESKTOP_DEFAULT_v001.png' | relative_url }}" width="1536" height="1024" alt="An open doorway revealing the warm Main Studio interior." loading="lazy"></picture>
-    <div class="entry-stage__shade" aria-hidden="true"></div><div class="entry-stage__content"><p class="semantic-kicker">Explorer Entry · Orientation</p><h2 id="entry-heading">Welcome to FluxMintDigital.</h2><p>Enter the Main Studio to see what is current, open the Studio Map, or choose a Room through conventional navigation.</p><div class="entry-stage__actions"><a class="button" href="{{ '/studio/' | relative_url }}">Enter the Main Studio</a><a class="button button--quiet" href="{{ '/meet-dj/' | relative_url }}">Meet DJ</a></div></div>
+    <div class="entry-stage__shade" aria-hidden="true"></div>
+    {% include explorer-entry-character.html %}
+    <div class="entry-stage__content"><p class="semantic-kicker">Explorer Entry · Orientation</p><h2 id="entry-heading">Welcome to FluxMintDigital.</h2><p>Enter the Main Studio to see what is current, open the Studio Map, or choose a Room through conventional navigation.</p><div class="entry-stage__actions"><a class="button" href="{{ '/studio/' | relative_url }}">Enter the Main Studio</a><a class="button button--quiet" href="{{ '/meet-dj/' | relative_url }}">Meet DJ</a></div></div>
   </section>
   <section class="entry-orientation container" aria-labelledby="entry-navigation-heading"><p class="semantic-kicker">Explore your own way</p><h2 id="entry-navigation-heading">Choose a destination directly</h2><p>Prefer to skip the scenic route? Every Room is open from here.</p>{% include room-navigation.html %}</section>
 </article>
+<script src="{{ '/assets/js/explorer-entry-idle.js' | relative_url }}" defer></script>

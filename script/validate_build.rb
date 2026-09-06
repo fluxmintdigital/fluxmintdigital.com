@@ -72,6 +72,16 @@ end
 errors << "Entry sequence order changed" unless home_html.index('id="forest"') < home_html.index('id="cabin"') && home_html.index('id="cabin"') < home_html.index('id="explorer-entry"')
 errors << "Legacy entry truth leaked" if home_html.match?(/(?:in progress|Identity Architecture, Vol\. V|central hub for every book|Falsifiable, testable)/i)
 errors << "Entry must expose direct semantic Room navigation" unless home_html.include?("class=\"room-navigation\"")
+errors << "Explorer Entry must expose one decorative idle region" unless home_html.scan(/data-explorer-idle/).length == 1
+errors << "Explorer Entry character must remain decorative" unless home_html.match?(/data-explorer-idle[^>]+aria-hidden="true"/) && home_html.match?(/FMD_CHAR_EXPLORERENTRY_DJ_IDLE_F01_512W_v001\.png[^>]+alt=""/)
+errors << "Explorer Entry idle controller missing or duplicated" unless home_html.scan(/assets\/js\/explorer-entry-idle\.js/).length == 1
+errors << "Incomplete Explorer sequence leaked into public entry" if home_html.match?(/(?:WAVE|BLINK|HEAD_TURN)/i)
+explorer_elsewhere = html_files.reject { |file| file == SITE.join("index.html") }.select { |file| file.read.include?("data-explorer-idle") }
+errors << "Explorer character leaked beyond Explorer Entry: #{explorer_elsewhere.map { |file| file.relative_path_from(SITE) }.join(', ')}" unless explorer_elsewhere.empty?
+delivery_frames = SITE.glob("assets/images/explorer-entry/idle/*")
+errors << "Explorer Entry delivery set must contain 36 WebP frames and one PNG fallback" unless delivery_frames.count { |file| file.extname == ".webp" } == 36 && delivery_frames.count { |file| file.extname == ".png" } == 1
+explorer_sources = SITE.glob("FluxMintDigital_Website_Canonical_Package/Explorer_DJ_*") + SITE.glob("FluxMintDigital_Website_Canonical_Package/Explorer DJ Regeneration Pack v1.1")
+errors << "Explorer source/evidence package was emitted into public build" unless explorer_sources.empty?
 errors << "Main Studio desktop source missing" unless studio_html.include?("FMD_SCENE_MAINSTUDIO_BASE_DESKTOP_DEFAULT_v001.png")
 errors << "Main Studio canonical mobile v003 source missing" unless studio_html.include?("FMD_SCENE_MAINSTUDIO_BASE_MOBILE_DEFAULT_v003.png")
 errors << "Main Studio must expose exactly six semantic thresholds" unless studio_html.scan(/class="scene-threshold scene-threshold--/).length == 6
