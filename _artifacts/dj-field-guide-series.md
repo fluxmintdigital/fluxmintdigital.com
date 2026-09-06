@@ -13,4 +13,4 @@ seo:
 permalink: /library/dj-field-guide/
 ---
 
-The DJ Field Guide Series is a distinct publication lineage in the Library. No future volume titles or publication states are asserted until they exist in canonical Artifact data.
+The DJ Field Guide Series has its own place in the Library. More volumes will appear here as the series grows.

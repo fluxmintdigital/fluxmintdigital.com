@@ -18,4 +18,4 @@ permalink: /architecture-wall/frameworks/architectural-thinking/
 
 Architectural Thinking examines the structures that produce visible outcomes rather than treating those outcomes as isolated facts.
 
-This canonical Artifact record establishes public identity and stewardship. It does not confer scientific truth, evidentiary confidence, or AEG warrant on any claim associated with the framework.
+This is the Studio’s current introduction to the framework. The framework still has to earn support for its individual claims; appearing here does not make those claims scientifically true.

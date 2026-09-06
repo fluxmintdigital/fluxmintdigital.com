@@ -10,9 +10,9 @@ workspace_title: Read in the Library
 
 <div class="library-orientation container">
   <section aria-labelledby="library-series-heading">
-    <p class="semantic-kicker">Publication lineages</p>
+    <p class="semantic-kicker">Books and series</p>
     <h2 id="library-series-heading">Explore the series</h2>
-    <p>Series organize authored work by meaningful lineage and sequence. They are not commerce categories.</p>
+    <p>Each series keeps related books together and makes their reading order clear.</p>
     <div class="series-list">
       {% assign series_placements = site.data.surface_placements | where: 'surface', 'library-series-access' | sort: 'order' %}
       {% for placement in series_placements %}

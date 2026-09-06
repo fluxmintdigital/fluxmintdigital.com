@@ -13,4 +13,4 @@ seo:
 permalink: /library/architecture-series/
 ---
 
-The Architecture Series brings sustained, authored explorations together in a legible sequence. Each volume remains a canonical Artifact with its own identity and history.
+The Architecture Series brings sustained explorations together in a clear reading order. Each volume has its own subject, identity, and history within the larger series.

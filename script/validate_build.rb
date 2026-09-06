@@ -90,7 +90,7 @@ errors << "Library series access must remain available outside the scene" unless
 errors << "Library keyboard order must present the primary publication before series and return hotspots" unless library_html.index("class=\"library-publication\"") < library_html.index("<nav class=\"library-scene__hotspots\"")
 
 volume_html = SITE.join("library/architecture-series/the-architecture-of-being-human-volume-i/index.html").read
-errors << "Volume I must render Published lifecycle" unless volume_html.include?("<dd>Published</dd>")
+errors << "Volume I must render Published lifecycle" unless volume_html.include?('status-indicator__label">Published</span>')
 errors << "Volume I series lineage missing" unless volume_html.include?("Part of The Architecture Series")
 
 workshop_html = SITE.join("workshop/index.html").read
@@ -105,7 +105,7 @@ errors << "Workshop must not expose OmniShell" if workshop_html.match?(/OmniShel
 errors << "Workshop must not expose BidMaster" if workshop_html.match?(/Bid\s*Master/i)
 
 mint_pro_html = SITE.join("workshop/mint-pro/index.html").read
-errors << "Mint Pro must render On the workbench lifecycle" unless mint_pro_html.include?("<dd>On the workbench</dd>")
+errors << "Mint Pro must render On the workbench lifecycle" unless mint_pro_html.include?('status-indicator__label">On the workbench</span>')
 errors << "Mint Pro must not invent availability" if mint_pro_html.include?("<dt>Availability</dt>")
 errors << "Mint Pro must not invent a version or release" if mint_pro_html.match?(/<dt>(?:Version|Release)<\/dt>/)
 
@@ -118,14 +118,14 @@ errors << "Architecture Wall aperture control missing" unless wall_html.include?
 errors << "Architecture Wall scene must expose frameworks, programs, evidence, and return" unless wall_html.scan(/class="wall-hotspot wall-hotspot--/).length == 4
 errors << "Architecture Wall must expose exactly two approved public Frameworks" unless wall_html.scan(/class="artifact-summary surface-card artifact-summary--text-only"/).length == 2
 errors << "Architecture Wall must not invent a deeper application route" if wall_html.match?(/href="[^"]*architecture-wall-(?:app|application)|href="[^"]*research-ide/i)
-errors << "Architecture Wall must identify zero unsupported public research records" unless wall_html.scan(/<strong>0<\/strong>/).length == 4
-errors << "Architecture Wall must state the canonicality boundary" unless wall_html.include?("Canonical means this is the Studio’s authoritative representation")
-errors << "Architecture Wall must state that visual prominence is not warrant" unless wall_html.include?("Visual size, position, glow, or centrality conveys neither importance nor warrant")
+errors << "Architecture Wall must identify the absence of unsupported public research" unless wall_html.include?("No formal claims, evidence, experiments, contradictions, confidence assessments, or validity limits are ready for public display")
+errors << "Architecture Wall must state the canonicality boundary" unless wall_html.include?("Being part of the Studio’s current body of work does not make an idea scientifically true")
+errors << "Architecture Wall must state that visual prominence is not warrant" unless wall_html.include?("A large, bright, or central object is not automatically more important or better supported")
 errors << "Architecture Wall must preserve AEG independence" unless wall_html.include?("Alignment, Equivalence, and Generation are evaluated independently")
 errors << "Architecture Wall must reject a combined AEG score" unless wall_html.include?("no combined AEG score exists")
-errors << "Architecture Wall must reject AI warrant self-promotion" unless wall_html.include?("cannot promote its own proposal to warrant")
-errors << "Architecture Wall must expose all three AEG assertion kinds" unless wall_html.scan(/Public assertion state: not asserted/).length == 3
-errors << "Architecture Wall environmental raster must be identified as non-record content" unless wall_html.include?("Atmospheric papers and diagrams in the scene are not records")
+errors << "Architecture Wall must reject AI warrant self-promotion" unless wall_html.include?("cannot grant warrant to its own proposal")
+errors << "Architecture Wall must expose all three AEG assertion kinds" unless wall_html.scan(/Nothing publicly asserted yet/).length == 3
+errors << "Architecture Wall environmental raster must be identified as non-record content" unless wall_html.include?("papers and diagrams in the room are atmosphere, not research findings")
 
 observatory_html = SITE.join("observatory/index.html").read
 errors << "Observatory canonical desktop v002 source missing" unless observatory_html.include?("FMD_SCENE_OBSERVATORY_BASE_DESKTOP_DEFAULT_v002.png")
@@ -136,7 +136,7 @@ errors << "Observatory current observation must use The Value of Wonder" unless 
 errors << "Observatory must expose all four canonical forms" unless observatory_html.scan(/class="surface-card">\s*<h3>(?:Essays|Discoveries|Field Notes|Workshop Notes)<\/h3>/).length == 4
 errors << "Observatory scene must expose four forms, archive, and return" unless observatory_html.scan(/class="observatory-hotspot observatory-hotspot--/).length == 6
 errors << "Observatory must expose four selected real pieces" unless observatory_html.scan(/class="observatory-card surface-card"/).length == 4
-errors << "Observatory publication boundary missing" unless observatory_html.include?("Publication makes them public Artifacts; it does not make them evidence")
+errors << "Observatory publication boundary missing" unless observatory_html.include?("When a question needs formal evidence and examination, it belongs on the Architecture Wall")
 errors << "Architecture Wall warrant leaked into Observatory as a positive state" if observatory_html.match?(/(?:confidence|AEG warrant)\s*[:=]\s*(?:supported|verified|high|canonical)/i)
 
 priority_metadata = {
@@ -149,7 +149,7 @@ priority_metadata.each do |relative, (title, date)|
   article = SITE.join(relative).read
   errors << "#{relative}: title metadata changed" unless article.include?(title)
   errors << "#{relative}: source date metadata changed" unless article.include?(date)
-  errors << "#{relative}: Observatory epistemic boundary missing" unless article.include?("Publication does not confer evidence, scientific authority, confidence, or AEG warrant")
+  errors << "#{relative}: Observatory epistemic boundary missing" unless article.include?("an invitation to think, not a claim of scientific proof")
 end
 
 meeting_html = SITE.join("meeting-table/index.html").read
@@ -161,9 +161,9 @@ errors << "Meeting Table flow missing" unless meeting_html.include?("Describe �
 errors << "Meeting Table intake must remain local-only" unless meeting_html.include?("data-backend-configured=\"false\"") && !meeting_html.match?(/<form[^>]+action=/)
 errors << "Meeting Table intake required fields missing" unless meeting_html.scan(/<(?:textarea|input)[^>]+required/).length >= 5
 errors << "Meeting Table must expose all three decision branches" unless meeting_html.scan(/name="decision"/).length == 3
-errors << "Meeting Table privacy boundary missing" unless meeting_html.include?("Nothing entered here is sent, stored, published, or converted into a public Artifact")
-errors << "Meeting Table implementation must remain optional" unless meeting_html.include?("Workshop (optional continuation)")
-errors << "Meeting Table architecture/examination boundary missing" unless meeting_html.include?("belong to Architecture Wall—not client intake")
+errors << "Meeting Table privacy boundary missing" unless meeting_html.include?("This draft stays on your device. Nothing you type here is sent anywhere")
+errors << "Meeting Table implementation must remain optional" unless meeting_html.include?("Building is always a separate decision")
+errors << "Meeting Table architecture/examination boundary missing" unless meeting_html.include?("belong on the Architecture Wall—not in a collaboration brief")
 errors << "Meeting Table attribution boundary missing" unless meeting_html.include?("Powered by FluxMintDigital")
 errors << "Meeting Table contains funnel pricing or marketing consent" if meeting_html.match?(/(?:\$\d|retainer|discount|limited time|marketing consent)/i)
 errors << "Meeting Table fabricates social proof" if meeting_html.match?(/(?:testimonial|case stud)/i)
@@ -176,8 +176,8 @@ errors << "Outfitters return threshold missing" unless outfitters_html.include?(
 errors << "Outfitters must derive exactly two discovery listings" unless outfitters_html.scan(/class="outfitters-listing surface-card"/).length == 2
 errors << "Volume I identity duplicated or detached from Library" unless outfitters_html.include?("href=\"/library/architecture-series/the-architecture-of-being-human-volume-i/\"") && outfitters_html.include?("<dd>Library</dd>")
 errors << "Mint Pro identity duplicated or detached from Workshop" unless outfitters_html.include?("href=\"/workshop/mint-pro/\"") && outfitters_html.include?("<dd>Workshop</dd>")
-errors << "Outfitters honest empty state missing" unless outfitters_html.include?("No approved acquisition channels are represented yet")
-errors << "Outfitters environmental inventory boundary missing" unless outfitters_html.include?("depicted in the scene are atmospheric")
+errors << "Outfitters honest empty state missing" unless outfitters_html.include?("Nothing is available to purchase here right now")
+errors << "Outfitters environmental inventory boundary missing" unless outfitters_html.include?("only the items listed below are actually available through the Studio")
 errors << "Outfitters unexpectedly emitted an external acquisition action" if outfitters_html.include?("rel=\"external noopener\"")
 errors << "Outfitters contains fabricated commerce" if outfitters_html.match?(/(?:amazon|google play|etsy|fake discount|limited time|only \d+ left|\$\d)/i)
 
@@ -186,10 +186,10 @@ errors << "Meet DJ desktop source missing" unless dj_html.include?("FMD_SCENE_ME
 errors << "Meet DJ mobile source missing" unless dj_html.include?("FMD_SCENE_MEETDJ_BASE_MOBILE_DEFAULT_v002.png")
 errors << "Meet DJ production character missing" unless dj_html.include?("FMD_CHAR_MEETDJ_REALISTIC_RESPONSIVE_IDLE_v001.png")
 errors << "Meet DJ character must be decorative to semantic identity content" unless dj_html.match?(/class="dj-scene__character"[^>]+alt=""[^>]+aria-hidden="true"/)
-errors << "Meet DJ must remain a Person Surface" unless dj_html.include?("Person Surface · Author · Builder · Collaborator")
+errors << "Meet DJ must retain author, builder, and collaborator roles" unless dj_html.include?("Author · Builder · Collaborator")
 errors << "Meet DJ role cards changed" unless dj_html.scan(/class="surface-card"><h3>(?:Author|Builder|Collaborator)<\/h3>/).length == 3
-errors << "Meet DJ/Explorer identity boundary missing" unless dj_html.include?("Explorer supplements the experience; it does not inherit authorship, authority, or responsibility")
-errors << "ForgeSpark relationship changed" unless dj_html.include?("a sibling studio—not a FluxMintDigital Room")
+errors << "Meet DJ/Explorer identity boundary missing" unless dj_html.include?("The real DJ is the author, builder, and collaborator responsible for the work itself")
+errors << "ForgeSpark relationship changed" unless dj_html.include?("ForgeSpark Studios is a sibling studio with its own identity and work")
 errors << "Meet DJ Main Studio return missing" unless dj_html.scan(/href="\/studio\/"/).length >= 2
 errors << "Controlled likeness source leaked into Meet DJ HTML" if dj_html.include?("FMD_SOURCE_MEETDJ_APPROVED_LIKENESS_REFERENCE_v001")
 errors << "Meet DJ contains unsupported resume or social proof claims" if dj_html.match?(/(?:award-winning|years of experience|our clients|testimonial|certified|degree in)/i)
@@ -201,11 +201,11 @@ errors << "Search results state missing" unless search_html.include?("id=\"searc
 
 relationships_html = SITE.join("relationships/index.html").read
 errors << "Relationship Explorer must render every canonical relationship" unless relationships_html.scan(/class="surface-card"/).length == 9
-errors << "Relationship Explorer direction boundary missing" unless relationships_html.include?("does not transfer lifecycle, availability, confidence, warrant, or scientific truth")
+errors << "Relationship Explorer direction boundary missing" unless relationships_html.include?("An arrow shows the direction of the connection—not cause and effect")
 errors << "Relationship Explorer must link every real-person target to Meet DJ" unless relationships_html.scan(/href="\/meet-dj\/"/).length >= 7
 
 unavailable_html = SITE.join("unavailable/index.html").read
-errors << "Unavailable state conflates identity and channel" unless unavailable_html.include?("Artifact identity and availability are separate")
+errors << "Unavailable state conflates identity and channel" unless unavailable_html.include?("The work still has a home in the Studio even when there is nowhere to purchase or download it yet")
 fallback_html = SITE.join("technical-fallback/index.html").read
 errors << "Technical fallback lacks semantic Room navigation" unless fallback_html.include?("class=\"room-navigation\" aria-label=\"Rooms\"")
 not_found_html = SITE.join("404.html").read
@@ -216,7 +216,7 @@ errors << "Robots sitemap declaration missing" unless robots.file? && robots.rea
 errors << "Sitemap missing" unless SITE.join("sitemap.xml").file?
 
 archive_html = SITE.join("studio-blog/index.html").read
-errors << "Observatory archive must identify chronology as a history view" unless archive_html.include?("Chronology preserves publication history")
+errors << "Observatory archive must identify chronology as a history view" unless archive_html.include?("Browse Observatory pieces from newest to oldest")
 errors << "Observatory archive must contain all public posts" unless archive_html.scan(/class="post-card"/).length == 20
 archive_dates = archive_html.scan(/<time datetime="([^"]+)"/).flatten
 errors << "Observatory archive is not reverse chronological" unless archive_dates == archive_dates.sort.reverse

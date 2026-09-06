@@ -1,13 +1,13 @@
 <article class="series-summary surface-card">
-  <p class="semantic-kicker">{{ include.artifact.artifact_type }} · {{ include.artifact.lifecycle | replace: '_', ' ' }}</p>
+  <p class="semantic-kicker">{{ include.artifact.artifact_type }}</p>
   <h3><a class="card-link" href="{{ include.artifact.url | relative_url }}">{{ include.artifact.title }}</a></h3>
   <p>{{ include.artifact.description }}</p>
   {% assign series_members = site.artifacts | where: 'series_id', include.artifact.artifact_id | where: 'visibility', 'public' | sort: 'sequence' %}
   <p class="series-summary__lineage">
     {% if series_members.size > 0 %}
-      {{ series_members.size }} canonical volume{% if series_members.size != 1 %}s{% endif %}
+      {{ series_members.size }} published volume{% if series_members.size != 1 %}s{% endif %}
     {% else %}
-      Series identity established; no volumes announced
+      No volumes announced yet
     {% endif %}
   </p>
 </article>

@@ -14,6 +14,6 @@ seo:
 permalink: /workshop/mint-pro/
 ---
 
-Mint Pro is the current public build represented on the Workshop workbench.
+Mint Pro is the current build on the Workshop workbench.
 
-Its Artifact identity and lifecycle are canonical here. Version, release, availability, pricing, and distribution-channel facts are intentionally omitted until approved data exists for them.
+It is still being shaped. Release details, availability, and pricing will appear only when there is something definite to share.

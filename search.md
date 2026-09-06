@@ -6,15 +6,15 @@ permalink: /search/
 ---
 <section class="search-surface container">
   <header class="semantic-hero">
-    <p class="semantic-kicker">Studio utility</p>
+    <p class="semantic-kicker">Look around</p>
     <h1>Search the Studio</h1>
-    <p class="semantic-lede">Find public work without losing its Room, type, or history.</p>
+    <p class="semantic-lede">Search books, tools, frameworks, Rooms, and Observatory writing from one place.</p>
   </header>
   <form class="studio-search" id="studio-search-form" role="search" action="{{ '/search/' | relative_url }}" method="get">
     <label for="studio-search-query">What are you looking for?</label>
     <div><input id="studio-search-query" name="q" type="search" autocomplete="off"><button type="submit">Search</button></div>
   </form>
-  <p class="search-status" id="search-status" role="status">Enter a word or phrase to search public Rooms, Artifacts, and Observatory writing.</p>
+  <p class="search-status" id="search-status" role="status">Enter a word or phrase to search the Rooms, Artifacts, and Observatory writing shared here.</p>
   <div class="search-results" id="search-results" aria-live="polite"></div>
   <noscript><p class="surface-panel">Search requires JavaScript. All Rooms remain available through the Studio navigation, and public writing remains available through the Observatory archive.</p></noscript>
 </section>

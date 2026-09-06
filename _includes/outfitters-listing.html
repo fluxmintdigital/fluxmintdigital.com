@@ -7,12 +7,12 @@
     <h3><a href="{{ item.url | relative_url }}">{{ item.title }}</a></h3>
     <p>{{ item.description }}</p>
     <dl class="outfitters-facts">
-      <div><dt>Canonical Room</dt><dd>{{ item.canonical_room | replace: '-', ' ' | capitalize }}</dd></div>
-      <div><dt>Lifecycle</dt><dd>{{ item.lifecycle | replace: '_', ' ' | capitalize }}</dd></div>
-      <div><dt>Availability</dt><dd>{% if availability %}{{ availability.status | replace: '_', ' ' | capitalize }}{% else %}No approved channel represented{% endif %}</dd></div>
+      <div><dt>Home Room</dt><dd>{{ item.canonical_room | replace: '-', ' ' | capitalize }}</dd></div>
+      <div><dt>Status</dt><dd>{{ item.lifecycle | replace: '_', ' ' | capitalize }}</dd></div>
+      <div><dt>Availability</dt><dd>{% if availability %}{{ availability.status | replace: '_', ' ' | capitalize }}{% else %}Not available here yet{% endif %}</dd></div>
     </dl>
     <div class="outfitters-actions">
-      <a class="button button--quiet" href="{{ item.url | relative_url }}">View canonical Artifact</a>
+      <a class="button button--quiet" href="{{ item.url | relative_url }}">Explore this {{ item.artifact_type | downcase }}</a>
       {% if availability and availability.status == 'available' %}
         {% for channel in availability.channels %}<a class="button" href="{{ channel.url }}" rel="external noopener">{{ channel.action }} through {{ channel.name }}<span class="visually-hidden"> (external)</span></a>{% endfor %}
       {% endif %}

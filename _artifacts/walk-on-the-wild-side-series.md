@@ -13,4 +13,4 @@ seo:
 permalink: /library/walk-on-the-wild-side/
 ---
 
-Walk on the Wild Side With DJ is a distinct publication lineage in the Library. No future volume titles or publication states are asserted until they exist in canonical Artifact data.
+Walk on the Wild Side With DJ has its own place in the Library. More volumes will appear here as the series grows.

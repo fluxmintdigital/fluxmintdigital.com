@@ -32,5 +32,5 @@
   name: Explorer Outfitters
   verb: Take
   route: /explorer-outfitters/
-  description: A cross-Studio acquisition surface for meaningful things visitors can take with them.
+  description: Where books, tools, and other useful things from across the Studio can be discovered.
   legacy_routes: [/store/]

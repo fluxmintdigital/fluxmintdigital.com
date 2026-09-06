@@ -10,9 +10,9 @@ workspace_title: Notice from the Observatory
 
 <div class="observatory-orientation container">
   <section class="observatory-posture" aria-labelledby="observatory-posture-heading">
-    <p class="semantic-kicker">Exploratory posture</p>
-    <h2 id="observatory-posture-heading">Published noticing, not evidentiary warrant</h2>
-    <p>Observatory pieces may observe, interpret, or speculate. Publication makes them public Artifacts; it does not make them evidence, scientific truth, or an Architecture Wall confidence or AEG-warrant record.</p>
+    <p class="semantic-kicker">A place to wonder</p>
+    <h2 id="observatory-posture-heading">Notice, question, and explore</h2>
+    <p>These pieces share observations, interpretations, and ideas in motion. When a question needs formal evidence and examination, it belongs on the Architecture Wall.</p>
   </section>
 
   <section aria-labelledby="featured-observations-heading">
@@ -30,7 +30,7 @@ workspace_title: Notice from the Observatory
   </section>
 
   <section aria-labelledby="observatory-forms-heading">
-    <p class="semantic-kicker">Artifact forms</p>
+    <p class="semantic-kicker">Four ways to notice</p>
     <h2 id="observatory-forms-heading">Ways of noticing</h2>
     <div class="observatory-forms">
       {% for form in site.data.observatory.forms %}
@@ -43,9 +43,9 @@ workspace_title: Notice from the Observatory
   </section>
 
   <section aria-labelledby="observatory-topics-heading">
-    <p class="semantic-kicker">Cross-cutting lens</p>
+    <p class="semantic-kicker">Follow your curiosity</p>
     <h2 id="observatory-topics-heading">Topics</h2>
-    <p>Topics connect pieces across forms. They do not replace the Observatory, its Artifact types, or canonical Rooms.</p>
+    <p>Topics offer another way to follow an idea across essays, discoveries, Field Notes, and Workshop Notes.</p>
     <ul class="topic-list">
       {% assign sorted_topics = site.tags | sort %}
       {% for topic in sorted_topics %}<li><span>{{ topic[0] }}</span><small>{{ topic[1].size }} pieces</small></li>{% endfor %}

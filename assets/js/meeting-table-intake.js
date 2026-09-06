@@ -16,7 +16,7 @@
     var invalid = Array.prototype.slice.call(form.querySelectorAll(':invalid'));
     if (invalid.length) {
       form.setAttribute('data-state', 'error');
-      errorBox.textContent = 'Please describe the problem and desired outcome, then choose one decision path.';
+      errorBox.textContent = 'Please describe what brought you here, what you hope will become clearer, and which kind of help feels closest.';
       errorBox.hidden = false;
       errorBox.focus();
       invalid[0].setAttribute('aria-invalid', 'true');

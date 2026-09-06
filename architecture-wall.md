@@ -10,16 +10,16 @@ workspace_title: Examine the Architecture
 
 <div class="wall-orientation container">
   <section id="public-examination" class="wall-boundary" aria-labelledby="public-examination-heading">
-    <p class="semantic-kicker">Public research boundary</p>
-    <h2 id="public-examination-heading">A view into the structure of inquiry</h2>
-    <p>The website Architecture Wall and the deeper Architecture Wall application are related but distinct. No approved public application route is registered, so this Surface exposes only canonical public records.</p>
-    <p>Canonical means this is the Studio’s authoritative representation of an Artifact. It does not mean scientifically true. Visual size, position, glow, or centrality conveys neither importance nor warrant.</p>
+    <p class="semantic-kicker">A public view</p>
+    <h2 id="public-examination-heading">A window into the work of inquiry</h2>
+    <p>This room offers a public glimpse of the deeper Architecture Wall research system. Only work DJ has chosen to share appears here.</p>
+    <p>Being part of the Studio’s current body of work does not make an idea scientifically true. A large, bright, or central object is not automatically more important or better supported.</p>
   </section>
 
   <section id="architecture-wall-frameworks" aria-labelledby="wall-frameworks-heading">
-    <p class="semantic-kicker">Public Framework Artifacts</p>
+    <p class="semantic-kicker">Ways of thinking</p>
     <h2 id="wall-frameworks-heading">Frameworks</h2>
-    <p>Conceptual frameworks remain distinct from operational implementations and from claim-level evidence.</p>
+    <p>Frameworks help organize thought. They are not the same as working software, and they do not count as evidence for their own claims.</p>
     <div class="artifact-list">
       {% assign framework_placements = site.data.surface_placements | where: 'surface', 'architecture-wall-frameworks' | sort: 'order' %}
       {% for placement in framework_placements %}
@@ -31,39 +31,31 @@ workspace_title: Examine the Architecture
 
   <section id="architecture-wall-programs" aria-labelledby="wall-programs-heading">
     <p class="semantic-kicker">Research programs</p>
-    <h2 id="wall-programs-heading">Public program records</h2>
-    <p>No Research Program Artifact is currently approved for public visibility in canonical data.</p>
+    <h2 id="wall-programs-heading">Research programs</h2>
+    <p>No research programs are ready to share here yet.</p>
   </section>
 
   <section id="architecture-wall-evidence" aria-labelledby="wall-evidence-heading">
     <p class="semantic-kicker">Experiments and evidence</p>
-    <h2 id="wall-evidence-heading">Public examination records</h2>
-    {% assign research_records = site.data.research_contract.public_records %}
-    <div class="research-record-counts" aria-label="Public research record counts">
-      <p><strong>{{ research_records.claims.size }}</strong><span>Claims</span></p>
-      <p><strong>{{ research_records.evidence.size }}</strong><span>Evidence records</span></p>
-      <p><strong>{{ research_records.contradictions.size }}</strong><span>Contradictions</span></p>
-      <p><strong>{{ research_records.validity_envelopes.size }}</strong><span>Validity envelopes</span></p>
-    </div>
-    <p>No claim, evidence, experiment, contradiction, confidence assessment, or validity envelope is currently approved for public display. Atmospheric papers and diagrams in the scene are not records.</p>
+    <h2 id="wall-evidence-heading">What has been examined</h2>
+    <p>No formal claims, evidence, experiments, contradictions, confidence assessments, or validity limits are ready for public display. The papers and diagrams in the room are atmosphere, not research findings.</p>
   </section>
 
   {% include aeg-assertion-kinds.html %}
 
-  <section class="research-state-axes" aria-labelledby="research-state-heading">
-    <p class="semantic-kicker">Orthogonal state</p>
-    <h2 id="research-state-heading">State dimensions remain separate</h2>
+  <details class="research-state-axes surface-panel">
+    <summary id="research-state-heading">How research states stay separate</summary>
     <dl>
-      <div><dt>Lifecycle</dt><dd>Condition of an Artifact over time.</dd></div>
-      <div><dt>Visibility</dt><dd>Who may discover or access the Artifact.</dd></div>
-      <div><dt>Governance</dt><dd>Working, proposed, or canonical representation.</dd></div>
-      <div><dt>Confidence</dt><dd>A claim-level assessment, not an Artifact lifecycle state.</dd></div>
+      <div><dt>Stage</dt><dd>Where a piece of work is in its life.</dd></div>
+      <div><dt>Access</dt><dd>Who can discover or open it.</dd></div>
+      <div><dt>Review</dt><dd>Whether it is working, proposed, or accepted as the Studio’s current version.</dd></div>
+      <div><dt>Confidence</dt><dd>How strongly a particular claim is supported—not how finished its container looks.</dd></div>
       <div><dt>AEG warrant</dt><dd>Separate assertion-kind warrants; never a combined score.</dd></div>
-      <div><dt>Proposal/review</dt><dd>Authorization workflow independent of warrant.</dd></div>
-      <div><dt>Operational state</dt><dd>Runtime condition independent of identity and truth.</dd></div>
-      <div><dt>Lineage and provenance</dt><dd>Where a record came from and how it relates, without inferring causation from direction.</dd></div>
+      <div><dt>Proposal and review</dt><dd>Who has considered and authorized a change.</dd></div>
+      <div><dt>Working condition</dt><dd>Whether a tool is running, separate from whether its ideas are true.</dd></div>
+      <div><dt>Origins and connections</dt><dd>Where something came from and how it relates to other work, without mistaking direction for causation.</dd></div>
     </dl>
-  </section>
+  </details>
 
   <nav class="relationship-exits" aria-label="Architecture Wall exits">
     <a href="{{ '/studio/' | relative_url }}">Return to Main Studio</a>

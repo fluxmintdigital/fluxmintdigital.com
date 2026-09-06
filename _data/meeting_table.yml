@@ -12,26 +12,26 @@ stages:
     description: Identify the objective, context, constraints, unknowns, and people affected.
   - id: scope
     label: Scope
-    description: Define what architectural guidance would need to resolve and what remains outside it.
+    description: Decide what this conversation needs to resolve and what should stay outside it.
   - id: decide
     label: Decide
-    description: Choose architecture only, consider a separate implementation scope, or decide there is no fit.
+    description: Choose guidance only, consider building something afterward, or decide another path is a better fit.
 decisions:
   - id: architecture-only
-    label: Architecture or guidance only
-    description: Leave with clearer structure, decisions, and an architectural outcome; implementation is not included.
+    label: A clearer plan or guidance
+    description: Leave with clearer structure and decisions, without committing to a build.
   - id: architecture-and-implementation
-    label: Architecture, then consider implementation
-    description: Decide the architecture first. A separate Workshop scope may be considered afterward, but is never automatic.
+    label: Make a plan, then consider building
+    description: Settle the direction first. Workshop work can be considered afterward, but it is never automatic.
   - id: no-engagement
     label: No engagement or not a fit
-    description: A sound outcome may be to pause, choose another path, or conclude that FluxMintDigital is not the right fit.
+    description: A good outcome may be to pause, choose another path, or decide FluxMintDigital is not the right fit.
 boundaries:
-  - title: Architecture is an outcome
-    description: The Table may produce clarified objectives, constraints, a system map, a decision record, or an implementation-ready blueprint when agreed.
-  - title: Implementation is a separate decision
-    description: Workshop work begins only after fit, architecture, scope, expectations, and mutual agreement are established.
+  - title: Clarity can be the outcome
+    description: You may leave with clearer goals, constraints, a system map, a decision, or an agreed blueprint for possible future work.
+  - title: Building is a separate decision
+    description: Workshop work begins only after the direction, scope, expectations, and fit are clear to everyone.
   - title: Examination belongs at the Wall
-    description: Claims requiring evidence, confidence, contradiction handling, or warrant belong to Architecture Wall—not client intake.
+    description: Questions that need formal evidence, confidence, and contradiction tracking belong on the Architecture Wall—not in a collaboration brief.
   - title: Privacy remains the default
-    description: Client work may remain private and custom. Public attribution or “Powered by FluxMintDigital” is never assumed and requires explicit contractual agreement.
+    description: Collaborative work can remain private. Public credit such as “Powered by FluxMintDigital” happens only when everyone explicitly agrees.

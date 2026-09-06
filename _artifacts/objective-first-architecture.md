@@ -16,6 +16,6 @@ seo:
 permalink: /architecture-wall/frameworks/objective-first-architecture/
 ---
 
-Objective-First Architecture begins by clarifying what a system or intervention is genuinely intended to accomplish before choosing implementation mechanics.
+Objective-First Architecture begins by clarifying what a system or intervention is genuinely intended to accomplish before choosing how to build it.
 
-This canonical Artifact record establishes public identity and stewardship. It does not confer scientific truth, evidentiary confidence, or AEG warrant on any claim associated with the framework.
+This is the Studio’s current introduction to the framework. The framework still has to earn support for its individual claims; appearing here does not make those claims scientifically true.

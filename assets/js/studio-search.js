@@ -13,13 +13,13 @@
     resultsNode.replaceChildren();
     var normalized = query.trim().toLocaleLowerCase();
     if (!normalized) {
-      status.textContent = 'Enter a word or phrase to search public Rooms, Artifacts, and Observatory writing.';
+      status.textContent = 'Enter a word or phrase to search the Rooms, Artifacts, and Observatory writing shared here.';
       return;
     }
     var matches = records.filter(function (record) {
       return [record.title, record.description, record.type, record.room].join(' ').toLocaleLowerCase().includes(normalized);
     });
-    status.textContent = matches.length ? matches.length + (matches.length === 1 ? ' result' : ' results') + ' for “' + query.trim() + '”.' : 'No public Studio records match “' + query.trim() + '”. Try a Room, title, form, or topic.';
+    status.textContent = matches.length ? matches.length + (matches.length === 1 ? ' result' : ' results') + ' for “' + query.trim() + '”.' : 'Nothing in the Studio matched “' + query.trim() + '”. Try a Room, title, form, or topic.';
     matches.forEach(function (record) {
       var article = document.createElement('article');
       article.className = 'surface-card search-result';

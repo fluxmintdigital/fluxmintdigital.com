@@ -1,5 +1,16 @@
 {% assign status_value = include.value | default: 'unknown' %}
+{% assign status_label = include.label %}
+{% unless status_label %}
+  {% case status_value %}
+    {% when 'seed' %}{% assign status_label = 'Early stage' %}
+    {% when 'maintained' %}{% assign status_label = 'Active' %}
+    {% when 'on_the_workbench' %}{% assign status_label = 'On the workbench' %}
+    {% when 'under_examination' %}{% assign status_label = 'Under examination' %}
+    {% when 'in_revision' %}{% assign status_label = 'In revision' %}
+    {% else %}{% assign status_label = status_value | replace: '_', ' ' | capitalize %}
+  {% endcase %}
+{% endunless %}
 <span class="status-indicator status-indicator--{{ include.kind | default: 'lifecycle' }} status-indicator--{{ status_value | slugify }}">
   <span class="status-indicator__dot" aria-hidden="true"></span>
-  <span class="status-indicator__label">{{ include.label | default: status_value | replace: '_', ' ' | capitalize }}</span>
+  <span class="status-indicator__label">{{ status_label }}</span>
 </span>

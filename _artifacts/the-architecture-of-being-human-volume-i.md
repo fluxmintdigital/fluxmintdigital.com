@@ -17,6 +17,6 @@ cover: /FluxMintDigital_Website_Canonical_Package/Assets/source/FMD_SOURCE_LIBRA
 permalink: /library/architecture-series/the-architecture-of-being-human-volume-i/
 ---
 
-*The Architecture of Being Human — Volume I* is the first published Artifact in The Architecture Series.
+*The Architecture of Being Human — Volume I* is the first published book in The Architecture Series.
 
-Availability is intentionally omitted until an approved channel is represented in canonical data. Publication identity does not depend on commerce.
+There is no purchase link here yet. The book remains part of the Library whether or not it is currently available to buy.
