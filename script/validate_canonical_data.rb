@@ -80,10 +80,21 @@ availability.fetch("records", []).each_with_index do |record, index|
   errors << "#{label}: invalid availability" unless values.fetch("availability").include?(record["status"])
   errors << "#{label}: channels must be an array" unless record["channels"].is_a?(Array)
   errors << "#{label}: non-available Artifact cannot expose channels" if record["status"] != "available" && record.fetch("channels", []).any?
+  channel_ids = record.fetch("channels", []).map { |channel| channel["id"] }
+  errors << "#{label}: channel IDs must be unique within an Artifact" unless channel_ids.uniq.length == channel_ids.length
   record.fetch("channels", []).each do |channel|
-    errors << "#{label}: channel requires name, action, and HTTPS URL" unless channel["name"].to_s.strip != "" && channel["action"].to_s.strip != "" && channel["url"].to_s.start_with?("https://")
+    errors << "#{label}: channel requires id, name, action, and HTTPS URL" unless channel["id"].to_s.strip != "" && channel["name"].to_s.strip != "" && channel["action"].to_s.strip != "" && channel["url"].to_s.start_with?("https://")
+    if channel["affiliate"] == true
+      errors << "#{label}: affiliate channel requires a known disclosure" unless availability.fetch("disclosures", {}).key?(channel["disclosure"])
+    end
   end
 end
+
+volume_availability = availability.fetch("records", []).find { |record| record["artifact"] == "architecture-of-being-human-volume-i" }
+amazon_channel = volume_availability&.fetch("channels", [])&.find { |channel| channel["id"] == "amazon" }
+approved_amazon_url = "https://www.amazon.com/dp/B0HHSQT83Z/ref=cm_sw_r_as_gl_api_gl_i_HFKAKNGJ9HFXSDVK871C?linkCode=ml1&tag=fluxmintdigit-20&linkId=f4e6faba26d8121b4b4525d9c0358199&gaOptInStatus=true"
+errors << "Approved Volume I Amazon channel is missing or changed" unless amazon_channel && amazon_channel["url"] == approved_amazon_url && amazon_channel["affiliate"] == true
+errors << "Amazon Associates disclosure is missing or changed" unless availability.fetch("disclosures", {})["amazon_associates"] == "As an Amazon Associate, FluxMintDigital earns from qualifying purchases."
 
 current_builds = placements.select { |placement| placement["surface"] == "workshop-current-build" }
 errors << "Workshop must have exactly one canonical Current Build placement" unless current_builds.length == 1

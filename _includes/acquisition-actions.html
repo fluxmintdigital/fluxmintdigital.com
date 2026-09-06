@@ -1,0 +1,15 @@
+{% assign acquisition = include.availability %}
+{% if acquisition and acquisition.status == 'available' and acquisition.channels.size > 0 %}
+<div class="acquisition-actions" aria-label="Ways to get this item">
+  <div class="acquisition-actions__links">
+    {% for channel in acquisition.channels %}
+    <a class="button" href="{{ channel.url | escape }}" target="_blank" rel="external noopener sponsored">{{ channel.action }}<span class="visually-hidden"> from {{ channel.name }} (opens an external site in a new tab)</span></a>
+    {% endfor %}
+  </div>
+  {% assign disclosure_ids = acquisition.channels | map: 'disclosure' | compact | uniq %}
+  {% for disclosure_id in disclosure_ids %}
+    {% assign disclosure_text = site.data.availability.disclosures[disclosure_id] %}
+    {% if disclosure_text %}<p class="acquisition-disclosure">{{ disclosure_text }}</p>{% endif %}
+  {% endfor %}
+</div>
+{% endif %}

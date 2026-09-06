@@ -1,3 +1,15 @@
 # Acquisition truth is separate from Artifact identity, lifecycle, visibility,
 # and Outfitters Surface placement. Add a record only after its channel is approved.
-records: []
+disclosures:
+  amazon_associates: "As an Amazon Associate, FluxMintDigital earns from qualifying purchases."
+
+records:
+  - artifact: architecture-of-being-human-volume-i
+    status: available
+    channels:
+      - id: amazon
+        name: Amazon
+        action: Find it on Amazon
+        url: "https://www.amazon.com/dp/B0HHSQT83Z/ref=cm_sw_r_as_gl_api_gl_i_HFKAKNGJ9HFXSDVK871C?linkCode=ml1&tag=fluxmintdigit-20&linkId=f4e6faba26d8121b4b4525d9c0358199&gaOptInStatus=true"
+        affiliate: true
+        disclosure: amazon_associates

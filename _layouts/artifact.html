@@ -2,6 +2,7 @@
 layout: default
 ---
 {% assign artifact_room = site.data.rooms | where: 'id', page.canonical_room | first %}
+{% assign artifact_availability = site.data.availability.records | where: 'artifact', page.artifact_id | first %}
 <article class="artifact-detail container">
   <header class="artifact-detail__header">
     <p class="semantic-kicker">{{ page.artifact_type }}{% if artifact_room %} · {{ artifact_room.name }}{% endif %}</p>
@@ -10,12 +11,15 @@ layout: default
     <dl class="artifact-facts">
       <div><dt>Status</dt><dd>{% include status-indicator.html kind='lifecycle' value=page.lifecycle %}</dd></div>
       {% if page.sequence %}<div><dt>In the series</dt><dd>Volume {{ page.sequence }}</dd></div>{% endif %}
-      {% if page.availability %}<div><dt>Availability</dt><dd>{{ page.availability.status | replace: '_', ' ' | capitalize }}</dd></div>{% endif %}
+      {% if artifact_availability %}<div><dt>Availability</dt><dd>{{ artifact_availability.status | replace: '_', ' ' | capitalize }}</dd></div>{% endif %}
     </dl>
   </header>
   <div class="artifact-detail__content">
     {% if page.cover %}<figure><img src="{{ page.cover | relative_url }}" alt="Cover of {{ page.title }}{% if page.sequence %}, Volume {{ page.sequence }}{% endif %}" width="1086" height="1448" loading="eager"><figcaption>Publication cover</figcaption></figure>{% endif %}
-    <div class="prose">{{ content }}</div>
+    <div class="prose">
+      {{ content }}
+      {% include acquisition-actions.html availability=artifact_availability %}
+    </div>
   </div>
   {% if page.canonical_room == 'architecture-wall' %}
   <aside class="research-boundary-note" aria-label="Research warrant boundary">

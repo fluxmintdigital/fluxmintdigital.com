@@ -178,10 +178,19 @@ errors << "Outfitters return threshold missing" unless outfitters_html.include?(
 errors << "Outfitters must derive exactly two discovery listings" unless outfitters_html.scan(/class="outfitters-listing surface-card"/).length == 2
 errors << "Volume I identity duplicated or detached from Library" unless outfitters_html.include?("href=\"/library/architecture-series/the-architecture-of-being-human-volume-i/\"") && outfitters_html.include?("<dd>Library</dd>")
 errors << "Mint Pro identity duplicated or detached from Workshop" unless outfitters_html.include?("href=\"/workshop/mint-pro/\"") && outfitters_html.include?("<dd>Workshop</dd>")
-errors << "Outfitters honest empty state missing" unless outfitters_html.include?("Nothing is available to purchase here right now")
+approved_amazon_url = "https://www.amazon.com/dp/B0HHSQT83Z/ref=cm_sw_r_as_gl_api_gl_i_HFKAKNGJ9HFXSDVK871C?linkCode=ml1&amp;tag=fluxmintdigit-20&amp;linkId=f4e6faba26d8121b4b4525d9c0358199&amp;gaOptInStatus=true"
+amazon_disclosure = "As an Amazon Associate, FluxMintDigital earns from qualifying purchases."
+errors << "Outfitters approved Amazon acquisition action missing or duplicated" unless outfitters_html.scan(approved_amazon_url).length == 1
+errors << "Outfitters Amazon action must use external-link security and affiliate semantics" unless outfitters_html.match?(/href="#{Regexp.escape(approved_amazon_url)}" target="_blank" rel="external noopener sponsored"/)
+errors << "Outfitters Amazon Associates disclosure missing or duplicated" unless outfitters_html.scan(amazon_disclosure).length == 1
+errors << "Outfitters availability summary did not reflect the approved channel" unless outfitters_html.include?("Real ways to take something with you")
 errors << "Outfitters environmental inventory boundary missing" unless outfitters_html.include?("only the items listed below are actually available through the Studio")
-errors << "Outfitters unexpectedly emitted an external acquisition action" if outfitters_html.include?("rel=\"external noopener\"")
-errors << "Outfitters contains fabricated commerce" if outfitters_html.match?(/(?:amazon|google play|etsy|fake discount|limited time|only \d+ left|\$\d)/i)
+errors << "Outfitters contains fabricated commerce" if outfitters_html.match?(/(?:google play|etsy|fake discount|limited time|only \d+ left|\$\d)/i)
+
+volume_html = SITE.join("library/architecture-series/the-architecture-of-being-human-volume-i/index.html").read
+errors << "Volume I approved Amazon acquisition action missing or duplicated" unless volume_html.scan(approved_amazon_url).length == 1
+errors << "Volume I Amazon Associates disclosure missing or duplicated" unless volume_html.scan(amazon_disclosure).length == 1
+errors << "Volume I availability must derive as available" unless volume_html.include?("<dt>Availability</dt><dd>Available</dd>")
 
 dj_html = SITE.join("meet-dj/index.html").read
 errors << "Meet DJ desktop source missing" unless dj_html.include?("FMD_SCENE_MEETDJ_BASE_DESKTOP_DEFAULT_v001.png")
