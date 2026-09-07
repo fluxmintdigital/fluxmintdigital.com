@@ -64,6 +64,9 @@ exclude:
   - FluxMintDigital_Website_Canonical_Package/Assets/source/FMD_SOURCE_MEETDJ_APPROVED_LIKENESS_REFERENCE_v001.jpg
   - FluxMintDigital_Website_Canonical_Package/Assets/source/FMD_SOURCE_LIBRARY_WALKONTHEWILDSIDE_VOL01_COVER_v001.png
   - FluxMintDigital_Website_Canonical_Package/Assets/source/FMD_SOURCE_LIBRARY_DJFIELDGUIDE_MATTER_VOL01_COVER_v001.png
+  - FluxMintDigital_Website_Canonical_Package/Assets/source/FMD_PERSONAL_ARCHITECTURE_MAP_COVER_v1.png
+  - FluxMintDigital_Website_Canonical_Package/Assets/source/FluxMintDigital_The_Personal_Architecture_Map_v1.pdf
+  - FluxMintDigital_Website_Canonical_Package/Assets/source/FluxMintDigital_Choice_Audit_Codex_Handoff_Package_v1.0
   - FluxMintDigital_Website_Canonical_Package/Explorer_DJ_HighRes_Frame_Pack_v1
   - "FluxMintDigital_Website_Canonical_Package/Explorer DJ Regeneration Pack v1.1"
   - FluxMintDigital_Website_Canonical_Package/Explorer_DJ_Production_Frame_Pack_v1

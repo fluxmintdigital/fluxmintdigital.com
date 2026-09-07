@@ -149,6 +149,45 @@ approved_amazon_url = "https://www.amazon.com/dp/B0HHSQT83Z/ref=cm_sw_r_as_gl_ap
 errors << "Approved Volume I Amazon channel is missing or changed" unless amazon_channel && amazon_channel["url"] == approved_amazon_url && amazon_channel["affiliate"] == true
 errors << "Amazon Associates disclosure is missing or changed" unless availability.fetch("disclosures", {})["amazon_associates"] == "As an Amazon Associate, FluxMintDigital earns from qualifying purchases."
 
+choice_audit = artifacts.map(&:last).find { |artifact| artifact["artifact_id"] == "choice-audit" }
+personal_map = artifacts.map(&:last).find { |artifact| artifact["artifact_id"] == "personal-architecture-map" }
+choice_availability = availability.fetch("records", []).find { |record| record["artifact"] == "choice-audit" }
+map_availability = availability.fetch("records", []).find { |record| record["artifact"] == "personal-architecture-map" }
+errors << "Choice Audit canonical state changed" unless choice_audit && choice_audit["artifact_type"] == "Instrument" && choice_audit["canonical_room"] == "workshop" && choice_audit["lifecycle"] == "released" && choice_audit["visibility"] == "public"
+errors << "Choice Audit must not expose an acquisition channel during CA-001" unless choice_availability && choice_availability["status"] == "unavailable" && choice_availability.fetch("channels", []).empty?
+errors << "Personal Architecture Map canonical state changed" unless personal_map && personal_map["artifact_type"] == "Instrument" && personal_map["canonical_room"] == "workshop" && personal_map["lifecycle"] == "released" && personal_map["visibility"] == "public"
+expected_map_price = { "currency" => "USD", "minimum" => 12, "display" => "$12", "pay_more_optional" => true }
+errors << "Personal Architecture Map canonical price changed" unless map_availability && map_availability["status"] == "available" && map_availability["price"] == expected_map_price
+expected_map_channels = {
+  "gumroad" => "https://fluxmint.gumroad.com/l/personal-architecture-map",
+  "ko-fi" => "https://ko-fi.com/s/d9287edf31"
+}
+actual_map_channels = map_availability&.fetch("channels", [])&.to_h { |channel| [channel["id"], channel["url"]] }
+errors << "Personal Architecture Map checkout rails changed" unless actual_map_channels == expected_map_channels
+
+expected_choice_relationships = [
+  ["personal-architecture-map", "expands", "choice-audit"],
+  ["personal-architecture-map", "companion_to", "architecture-of-being-human-volume-i"],
+  ["choice-audit", "companion_to", "architecture-of-being-human-volume-i"],
+  ["choice-audit", "authored_by", "dj-boswell"],
+  ["personal-architecture-map", "authored_by", "dj-boswell"]
+]
+expected_choice_relationships.each do |source, type, target|
+  matches = relationships.select { |relationship| relationship.values_at("source", "type", "target") == [source, type, target] }
+  errors << "Missing or duplicate approved relationship: #{source} #{type} #{target}" unless matches.length == 1
+end
+
+choice_placements = placements.select { |placement| %w[choice-audit personal-architecture-map].include?(placement["artifact"]) }
+expected_choice_placements = [["choice-audit", "workshop-instruments", 1], ["personal-architecture-map", "workshop-instruments", 2]]
+actual_choice_placements = choice_placements.map { |placement| placement.values_at("artifact", "surface", "order") }.sort
+errors << "Choice Audit Workshop placements changed" unless actual_choice_placements == expected_choice_placements.sort
+
+choice_source_root = File.join(ROOT, "FluxMintDigital_Website_Canonical_Package/Assets/source")
+choice_cover = File.join(choice_source_root, "FMD_PERSONAL_ARCHITECTURE_MAP_COVER_v1.png")
+choice_pdf = File.join(choice_source_root, "FluxMintDigital_The_Personal_Architecture_Map_v1.pdf")
+errors << "Canonical Personal Architecture Map cover is missing or changed" unless File.file?(choice_cover) && Digest::SHA256.file(choice_cover).hexdigest == "914a1f69bf8085c467548386e378024130b37e76cf1ea9c87f3228bd9fd37c28"
+errors << "Canonical Personal Architecture Map PDF is missing or changed" unless File.file?(choice_pdf) && Digest::SHA256.file(choice_pdf).hexdigest == "abc22d32ff9596a5f36302f1c2080cd0c4b71c31955e434e08d580d7e34796cd"
+
 current_builds = placements.select { |placement| placement["surface"] == "workshop-current-build" }
 errors << "Workshop must have exactly one canonical Current Build placement" unless current_builds.length == 1
 current_builds.each do |placement|

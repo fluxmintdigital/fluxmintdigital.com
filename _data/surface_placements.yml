@@ -1,3 +1,11 @@
+- surface: workshop-instruments
+  artifact: choice-audit
+  role: free_reflection_instrument
+  order: 1
+- surface: workshop-instruments
+  artifact: personal-architecture-map
+  role: full_reflection_instrument
+  order: 2
 - surface: library-primary-workspace
   artifact: architecture-of-being-human-volume-i
   role: published_artifact

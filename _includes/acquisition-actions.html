@@ -1,9 +1,12 @@
 {% assign acquisition = include.availability %}
 {% if acquisition and acquisition.status == 'available' and acquisition.channels.size > 0 %}
 <div class="acquisition-actions" aria-label="Ways to get this item">
+  {% if acquisition.price %}
+  <p class="acquisition-price"><strong>{{ acquisition.price.display }}</strong>{% if acquisition.price.pay_more_optional %} <span>· You may pay more if you’d like.</span>{% endif %}</p>
+  {% endif %}
   <div class="acquisition-actions__links">
     {% for channel in acquisition.channels %}
-    <a class="button" href="{{ channel.url | escape }}" target="_blank" rel="external noopener sponsored">{{ channel.action }}<span class="visually-hidden"> from {{ channel.name }} (opens an external site in a new tab)</span></a>
+    <a class="button" href="{{ channel.url | escape }}" target="_blank" rel="external noopener{% if channel.affiliate %} sponsored{% endif %}">{{ channel.action }}<span class="visually-hidden"> from {{ channel.name }} (opens an external site in a new tab)</span></a>
     {% endfor %}
   </div>
   {% assign disclosure_ids = acquisition.channels | map: 'disclosure' | compact | uniq %}

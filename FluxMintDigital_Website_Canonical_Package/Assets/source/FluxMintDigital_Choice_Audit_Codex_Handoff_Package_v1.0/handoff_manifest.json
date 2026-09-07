@@ -1,0 +1,17 @@
+{
+  "package": "FluxMintDigital_Choice_Audit_Codex_Handoff_Package_v1.0",
+  "first_phase": "CA-000 repository reconnaissance only",
+  "required_human_assets": [
+    "FMD_PERSONAL_ARCHITECTURE_MAP_COVER_v1.png",
+    "FluxMintDigital_The_Personal_Architecture_Map_v1.pdf"
+  ],
+  "derived_asset_target": "FluxMintDigital_Choice_Audit_Free_v1.pdf",
+  "documents": [
+    "README_FluxMintDigital_Choice_Audit_Codex_Handoff_v1.0.md",
+    "FluxMintDigital_Choice_Audit_CA000_Prompt_v1.0.md",
+    "FluxMintDigital_Choice_Audit_Implementation_Contract_v1.0.md",
+    "FluxMintDigital_Choice_Audit_Visual_State_Contract_v1.0.md",
+    "FluxMintDigital_Choice_Audit_Artifact_and_Page_Architecture_v1.0.md",
+    "FluxMintDigital_Choice_Audit_Source_Asset_Manifest_v1.0.md"
+  ]
+}

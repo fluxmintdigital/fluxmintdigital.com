@@ -1,0 +1,33 @@
+.choice-audit__print-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--fmd-4);max-width:58rem;margin-top:var(--fmd-4)}
+.choice-audit__print-options>div{display:grid;align-content:start;gap:var(--fmd-2);min-width:0;padding:var(--fmd-4);border:1px solid #c8b99f;background:rgb(255 253 248 / 54%)}
+.choice-audit__print-options span{color:#4b5563}
+.choice-audit__print-options .button{width:max-content;max-width:100%;margin-top:var(--fmd-2)}
+.choice-audit-print{display:none}
+@media(max-width:767px){.choice-audit__print-options{grid-template-columns:1fr}.choice-audit__print-options .button{width:100%}}
+
+@media print{
+  @page{size:letter;margin:.5in}
+  html,body{width:auto!important;margin:0!important;padding:0!important;background:#fff!important;color:#222!important;font-family:Arial,sans-serif!important;font-size:10pt!important}
+  body>.skip-link,.site-header,.site-footer,.site-main>.container,.artifact-detail>.artifact-detail__header,.artifact-detail>.artifact-lineage,.artifact-detail>.relationship-exits,.artifact-detail__content>figure,.artifact-detail__content>.prose>*{display:none!important}
+  .site-main,.layout-artifact .artifact-detail,.artifact-detail__content,.artifact-detail__content>.prose,.artifact-detail__content>.prose>.choice-audit{display:block!important;width:auto!important;max-width:none!important;margin:0!important;padding:0!important;border:0!important;background:#fff!important;box-shadow:none!important}
+  .choice-audit>*{display:none!important}
+  .choice-audit>.choice-audit-print{display:block!important;color:#222!important}
+  .choice-audit>.choice-audit-print *{display:revert!important}
+  .choice-audit-print header{padding-bottom:.18in;border-bottom:2px solid #8b682f}
+  .choice-audit-print h1,.choice-audit-print h2,.choice-audit-print h3{color:#222!important;font-family:Georgia,serif!important;break-after:avoid;page-break-after:avoid}
+  .choice-audit-print h1{margin:.08in 0;font-size:27pt}.choice-audit-print h2{margin:.2in 0 .08in;font-size:16pt}.choice-audit-print h3{margin:0 0 .06in;font-size:12pt}
+  .choice-audit-print p,.choice-audit-print li{color:#222!important}.choice-audit-print__eyebrow{margin:0;color:#775725!important;font-size:8pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.choice-audit-print__context{font-size:8.5pt;color:#555!important}
+  .choice-audit-print__choice{margin:.22in 0;padding:.16in;border:2px solid #8b682f;background:#fbf5e9;break-inside:avoid;page-break-inside:avoid}
+  .choice-audit-print__response{min-height:.36in;margin:.05in 0;white-space:pre-wrap;overflow-wrap:anywhere}
+  .choice-audit-print__forces{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:.12in}
+  .choice-audit-print__forces>h2{grid-column:1/-1;margin-bottom:0}
+  .choice-audit-print__force{min-width:0;padding:.12in;border:1px solid #b8a98f;background:#fff;break-inside:avoid;page-break-inside:avoid}
+  .choice-audit-print__force p{margin:.04in 0;font-size:9pt}
+  .choice-audit-print__relationships,.choice-audit-print__counterfactual,.choice-audit-print__preservation,.choice-audit-print__noticing{padding:.12in;border:1px solid #b8a98f;break-inside:avoid;page-break-inside:avoid}
+  .choice-audit-print__relationships ul{margin:.06in 0;padding-left:.22in}
+  .choice-audit-print__temporal,.choice-audit-print__evidence{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));gap:.12in;break-before:auto}
+  .choice-audit-print__temporal>h2,.choice-audit-print__evidence>h2,.choice-audit-print__hindsight{grid-column:1/-1}
+  .choice-audit-print__temporal>section,.choice-audit-print__evidence>section{padding:.12in;border:1px solid #b8a98f;break-inside:avoid;page-break-inside:avoid}
+  .choice-audit-print__hindsight{padding:.12in;border-left:3px solid #8b682f;background:#f5f5f5;break-inside:avoid;page-break-inside:avoid}
+  .choice-audit-print footer{display:flex!important;justify-content:space-between;gap:.2in;margin-top:.25in;padding-top:.12in;border-top:1px solid #8b682f;color:#555!important;font-size:8pt;break-inside:avoid;page-break-inside:avoid}
+}

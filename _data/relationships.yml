@@ -1,3 +1,28 @@
+- source: personal-architecture-map
+  type: expands
+  target: choice-audit
+  importance: primary
+  provenance: canonical
+- source: personal-architecture-map
+  type: companion_to
+  target: architecture-of-being-human-volume-i
+  importance: primary
+  provenance: canonical
+- source: choice-audit
+  type: companion_to
+  target: architecture-of-being-human-volume-i
+  importance: primary
+  provenance: canonical
+- source: choice-audit
+  type: authored_by
+  target: dj-boswell
+  importance: primary
+  provenance: canonical
+- source: personal-architecture-map
+  type: authored_by
+  target: dj-boswell
+  importance: primary
+  provenance: canonical
 - source: architecture-of-being-human-volume-i
   type: belongs_to
   target: architecture-series

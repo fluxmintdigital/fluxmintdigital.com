@@ -30,6 +30,8 @@ required_routes = %w[
   /library/dj-field-guide/the-dj-field-guide-to-matter-volume-i/
   /workshop/mint-pro/
   /workshop/bidmaster/
+  /workshop/choice-audit/
+  /workshop/personal-architecture-map/
   /architecture-wall/frameworks/architectural-thinking/
   /architecture-wall/frameworks/objective-first-architecture/
   /the-value-of-wonder/
@@ -70,6 +72,13 @@ wild_side_source = SITE.join("FluxMintDigital_Website_Canonical_Package/Assets/s
 errors << "Controlled Walk on the Wild Side cover master was emitted into the public build" if wild_side_source.exist?
 field_guide_source = SITE.join("FluxMintDigital_Website_Canonical_Package/Assets/source/FMD_SOURCE_LIBRARY_DJFIELDGUIDE_MATTER_VOL01_COVER_v001.png")
 errors << "Controlled DJ Field Guide cover master was emitted into the public build" if field_guide_source.exist?
+choice_cover_source = SITE.join("FluxMintDigital_Website_Canonical_Package/Assets/source/FMD_PERSONAL_ARCHITECTURE_MAP_COVER_v1.png")
+errors << "Controlled Personal Architecture Map cover master was emitted into the public build" if choice_cover_source.exist?
+choice_pdf_source = SITE.join("FluxMintDigital_Website_Canonical_Package/Assets/source/FluxMintDigital_The_Personal_Architecture_Map_v1.pdf")
+errors << "Controlled Personal Architecture Map PDF was emitted into the public build" if choice_pdf_source.exist?
+choice_handoff = SITE.join("FluxMintDigital_Website_Canonical_Package/Assets/source/FluxMintDigital_Choice_Audit_Codex_Handoff_Package_v1.0")
+errors << "Controlled Choice Audit handoff package was emitted into the public build" if choice_handoff.exist?
+errors << "Choice Audit browser test fixture was emitted into the public build" if SITE.join("script/fixtures/choice-audit-model.html").exist?
 
 studio_html = SITE.join("studio/index.html").read
 home_html = SITE.join("index.html").read
@@ -150,6 +159,81 @@ errors << "Workshop Main Studio return threshold missing" unless workshop_html.i
 errors << "Workshop Current Build must remain available outside the scene" unless workshop_html.scan(/href="\/workshop\/mint-pro\/"/).length >= 3
 errors << "Workshop must not expose OmniShell" if workshop_html.match?(/OmniShell/i)
 errors << "Workshop must expose BidMaster exactly once in its conventional application list" unless workshop_html.scan(/href="\/workshop\/bidmaster\/"/).length == 1
+errors << "Workshop must expose both approved Instruments" unless workshop_html.include?('href="/workshop/choice-audit/"') && workshop_html.include?('href="/workshop/personal-architecture-map/"')
+
+choice_html = SITE.join("workshop/choice-audit/index.html").read
+errors << "Choice Audit must remain a released Workshop Instrument" unless choice_html.include?("Instrument · Workshop") && choice_html.include?('status-indicator__label">Released</span>')
+errors << "Choice Audit browser usability is still conflated with acquisition availability" if choice_html.include?("<dt>Availability</dt><dd>Not available yet</dd>")
+errors << "Choice Audit browser-use receipt missing" unless choice_html.include?("<dt>Use</dt><dd>Free browser instrument</dd>")
+errors << "Choice Audit shell lost its governing question" unless choice_html.include?("What participated in this choice?")
+errors << "Choice Audit shell must preserve the no-gate contract" unless choice_html.include?("no email address, account, purchase, or personal information")
+errors << "Choice Audit shell must not expose an acquisition action" if choice_html.include?('class="acquisition-actions"')
+errors << "Choice Audit dedicated controller missing or duplicated" unless choice_html.scan('src="/assets/js/choice-audit-controller.js"').length == 1
+expected_force_order = %w[desire expectation security opportunity identity obligation fearAvoidance possibility]
+actual_force_order = choice_html.scan(/data-force="([^"]+)"/).flatten
+errors << "Choice Audit force regions missing or out of canonical order" unless actual_force_order == expected_force_order
+errors << "Choice Audit must expose one reflection field per force" unless choice_html.scan(/data-force-reflection/).length == 8
+errors << "Choice Audit overlapping classification controls changed" unless choice_html.scan(/data-force-classification/).length == 40
+errors << "Choice Audit qualitative influence controls changed" unless choice_html.scan(/data-force-influence/).length == 24 && choice_html.scan(/Influence, not score\./).length == 8
+errors << "Choice Audit privacy receipt missing" unless choice_html.include?("Your map is yours") && choice_html.include?("Your reflections stay on this device")
+errors << "Choice Audit returning-audit contract missing" unless choice_html.include?("Your previous map is still here on this device") && choice_html.include?(">Continue</button>") && choice_html.include?("Start another audit")
+errors << "Choice Audit relationship builder missing" unless choice_html.include?("Add ↔ Interaction") && choice_html.include?("does not infer relationships") && choice_html.include?("does not prove causation")
+errors << "Choice Audit working field must begin disabled for progressive enhancement" unless choice_html.match?(/<fieldset class="choice-audit__field"[^>]+disabled/)
+errors << "Choice Audit no-JavaScript explanation or exits missing" unless choice_html.include?("The interactive working field needs JavaScript") && choice_html.include?('href="/workshop/personal-architecture-map/"') && choice_html.include?('href="/workshop/"')
+choice_field_html = choice_html[/<section class="choice-audit".*?<\/section>\s*<script type="module"/m].to_s
+errors << "Acquisition action leaked into Choice Audit working field" if choice_field_html.include?("acquisition-actions") || choice_field_html.match?(/Gumroad|Ko-fi|\$12/)
+errors << "Progress or results UI leaked into Choice Audit" if choice_field_html.match?(/progress-bar|completion-ring|Your Results|\bpercent(?:age)?\b/i)
+expected_temporal = { "then" => "What was true or most salient then?", "after" => "What became visible only afterward?", "now" => "What do I see more clearly now?" }
+expected_temporal.each do |key, prompt|
+  errors << "Choice Audit #{key} field or prompt missing" unless choice_field_html.include?("data-temporal=\"#{key}\"") && choice_field_html.include?(prompt)
+end
+errors << "Choice Audit counterfactual field missing" unless choice_field_html.include?("What might have changed the choice?") && choice_field_html.include?("data-counterfactual-reflection")
+errors << "Choice Audit counterfactual vocabulary changed" unless %w[Yes No Maybe Unknown].all? { |value| choice_field_html.include?("data-counterfactual-response=\"\"&gt; #{value}") || choice_field_html.match?(/value="#{value}" data-counterfactual-response/) }
+%w[supports challenges alternatives uncertainty].each do |field|
+  errors << "Choice Audit Evidence Lens field missing: #{field}" unless choice_field_html.include?("data-evidence=\"#{field}\"")
+end
+errors << "Choice Audit Evidence Lens heading changed" unless choice_field_html.match?(/Before you decide what it means/i)
+errors << "Choice Audit hindsight check missing" unless choice_field_html.include?("Am I reconstructing the decision differently because I know what happened afterward?")
+errors << "Choice Audit preservation or final reflection field missing" unless choice_field_html.include?("data-preservation") && choice_field_html.include?("data-final-reflection") && choice_field_html.match?(/What do you notice\?/i)
+expected_maps = ["Formation", "Inheritance", "Recognition", "Choice Audit", "Alignment", "Friction", "Negative Geometry", "Influence / Control", "Becoming", "Personal Architecture"]
+map_positions = expected_maps.map { |label| choice_field_html.index("> #{label}</li>") || choice_field_html.index(">#{label}</") }
+errors << "Choice Audit larger-architecture sequence missing or reordered" unless map_positions.all? && map_positions == map_positions.sort
+errors << "Choice Audit reveal must begin hidden" unless choice_field_html.match?(/data-architecture-reveal[^>]+hidden/)
+errors << "Choice Audit Alignment question missing" unless choice_field_html.include?("Where does my life reinforce what matters to me?")
+errors << "Choice Audit reveal exits changed" unless choice_field_html.include?("Explore the Personal Architecture Map") && choice_field_html.include?("Return to Workshop")
+
+choice_model = SITE.join("assets/js/choice-audit-model.js")
+errors << "Choice Audit local model was not emitted" unless choice_model.file?
+if choice_model.file?
+  choice_model_source = choice_model.read
+  %w[localStorage sessionStorage document.cookie XMLHttpRequest sendBeacon].each do |forbidden_api|
+    errors << "Choice Audit local model uses forbidden persistence/network API: #{forbidden_api}" if choice_model_source.include?(forbidden_api)
+  end
+  errors << "Choice Audit local model must not initiate remote requests" if choice_model_source.match?(/\bfetch\s*\(/)
+  errors << "Choice Audit local model schema version missing" unless choice_model_source.include?("const SCHEMA_VERSION = 1")
+  errors << "Choice Audit local reflection classification missing" unless choice_model_source.include?('const DATA_CLASSIFICATION = "LOCAL_REFLECTION_DATA"')
+  errors << "Choice Audit storage-failure wording changed" unless choice_model_source.include?("This audit could not be saved on this device. Your current work is still available in this session.")
+end
+choice_controller = SITE.join("assets/js/choice-audit-controller.js")
+errors << "Choice Audit controller was not emitted" unless choice_controller.file?
+if choice_controller.file?
+  controller_source = choice_controller.read
+  %w[localStorage sessionStorage document.cookie XMLHttpRequest sendBeacon].each do |forbidden_api|
+    errors << "Choice Audit controller uses forbidden persistence/network API: #{forbidden_api}" if controller_source.include?(forbidden_api)
+  end
+  errors << "Choice Audit controller must not initiate remote requests" if controller_source.match?(/\bfetch\s*\(/)
+end
+
+map_html = SITE.join("workshop/personal-architecture-map/index.html").read
+errors << "Personal Architecture Map must remain a released Workshop Instrument" unless map_html.include?("Instrument · Workshop") && map_html.include?('status-indicator__label">Released</span>')
+errors << "Personal Architecture Map cover derivatives missing" unless %w[480W 768W 1024W].all? { |width| map_html.include?("FMD_ARTIFACT_WORKSHOP_PERSONALARCHITECTUREMAP_COVER_#{width}_v001.webp") }
+errors << "Personal Architecture Map canonical price treatment changed" unless map_html.include?("$12") && map_html.include?("You may pay more if you’d like.")
+expected_gumroad = "https://fluxmint.gumroad.com/l/personal-architecture-map"
+expected_kofi = "https://ko-fi.com/s/d9287edf31"
+errors << "Personal Architecture Map Gumroad rail missing or duplicated" unless map_html.scan(expected_gumroad).length == 1
+errors << "Personal Architecture Map Ko-fi rail missing or duplicated" unless map_html.scan(expected_kofi).length == 1
+errors << "Personal Architecture Map must expose both rails equally" unless map_html.include?("Get it on Gumroad") && map_html.include?("Get it on Ko-fi")
+errors << "Personal Architecture Map relationship paths missing" unless map_html.include?('href="/workshop/choice-audit/"') && map_html.include?('href="/library/architecture-series/the-architecture-of-being-human-volume-i/"')
 
 mint_pro_html = SITE.join("workshop/mint-pro/index.html").read
 errors << "Mint Pro must render On the workbench lifecycle" unless mint_pro_html.include?('status-indicator__label">On the workbench</span>')
@@ -309,6 +393,14 @@ errors << "Observatory archive is not reverse chronological" unless archive_date
 css = SITE.join("assets/css/canonical.css").read
 errors << "Reduced-motion contract missing" unless css.include?("prefers-reduced-motion:reduce")
 errors << "Minimum target token missing" unless css.include?("--fmd-target:44px")
+
+choice_audit_html = SITE.join("workshop/choice-audit/index.html").read
+free_choice_audit_pdf = SITE.join("assets/downloads/FluxMintDigital_Choice_Audit_Free_v1.pdf")
+errors << "Canonical free Choice Audit PDF missing" unless free_choice_audit_pdf.file?
+errors << "Choice Audit printable download missing" unless choice_audit_html.include?('href="/assets/downloads/FluxMintDigital_Choice_Audit_Free_v1.pdf"') && choice_audit_html.include?("Download the printable Choice Audit")
+errors << "Current-audit print action missing" unless choice_audit_html.include?("Print My Current Audit") && choice_audit_html.include?("data-audit-print")
+errors << "Paid Personal Architecture Map PDF leaked into public build" if SITE.join("FluxMintDigital_Website_Canonical_Package/Assets/source/FluxMintDigital_The_Personal_Architecture_Map_v1.pdf").exist? || SITE.glob("**/FluxMintDigital_The_Personal_Architecture_Map_v1.pdf").any?
+errors << "Personal Architecture Map source cover leaked into public build" if SITE.glob("**/FMD_PERSONAL_ARCHITECTURE_MAP_COVER_v1.png").any?
 
 specimens = SITE.glob("FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_UI_*")
 errors << "Flattened UI specimens were emitted into the public build" unless specimens.empty?

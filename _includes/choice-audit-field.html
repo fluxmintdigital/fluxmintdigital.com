@@ -1,0 +1,222 @@
+<section class="choice-audit" data-choice-audit aria-labelledby="choice-audit-heading">
+  <header class="choice-audit__intro">
+    <p class="semantic-kicker">04 / Choice Audit</p>
+    <h2 id="choice-audit-heading">What participated in this choice?</h2>
+    <aside class="choice-audit__privacy" aria-label="Privacy receipt">
+      <strong>Your map is yours.</strong>
+      <span>No account is required. Your reflections stay on this device and are not submitted to FluxMintDigital simply by using the tool.</span>
+    </aside>
+    <aside class="choice-audit__print-options" aria-label="Printable Choice Audit options">
+      <div>
+        <strong>Blank printable instrument</strong>
+        <span>Download a reusable three-page Choice Audit. It does not include anything entered in your browser.</span>
+        <a class="button button--quiet" href="{{ '/assets/downloads/FluxMintDigital_Choice_Audit_Free_v1.pdf' | relative_url }}" download>Download the printable Choice Audit</a>
+      </div>
+      <div>
+        <strong>Your current local audit</strong>
+        <span>Print the material currently held on this device. Nothing is uploaded to prepare it.</span>
+        <button class="button button--quiet" type="button" data-audit-print disabled>Print My Current Audit</button>
+      </div>
+    </aside>
+  </header>
+
+  <section class="choice-audit__returning" data-audit-returning hidden aria-labelledby="returning-audit-heading">
+    <h3 id="returning-audit-heading">Your previous map is still here on this device.</h3>
+    <div class="choice-audit__actions">
+      <button class="button" type="button" data-audit-continue>Continue</button>
+      <button class="button button--quiet" type="button" data-audit-new disabled>Start another audit</button>
+    </div>
+  </section>
+
+  <div class="choice-audit__workspace" data-audit-workspace>
+    <div class="choice-audit__toolbar">
+      <p class="choice-audit__save-status" data-audit-save-status role="status" aria-live="polite">Preparing your local workspace…</p>
+      <button class="button button--quiet" type="button" data-audit-new>Start another audit</button>
+    </div>
+
+    <fieldset class="choice-audit__field" data-audit-field disabled>
+      <legend class="visually-hidden">Choice Audit working field</legend>
+
+      <section class="choice-audit__choice" aria-labelledby="choice-heading">
+        <p class="semantic-kicker">The Choice</p>
+        <h3 id="choice-heading">Begin with one choice.</h3>
+        <p>It can be large or ordinary, recent or old. You do not need to know yet why you made it.</p>
+        <label for="choice-audit-choice">Write the decision, direction, or moment here.</label>
+        <textarea id="choice-audit-choice" data-audit-choice rows="4" autocomplete="off"></textarea>
+      </section>
+
+      <p class="choice-audit__permission">Use only the forces that seem relevant.</p>
+
+      <nav class="choice-force-index" data-force-index aria-label="Choice forces">
+        <p>All eight forces remain part of the map. Open any force that seems useful.</p>
+        <ol>
+          {% assign choice_force_index = "desire|Desire,expectation|Expectation,security|Security,opportunity|Opportunity,identity|Identity,obligation|Obligation,fearAvoidance|Fear & Avoidance,possibility|Possibility" | split: "," %}
+          {% for force_record in choice_force_index %}
+            {% assign force = force_record | split: "|" %}
+            <li>
+              <button type="button" data-force-open="{{ force[0] }}" aria-controls="force-{{ force[0] }}-body">
+                <span>{{ force[1] }}</span>
+                <span class="choice-force-index__state" data-force-index-state="{{ force[0] }}" hidden>Contains material</span>
+              </button>
+            </li>
+          {% endfor %}
+        </ol>
+      </nav>
+
+      <div class="choice-audit__forces" data-audit-forces>
+        {% assign choice_forces = "desire|Desire|What did I genuinely want?,expectation|Expectation|What did I expect — from myself or from others?,security|Security|What did this make feel more stable or certain?,opportunity|Opportunity|What did this make available right now?,identity|Identity|What part of me felt involved in this choice?,obligation|Obligation|What did I feel responsible for?,fearAvoidance|Fear & Avoidance|What was I trying to avoid?,possibility|Possibility|What could this make possible?" | split: "," %}
+        {% for force_record in choice_forces %}
+          {% assign force = force_record | split: "|" %}
+          {% assign force_id = force[0] %}
+          {% assign force_name = force[1] %}
+          {% assign force_prompt = force[2] %}
+          <section class="choice-force" data-force="{{ force_id }}" aria-labelledby="force-{{ force_id }}-heading">
+            <header>
+              <h3 id="force-{{ force_id }}-heading">{{ force_name }}</h3>
+              <p>{{ force_prompt }}</p>
+            </header>
+            <button class="choice-force__open" type="button" data-force-open="{{ force_id }}" aria-controls="force-{{ force_id }}-body">Work with {{ force_name }}</button>
+            <div class="choice-force__body" id="force-{{ force_id }}-body" data-force-body>
+              <label for="force-{{ force_id }}-reflection">Your reflection</label>
+              <textarea id="force-{{ force_id }}-reflection" data-force-reflection rows="4" autocomplete="off"></textarea>
+
+              <fieldset class="choice-force__classifications">
+              <legend>What kind of participation was this?</legend>
+              <label><input type="checkbox" value="W" data-force-classification> <strong>W</strong> Wanted</label>
+              <label><input type="checkbox" value="E" data-force-classification> <strong>E</strong> Expected</label>
+              <label><input type="checkbox" value="N" data-force-classification> <strong>N</strong> Necessary</label>
+              <label><input type="checkbox" value="P" data-force-classification> <strong>P</strong> Possible</label>
+              <label><input type="checkbox" value="?" data-force-classification> <strong>?</strong> Uncertain</label>
+              </fieldset>
+
+              <fieldset class="choice-force__influence">
+              <legend>Influence, not score.</legend>
+              <label><input type="radio" name="force-{{ force_id }}-influence" value="1" data-force-influence> <strong aria-hidden="true">•</strong> Present</label>
+              <label><input type="radio" name="force-{{ force_id }}-influence" value="2" data-force-influence> <strong aria-hidden="true">••</strong> Significant</label>
+              <label><input type="radio" name="force-{{ force_id }}-influence" value="3" data-force-influence> <strong aria-hidden="true">•••</strong> Dominant</label>
+              <button type="button" class="choice-force__clear" data-force-clear-influence>Clear influence mark</button>
+              </fieldset>
+              <button class="choice-force__return" type="button" data-force-return>Return to all forces</button>
+            </div>
+            <p class="visually-hidden" data-force-announcement aria-live="polite"></p>
+          </section>
+        {% endfor %}
+      </div>
+
+      <section class="choice-relationships" aria-labelledby="choice-relationships-heading">
+        <p class="semantic-kicker">Reader-authored connections</p>
+        <h3 id="choice-relationships-heading">Interactions between forces</h3>
+        <p>Add a connection only when you notice one. The audit does not infer relationships, and an interaction does not prove causation.</p>
+        <div class="choice-relationships__builder">
+          <label for="relationship-from">First force</label>
+          <select id="relationship-from" data-relationship-from>
+            <option value="">Choose a force</option>
+            <option value="desire">Desire</option><option value="expectation">Expectation</option><option value="security">Security</option><option value="opportunity">Opportunity</option><option value="identity">Identity</option><option value="obligation">Obligation</option><option value="fearAvoidance">Fear &amp; Avoidance</option><option value="possibility">Possibility</option>
+          </select>
+          <label for="relationship-to">Second force</label>
+          <select id="relationship-to" data-relationship-to>
+            <option value="">Choose a different force</option>
+            <option value="desire">Desire</option><option value="expectation">Expectation</option><option value="security">Security</option><option value="opportunity">Opportunity</option><option value="identity">Identity</option><option value="obligation">Obligation</option><option value="fearAvoidance">Fear &amp; Avoidance</option><option value="possibility">Possibility</option>
+          </select>
+          <button class="button button--quiet" type="button" data-relationship-add>Add ↔ Interaction</button>
+        </div>
+        <p class="choice-relationships__message" data-relationship-message role="status" aria-live="polite"></p>
+        <ul class="choice-relationships__list" data-relationship-list></ul>
+      </section>
+
+      <section class="choice-reflection" aria-labelledby="choice-temporal-heading">
+        <p class="semantic-kicker">A change of perspective</p>
+        <h3 id="choice-temporal-heading">Read the choice across time</h3>
+        <p>These are three different views of the choice—not steps toward a better answer. Use any that help.</p>
+        <div class="choice-temporal">
+          <div>
+            <label for="choice-temporal-then"><strong>Then</strong><span>What was true or most salient then?</span></label>
+            <textarea id="choice-temporal-then" data-temporal="then" rows="5" autocomplete="off"></textarea>
+          </div>
+          <div>
+            <label for="choice-temporal-after"><strong>After</strong><span>What became visible only afterward?</span></label>
+            <textarea id="choice-temporal-after" data-temporal="after" rows="5" autocomplete="off"></textarea>
+          </div>
+          <div>
+            <label for="choice-temporal-now"><strong>Now</strong><span>What do I see more clearly now?</span></label>
+            <textarea id="choice-temporal-now" data-temporal="now" rows="5" autocomplete="off"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="choice-reflection choice-counterfactual" aria-labelledby="choice-counterfactual-heading">
+        <p class="semantic-kicker">Thought experiment</p>
+        <h3 id="choice-counterfactual-heading">What might have changed the choice?</h3>
+        <p>If one of these forces had not been present, how might this have been different? This is a thought experiment, not proof of causation.</p>
+        <fieldset>
+          <legend>Would the choice have changed?</legend>
+          <div class="choice-counterfactual__responses">
+            <label><input type="radio" name="counterfactual-response" value="Yes" data-counterfactual-response> Yes</label>
+            <label><input type="radio" name="counterfactual-response" value="No" data-counterfactual-response> No</label>
+            <label><input type="radio" name="counterfactual-response" value="Maybe" data-counterfactual-response> Maybe</label>
+            <label><input type="radio" name="counterfactual-response" value="Unknown" data-counterfactual-response> Unknown</label>
+            <button type="button" class="choice-force__clear" data-counterfactual-clear>Clear response</button>
+          </div>
+        </fieldset>
+        <label for="choice-counterfactual-reflection">What do you want to remember about that possibility?</label>
+        <textarea id="choice-counterfactual-reflection" data-counterfactual-reflection rows="5" autocomplete="off"></textarea>
+      </section>
+
+      <section class="choice-reflection choice-evidence" aria-labelledby="choice-evidence-heading">
+        <p class="semantic-kicker">Inspection</p>
+        <h3 id="choice-evidence-heading">BEFORE YOU DECIDE WHAT IT MEANS</h3>
+        <p>The audit keeps these questions open. It does not score evidence, rank explanations, or resolve contradictions for you.</p>
+        <div class="choice-evidence__fields">
+          <div><label for="choice-evidence-supports">What supports this?</label><textarea id="choice-evidence-supports" data-evidence="supports" rows="4" autocomplete="off"></textarea></div>
+          <div><label for="choice-evidence-challenges">What might challenge it?</label><textarea id="choice-evidence-challenges" data-evidence="challenges" rows="4" autocomplete="off"></textarea></div>
+          <div><label for="choice-evidence-alternatives">What else could explain it?</label><textarea id="choice-evidence-alternatives" data-evidence="alternatives" rows="4" autocomplete="off"></textarea></div>
+          <div><label for="choice-evidence-uncertainty">What remains uncertain?</label><textarea id="choice-evidence-uncertainty" data-evidence="uncertainty" rows="4" autocomplete="off"></textarea></div>
+        </div>
+        <p class="choice-evidence__hindsight"><strong>Hindsight check</strong><span>Am I reconstructing the decision differently because I know what happened afterward?</span></p>
+      </section>
+
+      <section class="choice-reflection choice-preservation" aria-labelledby="choice-preservation-heading">
+        <h3 id="choice-preservation-heading">What here appears worth preserving?</h3>
+        <p>This is your judgment to make. The audit does not treat an answer as positive, healthy, or recommended.</p>
+        <label for="choice-preservation">What would you like to preserve?</label>
+        <textarea id="choice-preservation" data-preservation rows="5" autocomplete="off"></textarea>
+      </section>
+
+      <section class="choice-reflection choice-noticing" aria-labelledby="choice-noticing-heading">
+        <p class="semantic-kicker">Reflection</p>
+        <h3 id="choice-noticing-heading">WHAT DO YOU NOTICE?</h3>
+        <p>The space below is yours. The audit will preserve what you enter without interpreting you.</p>
+        <label for="choice-final-reflection">What do you notice?</label>
+        <textarea id="choice-final-reflection" data-final-reflection rows="7" autocomplete="off"></textarea>
+      </section>
+
+      <section class="choice-architecture-reveal" data-architecture-reveal hidden aria-labelledby="choice-architecture-heading">
+        <p class="semantic-kicker">A wider view</p>
+        <h3 id="choice-architecture-heading">Choice Audit is Map 4 in a larger architecture.</h3>
+        <ol aria-label="The ten maps of the Personal Architecture Map">
+          <li><span>01</span> Formation</li>
+          <li><span>02</span> Inheritance</li>
+          <li><span>03</span> Recognition</li>
+          <li aria-current="step"><span>04</span> Choice Audit</li>
+          <li><span>05</span> Alignment</li>
+          <li><span>06</span> Friction</li>
+          <li><span>07</span> Negative Geometry</li>
+          <li><span>08</span> Influence / Control</li>
+          <li><span>09</span> Becoming</li>
+          <li><span>10</span> Personal Architecture</li>
+        </ol>
+        <p><strong>Next question:</strong> Where does my life reinforce what matters to me?</p>
+        <nav class="choice-architecture-reveal__exits" aria-label="Choice Audit reflection exits">
+          <a class="button" href="{{ '/workshop/personal-architecture-map/' | relative_url }}">Explore the Personal Architecture Map</a>
+          <a class="button button--quiet" href="{{ '/workshop/' | relative_url }}">Return to Workshop</a>
+        </nav>
+      </section>
+    </fieldset>
+  </div>
+
+  <noscript>
+    <p class="choice-audit__noscript">The interactive working field needs JavaScript, but the questions above remain available for reflection. You can still explore the <a href="{{ '/workshop/personal-architecture-map/' | relative_url }}">Personal Architecture Map</a> or <a href="{{ '/workshop/' | relative_url }}">return to the Workshop</a>.</p>
+  </noscript>
+  <article class="choice-audit-print" data-audit-print-output aria-hidden="true"></article>
+</section>
+<script type="module" src="{{ '/assets/js/choice-audit-controller.js' | relative_url }}"></script>

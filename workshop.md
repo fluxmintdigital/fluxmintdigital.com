@@ -38,10 +38,16 @@ workspace_title: Build in the Workshop
   <section id="workshop-tool-access" aria-labelledby="workshop-tools-heading">
     <p class="semantic-kicker">Curated workbench</p>
     <h2 id="workshop-tools-heading">Tools, instruments, and making experiments</h2>
-    <p>There is nothing else on the public workbench just yet. New tools, instruments, and experiments will appear when they are ready to share.</p>
+    <p>Structured instruments for looking more closely at a choice and the larger architecture around it.</p>
+    <div class="artifact-list">
+      {% assign instrument_placements = site.data.surface_placements | where: 'surface', 'workshop-instruments' | sort: 'order' %}
+      {% for placement in instrument_placements %}
+        {% assign instrument = site.artifacts | where: 'artifact_id', placement.artifact | first %}
+        {% if instrument and instrument.visibility == 'public' %}{% include artifact-summary.html artifact=instrument %}{% endif %}
+      {% endfor %}
+    </div>
     <ul class="workshop-collection-index">
       <li><strong>Companion tools</strong><span>Nothing shared yet</span></li>
-      <li><strong>Instruments</strong><span>Nothing shared yet</span></li>
       <li><strong>Making experiments and prototypes</strong><span>Nothing shared yet</span></li>
     </ul>
   </section>

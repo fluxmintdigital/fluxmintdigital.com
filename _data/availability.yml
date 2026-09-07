@@ -4,6 +4,25 @@ disclosures:
   amazon_associates: "As an Amazon Associate, FluxMintDigital earns from qualifying purchases."
 
 records:
+  - artifact: choice-audit
+    status: unavailable
+    channels: []
+  - artifact: personal-architecture-map
+    status: available
+    price:
+      currency: USD
+      minimum: 12
+      display: "$12"
+      pay_more_optional: true
+    channels:
+      - id: gumroad
+        name: Gumroad
+        action: Get it on Gumroad
+        url: "https://fluxmint.gumroad.com/l/personal-architecture-map"
+      - id: ko-fi
+        name: Ko-fi
+        action: Get it on Ko-fi
+        url: "https://ko-fi.com/s/d9287edf31"
   - artifact: bidmaster
     status: unavailable
     channels: []

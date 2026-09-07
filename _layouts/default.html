@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/rooms.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/canonical.css' | relative_url }}">
+  {% if page.artifact_id == 'choice-audit' %}<link rel="stylesheet" href="{{ '/assets/css/choice-audit-print.css' | relative_url }}">{% endif %}
+  {% if page.artifact_id == 'choice-audit' %}<link rel="stylesheet" href="{{ '/assets/css/choice-audit-visual.css' | relative_url }}">{% endif %}
   <link rel="icon" href="{{ '/assets/icons/favicon.svg' | relative_url }}" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   {% include head-custom.html %}
