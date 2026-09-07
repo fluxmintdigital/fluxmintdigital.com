@@ -29,7 +29,7 @@ canonical_room: meeting-table
         <legend>Which decision path best describes what you need today?</legend>
         {% for decision in site.data.meeting_table.decisions %}<label class="decision-option" for="decision-{{ decision.id }}"><input id="decision-{{ decision.id }}" type="radio" name="decision" value="{{ decision.id }}" required><span><strong>{{ decision.label }}</strong><small>{{ decision.description }}</small></span></label>{% endfor %}
       </fieldset>
-      <div class="form-actions"><button class="button" type="submit">Review my draft</button><button class="button button--quiet" type="reset">Clear draft</button></div>
+      <div class="form-actions"><button class="button" type="submit" data-meeting-review disabled>Review my draft</button><button class="button button--quiet" type="reset">Clear draft</button></div>
       <p class="meeting-privacy">This draft stays on your device. Nothing you type here is sent anywhere.</p>
       <div class="meeting-draft-result" id="meeting-draft-result" role="status" tabindex="-1" hidden><p class="semantic-kicker">Ready to review</p><h3>You have the beginnings of a useful conversation.</h3><p>Your answers are still only a private draft. Nothing has been submitted, and no work has been promised.</p><div class="meeting-human-handoff"><h4>Ready to bring it to the table?</h4><p>This worksheet has not been sent and stays on this device. If you want to continue, contact DJ separately and choose what, if anything, you share.</p><a class="button button--quiet" href="mailto:fluxmintdigital@gmail.com">Contact DJ</a></div></div>
     </form>

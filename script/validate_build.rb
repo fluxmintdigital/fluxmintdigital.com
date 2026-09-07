@@ -457,6 +457,9 @@ meeting_handoff = meeting_html[/<div class="meeting-human-handoff">.*?<\/div>/m]
 errors << "Meeting Table human handoff missing" unless meeting_handoff.include?("Ready to bring it to the table?") && meeting_handoff.include?("This worksheet has not been sent and stays on this device")
 errors << "Meeting Table handoff must use only the existing public contact destination" unless meeting_handoff.include?('href="mailto:fluxmintdigital@gmail.com"')
 errors << "Meeting Table handoff must not serialize worksheet data" if meeting_handoff.match?(/mailto:[^"']*[?&](?:subject|body)=|(?:problem|outcome|constraints)=/i)
+errors << "Meeting Table review control must be inert until its local controller is active" unless meeting_html.match?(/type="submit"[^>]*data-meeting-review(?:="")?[^>]*disabled(?:="")?/)
+meeting_controller = SITE.join("assets/js/meeting-table-intake.js").read
+errors << "Meeting Table local controller does not activate the review control" unless meeting_controller.include?("reviewButton.disabled = false")
 
 css = SITE.join("assets/css/canonical.css").read
 errors << "Reduced-motion contract missing" unless css.include?("prefers-reduced-motion:reduce")

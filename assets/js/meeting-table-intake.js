@@ -4,6 +4,8 @@
   if (!form) return;
   var errorBox = document.getElementById('meeting-form-errors');
   var result = document.getElementById('meeting-draft-result');
+  var reviewButton = form.querySelector('[data-meeting-review]');
+  if (reviewButton) reviewButton.disabled = false;
   function hideState() {
     errorBox.hidden = true;
     errorBox.textContent = '';
