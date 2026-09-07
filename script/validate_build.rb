@@ -445,6 +445,11 @@ errors << "Observatory archive must contain all public posts" unless archive_htm
 archive_dates = archive_html.scan(/<time datetime="([^"]+)"/).flatten
 errors << "Observatory archive is not reverse chronological" unless archive_dates == archive_dates.sort.reverse
 
+errors << "Explorer Entry orientation must remain a quiet Observatory link" unless home_html.include?('<p class="entry-stage__aside">Not sure where to begin? <a href="/observatory/">Visit the Observatory.</a></p>')
+errors << "Explorer Entry orientation must not become a button or hotspot" if home_html.match?(/class="[^"]*(?:button|hotspot)[^"]*"[^>]*href="\/observatory\/"/)
+errors << "Observatory Library continuation missing" unless observatory_html.include?('href="/library/">Read more in the Library</a>')
+errors << "Observatory Workshop continuation missing" unless observatory_html.include?('href="/workshop/">Explore what is being built</a>')
+
 css = SITE.join("assets/css/canonical.css").read
 errors << "Reduced-motion contract missing" unless css.include?("prefers-reduced-motion:reduce")
 errors << "Minimum target token missing" unless css.include?("--fmd-target:44px")

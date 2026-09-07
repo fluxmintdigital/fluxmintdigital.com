@@ -53,6 +53,8 @@ workspace_title: Notice from the Observatory
   </section>
 
   <nav class="relationship-exits" aria-label="Observatory exits">
+    <a href="{{ '/library/' | relative_url }}">Read more in the Library</a>
+    <a href="{{ '/workshop/' | relative_url }}">Explore what is being built</a>
     <a href="{{ '/studio-blog/' | relative_url }}">Browse archive and history</a>
     <a href="{{ '/studio/' | relative_url }}">Return to Main Studio</a>
     <a href="{{ '/search/' | relative_url }}">Search this Studio</a>
