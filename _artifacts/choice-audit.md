@@ -34,7 +34,7 @@ The audit helps you preserve what you noticed and look at relationships in your 
 
 ## Where it is now
 
-The browser-native instrument is on the Workshop workbench. It requires no email address, account, purchase, or personal information before use. A complete three-page printable version is available on this page too.
+You can use the browser-native instrument here in the Workshop. It requires no email address, account, purchase, or personal information before use. A complete three-page printable version is available on this page too.
 
 ## Related paths
 

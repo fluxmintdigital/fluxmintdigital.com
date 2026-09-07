@@ -450,6 +450,14 @@ errors << "Explorer Entry orientation must not become a button or hotspot" if ho
 errors << "Observatory Library continuation missing" unless observatory_html.include?('href="/library/">Read more in the Library</a>')
 errors << "Observatory Workshop continuation missing" unless observatory_html.include?('href="/workshop/">Explore what is being built</a>')
 
+errors << "Choice Audit retains stale workbench lifecycle wording" if choice_html.include?("browser-native instrument is on the Workshop workbench")
+errors << "Choice Audit released-use wording missing" unless choice_html.include?("You can use the browser-native instrument here in the Workshop")
+
+meeting_handoff = meeting_html[/<div class="meeting-human-handoff">.*?<\/div>/m].to_s
+errors << "Meeting Table human handoff missing" unless meeting_handoff.include?("Ready to bring it to the table?") && meeting_handoff.include?("This worksheet has not been sent and stays on this device")
+errors << "Meeting Table handoff must use only the existing public contact destination" unless meeting_handoff.include?('href="mailto:fluxmintdigital@gmail.com"')
+errors << "Meeting Table handoff must not serialize worksheet data" if meeting_handoff.match?(/mailto:[^"']*[?&](?:subject|body)=|(?:problem|outcome|constraints)=/i)
+
 css = SITE.join("assets/css/canonical.css").read
 errors << "Reduced-motion contract missing" unless css.include?("prefers-reduced-motion:reduce")
 errors << "Minimum target token missing" unless css.include?("--fmd-target:44px")

@@ -73,6 +73,18 @@ Main Studio mobile implementation uses `FMD_SCENE_MAINSTUDIO_BASE_MOBILE_DEFAULT
 
 SHA-256 `6d4cd969e356109f66d17ee2ae844ce273a38c6d727f1e95f0c683c46dc7697a` matches the previously approved production asset. Result: `STILL REQUIRED` → `DONE`. It remains separate from the controlled JPEG likeness-reference source.
 
+### Future Meet DJ character replacement contract
+
+The current `FMD_CHAR_MEETDJ_REALISTIC_RESPONSIVE_IDLE_v001.png` remains the approved production character until DJ explicitly approves a successor. A future replacement must preserve the independent responsive-layer contract and meet all of the following requirements:
+
+- 100% recognizable likeness of DJ with a slightly art-styled, editorial treatment rather than glossy photoreal advertising.
+- Dark full groomed beard, backward dark cap, dark ear gauges, warm grounded expression, and simple dark/navy builder or explorer workwear.
+- No pet, baked slogan, identity-critical text, or exaggerated Explorer-character styling.
+- Transparent full-figure master with safe margins, warm lighting compatible with the existing Meet DJ scene, and enough separation for independent desktop/mobile positioning.
+- Controlled likeness references remain excluded from public output.
+
+No replacement asset is requested or approved by this note, and the current character must not be removed, regenerated, or substituted without DJ's explicit visual approval.
+
 ## Clean-scene and semantic-UI validation
 
 The approved clean masters contain environment artwork and environmental lettering/decoration, but not the full-screen header, navigation, CTA, cards, search results, availability panels or relationship interfaces present in the approved UI specimens. Their implementation notes now explicitly reserve live controls, canonical Artifact facts and state for code/data.
