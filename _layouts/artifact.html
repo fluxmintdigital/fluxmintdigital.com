@@ -27,17 +27,30 @@ layout: default
     <span>Its stage, placement, or appearance does not tell you how strongly any individual claim is supported.</span>
   </aside>
   {% assign artifact_relationships = site.data.relationships | where: 'source', page.artifact_id %}
-  {% if artifact_relationships.size > 0 %}
+  {% assign incoming_artifact_relationships = site.data.relationships | where: 'target', page.artifact_id %}
+  {% assign visible_relationship_count = artifact_relationships.size | plus: incoming_artifact_relationships.size %}
+  {% if visible_relationship_count > 0 %}
   <section class="artifact-lineage" aria-labelledby="framework-lineage-heading">
     <p class="semantic-kicker">Origins and connections</p>
     <h2 id="framework-lineage-heading">How this work connects</h2>
     <ul class="research-relationship-list">
       {% for relationship in artifact_relationships %}
         {% assign relationship_target = site.artifacts | where: 'artifact_id', relationship.target | first %}
+        {% unless relationship_target %}{% assign relationship_target = site.posts | where: 'slug', relationship.target | first %}{% endunless %}
         {% if relationship_target %}
         <li>
           <a href="{{ relationship_target.url | relative_url }}">{{ relationship.type | replace: '_', ' ' | capitalize }}: {{ relationship_target.title }}</a>
           <span>{% if relationship.provenance == 'editorial' %}An editorial connection.{% else %}A connection maintained by the Studio.{% endif %} The arrow shows direction, not cause and effect.</span>
+        </li>
+        {% endif %}
+      {% endfor %}
+      {% for relationship in incoming_artifact_relationships %}
+        {% assign relationship_source = site.artifacts | where: 'artifact_id', relationship.source | first %}
+        {% unless relationship_source %}{% assign relationship_source = site.posts | where: 'slug', relationship.source | first %}{% endunless %}
+        {% if relationship_source %}
+        <li>
+          <a href="{{ relationship_source.url | relative_url }}">{{ relationship.type | replace: '_', ' ' | capitalize }} this work: {{ relationship_source.title }}</a>
+          <span>{% if relationship.provenance == 'editorial' %}An editorial connection.{% elsif relationship.provenance == 'authored' %}An authored explanation.{% else %}A connection maintained by the Studio.{% endif %} The arrow shows direction, not cause and effect.</span>
         </li>
         {% endif %}
       {% endfor %}

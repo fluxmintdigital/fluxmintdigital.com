@@ -29,6 +29,7 @@ required_routes = %w[
   /library/dj-field-guide/
   /library/dj-field-guide/the-dj-field-guide-to-matter-volume-i/
   /workshop/mint-pro/
+  /workshop/bidmaster/
   /architecture-wall/frameworks/architectural-thinking/
   /architecture-wall/frameworks/objective-first-architecture/
   /the-value-of-wonder/
@@ -148,16 +149,25 @@ errors << "Workshop scene must expose applications, tool access, and return cont
 errors << "Workshop Main Studio return threshold missing" unless workshop_html.include?("aria-label=\"Return to the Main Studio\"")
 errors << "Workshop Current Build must remain available outside the scene" unless workshop_html.scan(/href="\/workshop\/mint-pro\/"/).length >= 3
 errors << "Workshop must not expose OmniShell" if workshop_html.match?(/OmniShell/i)
-errors << "Workshop must not expose BidMaster" if workshop_html.match?(/Bid\s*Master/i)
+errors << "Workshop must expose BidMaster exactly once in its conventional application list" unless workshop_html.scan(/href="\/workshop\/bidmaster\/"/).length == 1
 
 mint_pro_html = SITE.join("workshop/mint-pro/index.html").read
 errors << "Mint Pro must render On the workbench lifecycle" unless mint_pro_html.include?('status-indicator__label">On the workbench</span>')
 errors << "Mint Pro must not invent availability" if mint_pro_html.include?("<dt>Availability</dt>")
 errors << "Mint Pro must not invent a version or release" if mint_pro_html.match?(/<dt>(?:Version|Release)<\/dt>/)
+errors << "Mint Pro must not expose an invented publication date" if mint_pro_html.include?("datePublished")
 %w[What\ it\ is Why\ it\ exists What\ makes\ it\ different Where\ it\ is\ now].each do |heading|
   errors << "Mint Pro depth section missing: #{heading}" unless mint_pro_html.include?(">#{heading}<")
 end
 errors << "Mint Pro publishing architecture lost" unless mint_pro_html.include?("structured manuscripts") && mint_pro_html.include?("controlled templates") && mint_pro_html.include?("deterministic layout") && mint_pro_html.include?("EPUB/PDF output")
+errors << "Mint Pro verified EPUB detail missing" unless mint_pro_html.include?("six-importer manuscript pipeline") && mint_pro_html.include?("EPUB 3.3 output has passed epubcheck 5.1.0 with zero errors or warnings")
+errors << "Mint Pro unfinished device and layout boundaries missing" unless mint_pro_html.include?("PDF appearance and behavior still need continued device confirmation") && mint_pro_html.include?("tablet-specific two-pane editing layout")
+
+bidmaster_html = SITE.join("workshop/bidmaster/index.html").read
+errors << "BidMaster lifecycle or availability changed" unless bidmaster_html.include?('status-indicator__label">On the workbench</span>') && bidmaster_html.include?("<dt>Availability</dt><dd>Not available yet</dd>")
+errors << "BidMaster public purpose missing" unless bidmaster_html.include?("local-first estimating workspace") && bidmaster_html.include?("independent contractors and small crews") && bidmaster_html.include?("Calculations are deterministic")
+errors << "BidMaster must not expose acquisition controls" if bidmaster_html.include?("acquisition-actions")
+errors << "BidMaster must not invent release or commerce claims" if bidmaster_html.match?(/(?:play\.google\.com|Play Store|\$\d|datePublished|Release date|Buy|Get BidMaster|\bAI\b|image[- ]analysis)/i)
 
 wall_html = SITE.join("architecture-wall/index.html").read
 errors << "Architecture Wall canonical desktop v002 source missing" unless wall_html.include?("FMD_SCENE_ARCHITECTUREWALL_BASE_DESKTOP_DEFAULT_v002.png")
@@ -271,6 +281,13 @@ expected_relationships = YAML.safe_load_file(ROOT.join("_data/relationships.yml"
 errors << "Relationship Explorer must render every canonical relationship" unless relationships_html.scan(/class="surface-card"/).length == expected_relationships
 errors << "Relationship Explorer direction boundary missing" unless relationships_html.include?("An arrow shows the direction of the connection—not cause and effect")
 errors << "Relationship Explorer must link every real-person target to Meet DJ" unless relationships_html.scan(/href="\/meet-dj\/"/).length >= 7
+errors << "Relationship Explorer is missing the Architectural Thinking essay explanation" unless relationships_html.include?('href="/what-is-architectural-thinking/"') && relationships_html.include?('href="/architecture-wall/frameworks/architectural-thinking/"')
+errors << "Relationship Explorer is missing the Objective-First essay explanation" unless relationships_html.include?('href="/why-i-created-objective-first-architecture/"') && relationships_html.include?('href="/architecture-wall/frameworks/objective-first-architecture/"')
+
+architectural_thinking_essay_html = SITE.join("what-is-architectural-thinking/index.html").read
+objective_first_essay_html = SITE.join("why-i-created-objective-first-architecture/index.html").read
+errors << "Architectural Thinking essay must expose its approved framework relationship" unless architectural_thinking_essay_html.include?('Explains: Architectural Thinking™') && architectural_thinking_essay_html.include?('href="/architecture-wall/frameworks/architectural-thinking/"')
+errors << "Objective-First essay must expose its approved framework relationship" unless objective_first_essay_html.include?('Explains: Objective-First Architecture™') && objective_first_essay_html.include?('href="/architecture-wall/frameworks/objective-first-architecture/"')
 
 unavailable_html = SITE.join("unavailable/index.html").read
 errors << "Unavailable state conflates identity and channel" unless unavailable_html.include?("The work still has a home in the Studio even when there is nowhere to purchase or download it yet")

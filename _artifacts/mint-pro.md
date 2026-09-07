@@ -26,6 +26,12 @@ Book production can become a long negotiation with repeated formatting decisions
 
 It is not a blank canvas for decorating pages one at a time. The emphasis is on repeatable rules, clean templates, and dependable output from the same manuscript structure.
 
+## What is working now
+
+The current native Android implementation is designed for tablets and includes structured editing, controlled publishing templates, autosave, and a six-importer manuscript pipeline. Its export architecture produces EPUB and PDF output from the same book structure. The EPUB 3.3 output has passed epubcheck 5.1.0 with zero errors or warnings, including tests for special characters and empty chapters.
+
+The application has also been through repeated real-device correction and an accessibility review of its controls and descriptions. That work is implementation evidence, not a release announcement.
+
 ## Where it is now
 
-Mint Pro is the current build on the Workshop workbench. It is still being shaped, and no release or availability details have been announced.
+Mint Pro is the current build on the Workshop workbench. EPUB generation has been validated, while PDF appearance and behavior still need continued device confirmation. A more tablet-specific two-pane editing layout and further device, performance, and publishing checks also remain unfinished. No release or availability details have been announced.

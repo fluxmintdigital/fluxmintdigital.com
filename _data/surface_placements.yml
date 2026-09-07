@@ -34,6 +34,10 @@
   artifact: mint-pro
   role: application
   order: 1
+- surface: workshop-applications
+  artifact: bidmaster
+  role: application
+  order: 2
 - surface: architecture-wall-frameworks
   artifact: architectural-thinking
   role: public_framework

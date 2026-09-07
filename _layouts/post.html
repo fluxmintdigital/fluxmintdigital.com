@@ -27,6 +27,25 @@ layout: default
       {{ content }}
     </div>
 
+    {% assign post_relationships = site.data.relationships | where: 'source', page.slug %}
+    {% if post_relationships.size > 0 %}
+    <aside class="artifact-lineage" aria-labelledby="post-relationships-heading">
+      <p class="semantic-kicker">Connected work</p>
+      <h2 id="post-relationships-heading">Follow this idea into the Studio</h2>
+      <ul class="research-relationship-list">
+        {% for relationship in post_relationships %}
+          {% assign relationship_target = site.artifacts | where: 'artifact_id', relationship.target | first %}
+          {% if relationship_target and relationship_target.visibility == 'public' %}
+          <li>
+            <a href="{{ relationship_target.url | relative_url }}">{{ relationship.type | replace: '_', ' ' | capitalize }}: {{ relationship_target.title }}</a>
+            <span>An authored connection. The arrow shows direction, not cause and effect.</span>
+          </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </aside>
+    {% endif %}
+
     <div class="post-footer">
       <div class="post-tags">
         <span class="post-tags__label">Topics</span>

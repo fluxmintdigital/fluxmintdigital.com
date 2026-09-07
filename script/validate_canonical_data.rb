@@ -34,7 +34,16 @@ artifacts = artifact_paths.map { |path| [path.delete_prefix("#{ROOT}/"), front_m
 room_ids = rooms.map { |room| room.fetch("id") }
 artifact_ids = artifacts.map { |_path, artifact| artifact["artifact_id"] }
 artifact_routes = artifacts.map { |_path, artifact| artifact["permalink"] }
-known_targets = artifact_ids + ["dj-boswell", "fluxmintdigital-studio"]
+post_paths = Dir.glob(File.join(ROOT, "_posts", "*.md")).sort
+post_records = post_paths.map do |path|
+  relative = path.delete_prefix("#{ROOT}/")
+  data = front_matter(relative)
+  basename = File.basename(path, ".md")
+  date_match = basename.match(/\A(\d{4}-\d{2}-\d{2})-(.+)\z/)
+  data.merge("source_date" => date_match && date_match[1], "relationship_id" => date_match && date_match[2])
+end
+post_relationship_ids = post_records.map { |post| post["relationship_id"] }.compact
+known_targets = artifact_ids + post_relationship_ids + ["dj-boswell", "fluxmintdigital-studio"]
 
 errors << "Room IDs are not unique" unless room_ids.uniq.length == room_ids.length
 errors << "Artifact IDs are missing or not unique" if artifact_ids.any?(&:nil?) || artifact_ids.uniq.length != artifact_ids.length
@@ -61,6 +70,16 @@ relationships.each_with_index do |relationship, index|
   errors << "#{label}: unknown source" unless known_targets.include?(relationship["source"])
   errors << "#{label}: unknown target" unless known_targets.include?(relationship["target"])
   errors << "#{label}: unknown type #{relationship['type']}" unless values.fetch("relationship_types").include?(relationship["type"])
+end
+
+errors << "Observatory relationship IDs are not unique" unless post_relationship_ids.uniq.length == post_relationship_ids.length
+expected_observatory_relationships = {
+  "what-is-architectural-thinking" => "architectural-thinking",
+  "why-i-created-objective-first-architecture" => "objective-first-architecture"
+}
+expected_observatory_relationships.each do |source, target|
+  relationship = relationships.find { |candidate| candidate["source"] == source && candidate["type"] == "explains" && candidate["target"] == target }
+  errors << "Missing approved Observatory explanation: #{source} explains #{target}" unless relationship && relationship["provenance"] == "authored"
 end
 
 placements.each_with_index do |placement, index|
@@ -90,6 +109,15 @@ availability.fetch("records", []).each_with_index do |record, index|
     end
   end
 end
+
+bidmaster = artifacts.map(&:last).find { |artifact| artifact["artifact_id"] == "bidmaster" }
+bidmaster_availability = availability.fetch("records", []).find { |record| record["artifact"] == "bidmaster" }
+bidmaster_relationship = relationships.find { |relationship| relationship["source"] == "bidmaster" && relationship["type"] == "built_by" }
+bidmaster_placements = placements.select { |placement| placement["artifact"] == "bidmaster" }
+errors << "BidMaster must remain a public Workshop Application on the workbench" unless bidmaster && bidmaster["artifact_type"] == "Application" && bidmaster["canonical_room"] == "workshop" && bidmaster["lifecycle"] == "on_the_workbench" && bidmaster["visibility"] == "public"
+errors << "BidMaster must remain unavailable with no channels" unless bidmaster_availability && bidmaster_availability["status"] == "unavailable" && bidmaster_availability.fetch("channels", []).empty?
+errors << "BidMaster builder relationship changed" unless bidmaster_relationship && bidmaster_relationship["target"] == "dj-boswell"
+errors << "BidMaster must have only its Workshop application placement" unless bidmaster_placements.length == 1 && bidmaster_placements.first["surface"] == "workshop-applications"
 
 wild_side_id = "everything-looks-different-from-the-other-side-volume-i"
 wild_side_artifact = artifacts.map(&:last).find { |artifact| artifact["artifact_id"] == wild_side_id }
@@ -150,13 +178,6 @@ wall_artifacts.each do |artifact|
   errors << "#{artifact['artifact_id']}: AEG warrant must not be stored as Artifact state" if artifact.key?("aeg_warrant")
 end
 
-post_paths = Dir.glob(File.join(ROOT, "_posts", "*.md")).sort
-post_records = post_paths.map do |path|
-  relative = path.delete_prefix("#{ROOT}/")
-  data = front_matter(relative)
-  date_match = File.basename(path).match(/\A(\d{4}-\d{2}-\d{2})-/)
-  data.merge("source_date" => date_match && date_match[1])
-end
 post_urls = post_records.map { |post| post["permalink"] }
 observatory_urls = [observatory["current_observation"], *observatory.fetch("featured", [])]
 observatory_urls.each { |url| errors << "Observatory references unknown post #{url}" unless post_urls.include?(url) }

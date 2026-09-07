@@ -54,6 +54,11 @@
   target: dj-boswell
   importance: primary
   provenance: canonical
+- source: bidmaster
+  type: built_by
+  target: dj-boswell
+  importance: primary
+  provenance: canonical
 - source: architectural-thinking
   type: authored_by
   target: dj-boswell
@@ -71,3 +76,13 @@
   provenance: editorial
   metadata:
     causal_claim: false
+- source: what-is-architectural-thinking
+  type: explains
+  target: architectural-thinking
+  importance: primary
+  provenance: authored
+- source: why-i-created-objective-first-architecture
+  type: explains
+  target: objective-first-architecture
+  importance: primary
+  provenance: authored

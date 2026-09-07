@@ -4,6 +4,9 @@ disclosures:
   amazon_associates: "As an Amazon Associate, FluxMintDigital earns from qualifying purchases."
 
 records:
+  - artifact: bidmaster
+    status: unavailable
+    channels: []
   - artifact: the-dj-field-guide-to-matter-volume-i
     status: unavailable
     channels: []
