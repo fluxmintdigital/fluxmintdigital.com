@@ -5,6 +5,8 @@ redirect_label: the Architecture Wall
 title: Science
 description: Visit the Architecture Wall to examine public frameworks and the structure of inquiry at FluxMintDigital.
 permalink: /science/
+sitemap: false
+robots: noindex, follow
 eyebrow: Room / Studio Map — The Architecture Wall
 subhead: Understanding the structure behind everything.
 room_image: /assets/images/rooms/main_studio.jpg

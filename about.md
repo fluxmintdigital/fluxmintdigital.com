@@ -5,6 +5,8 @@ redirect_label: Meet DJ
 title: About
 description: Meet D.J. Boswell, the author, builder, and collaborator behind FluxMintDigital.
 permalink: /about/
+sitemap: false
+robots: noindex, follow
 eyebrow: Room / Studio Map — Meet DJ
 subhead: Explorer. Builder. Writer. Systems Architect. Lifelong Student. Above all else — curious.
 room_image: /assets/images/rooms/architecture_wall_dj.jpg

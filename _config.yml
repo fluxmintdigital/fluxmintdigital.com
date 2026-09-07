@@ -1,5 +1,5 @@
 title: FluxMintDigital
-description: FluxMintDigital Architecture Studio — books, apps, tools, and frameworks built by DJ Boswell to help people design their lives, systems, and work with clarity and structure.
+description: FluxMintDigital is a Studio where curiosity explores hidden architecture through books, instruments, research, and things being built toward clearer understanding.
 url: "https://fluxmintdigital.com"
 baseurl: ""
 
@@ -31,7 +31,6 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-seo-tag
-  - jekyll-paginate
 
 # Exclude from build
 exclude:
@@ -48,6 +47,7 @@ exclude:
   - FluxMintDigital_Interactive_Object_Register.csv
   - FluxMintDigital_Mobile_Composition_Requirements.md
   - FluxMintDigital_Scene_Decomposition_Plan.md
+  - FluxMintDigital_Experience_and_Interaction_Audit.md
   - FluxMintDigital_Website_Canonical_Package/Docs
   - FluxMintDigital_Website_Canonical_Package/Assets/archived
   - FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_UI_*
@@ -78,10 +78,6 @@ exclude:
   - FluxMintDigital_Website_Canonical_Package/04_FluxMintDigital_Design_Language.docx
   - FluxMintDigital_Website_Canonical_Package/05_FluxMintDigital_Visual_Scene_and_Asset_Architecture.docx
   - FluxMintDigital_Website_Canonical_Package/06_FluxMintDigital_Implementation_and_Validation_Standard.docx
-
-# Pagination (used once the Studio Blog has posts)
-paginate: 10
-paginate_path: "/studio-blog/page/:num/"
 
 # SEO
 twitter:

@@ -5,6 +5,8 @@ redirect_label: the Observatory
 title: Blog
 description: Visit the Observatory for essays, discoveries, field notes, and Workshop notes from FluxMintDigital.
 permalink: /blog/
+sitemap: false
+robots: noindex, follow
 eyebrow: Room / Studio Map — The Observatory
 subhead: Every discovery begins with someone willing to look a little longer.
 room_image: /assets/images/rooms/observatory.jpg

@@ -5,6 +5,8 @@ redirect_label: the Library
 title: Books
 description: Visit the Library to explore FluxMintDigital books, publications, and their series.
 permalink: /books/
+sitemap: false
+robots: noindex, follow
 eyebrow: Room / Studio Map — The Library
 subhead: Every journey of understanding leaves behind field notes. Take your time. Browse the shelves. Follow your curiosity.
 room_image: /assets/images/rooms/library.jpg

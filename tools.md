@@ -5,6 +5,8 @@ redirect_label: the Workshop
 title: Tools
 description: Visit the Workshop to explore the applications and tools DJ is building at FluxMintDigital.
 permalink: /tools/
+sitemap: false
+robots: noindex, follow
 eyebrow: Room / Studio Map — The Workshop
 subhead: 'One room, two divisions: the tool wall holds Tools, the shelf holds Apps.'
 room_image: /assets/images/rooms/workshop.jpg

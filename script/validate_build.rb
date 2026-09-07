@@ -79,6 +79,24 @@ errors << "Controlled Personal Architecture Map PDF was emitted into the public 
 choice_handoff = SITE.join("FluxMintDigital_Website_Canonical_Package/Assets/source/FluxMintDigital_Choice_Audit_Codex_Handoff_Package_v1.0")
 errors << "Controlled Choice Audit handoff package was emitted into the public build" if choice_handoff.exist?
 errors << "Choice Audit browser test fixture was emitted into the public build" if SITE.join("script/fixtures/choice-audit-model.html").exist?
+errors << "Internal Experience and Interaction Audit was emitted into the public build" if SITE.join("FluxMintDigital_Experience_and_Interaction_Audit/index.html").exist?
+
+seo_properties = {
+  "title" => /<title(?:\s|>)/,
+  "description" => /<meta name="description"/,
+  "canonical" => /<link rel="canonical"/,
+  "Open Graph title" => /<meta property="og:title"/,
+  "Open Graph description" => /<meta property="og:description"/,
+  "Open Graph URL" => /<meta property="og:url"/,
+  "Twitter title" => /<meta (?:name|property)="twitter:title"/
+}
+html_files.each do |file|
+  html = file.read
+  seo_properties.each do |label, pattern|
+    count = html.scan(pattern).length
+    errors << "#{file.relative_path_from(SITE)}: expected one #{label}, found #{count}" unless count == 1
+  end
+end
 
 studio_html = SITE.join("studio/index.html").read
 home_html = SITE.join("index.html").read
@@ -383,6 +401,43 @@ robots = SITE.join("robots.txt")
 errors << "Robots configuration missing" unless robots.file?
 errors << "Robots sitemap declaration missing" unless robots.file? && robots.read.include?("Sitemap: https://fluxmintdigital.com/sitemap.xml")
 errors << "Sitemap missing" unless SITE.join("sitemap.xml").file?
+if SITE.join("sitemap.xml").file?
+  sitemap = SITE.join("sitemap.xml").read
+  errors << "Observatory archive must appear exactly once in sitemap" unless sitemap.scan("https://fluxmintdigital.com/studio-blog/").length == 1
+  errors << "Internal audit leaked into sitemap" if sitemap.include?("FluxMintDigital_Experience_and_Interaction_Audit")
+  %w[store services about blog apps tools books science].each do |legacy_route|
+    errors << "Legacy route /#{legacy_route}/ leaked into sitemap" if sitemap.include?("https://fluxmintdigital.com/#{legacy_route}/")
+  end
+end
+
+legacy_redirects = {
+  "store" => "/explorer-outfitters/",
+  "services" => "/meeting-table/",
+  "about" => "/meet-dj/",
+  "blog" => "/observatory/",
+  "apps" => "/workshop/",
+  "tools" => "/workshop/",
+  "books" => "/library/",
+  "science" => "/architecture-wall/"
+}
+legacy_redirects.each do |route, target|
+  redirect_html = SITE.join(route, "index.html").read
+  errors << "Legacy route /#{route}/ lost its redirect" unless redirect_html.include?("url=#{target}") && redirect_html.include?("window.location.replace(\"#{target}\")")
+  errors << "Legacy route /#{route}/ missing noindex, follow" unless redirect_html.include?('<meta name="robots" content="noindex, follow">')
+  errors << "Legacy route /#{route}/ canonical target changed" unless redirect_html.include?(%(<link rel="canonical" href="https://fluxmintdigital.com#{target}">))
+end
+
+expected_site_description = "FluxMintDigital is a Studio where curiosity explores hidden architecture through books, instruments, research, and things being built toward clearer understanding."
+errors << "Homepage Studio metadata changed" unless home_html.include?(%(content="#{expected_site_description}"))
+
+awaiting_seo_html = SITE.join("library/walk-on-the-wild-side/everything-looks-different-from-the-other-side-volume-i/index.html").read
+errors << "Awaiting-publication SEO type changed" unless awaiting_seo_html.include?('<meta property="og:type" content="book">') && awaiting_seo_html.include?('"@type": "Book"')
+errors << "Awaiting-publication social image missing" unless awaiting_seo_html.include?('meta property="og:image"') && awaiting_seo_html.include?('meta name="twitter:image"')
+errors << "Awaiting-publication SEO invented a date" if awaiting_seo_html.match?(/datePublished|dateModified/)
+
+unreleased_seo_html = SITE.join("workshop/mint-pro/index.html").read
+errors << "Unreleased-application SEO type changed" unless unreleased_seo_html.include?('"@type": "SoftwareApplication"') && unreleased_seo_html.include?('<meta property="og:type" content="website">')
+errors << "Unreleased-application SEO invented a date" if unreleased_seo_html.match?(/datePublished|dateModified/)
 
 archive_html = SITE.join("studio-blog/index.html").read
 errors << "Observatory archive must identify chronology as a history view" unless archive_html.include?("Browse Observatory pieces from newest to oldest")

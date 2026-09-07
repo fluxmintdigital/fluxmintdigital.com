@@ -5,6 +5,8 @@ redirect_label: the Meeting Table
 title: Architecture Services
 description: Visit the Meeting Table to bring a problem, clarify it, and decide what a useful next step could be.
 permalink: /services/
+sitemap: false
+robots: noindex, follow
 eyebrow: Room / Studio Map — The Meeting Table
 subhead: Every system deserves to be understood before it's redesigned. There's always room at the table.
 room_image: /assets/images/rooms/services.jpg

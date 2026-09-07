@@ -3,8 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% if page.title %}{{ page.title }} | {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
-  <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
   {% if page.redirect_to %}<meta http-equiv="refresh" content="0; url={{ page.redirect_to | relative_url }}">{% endif %}
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/rooms.css' | relative_url }}">
@@ -15,7 +13,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   {% include head-custom.html %}
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
-  {% if page.lifecycle == 'awaiting_publication' %}
+  {% if page.redirect_to %}
+    {% include seo-redirect.html %}
+  {% elsif page.lifecycle == 'awaiting_publication' %}
     {% include seo-awaiting-publication.html %}
   {% elsif page.artifact_type == 'Application' and page.lifecycle == 'on_the_workbench' %}
     {% include seo-unreleased-application.html %}

@@ -5,6 +5,8 @@ redirect_label: Explorer Outfitters
 title: Store
 description: Visit Explorer Outfitters to find books, tools, and other Studio work that is genuinely available to take with you.
 permalink: /store/
+sitemap: false
+robots: noindex, follow
 eyebrow: Room / Studio Map — Explorer Outfitters
 subhead: Instead of shopping, prepare for your next expedition. What do you need before you head back out?
 room_image: /assets/images/rooms/store.jpg

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: FluxMintDigital Architecture Studio
-description: FluxMintDigital is a systems-architecture creative lab that builds books, apps, tools, and frameworks designed to help people understand themselves, design their lives, and navigate the world with clarity and structure.
+description: FluxMintDigital is a Studio where curiosity explores hidden architecture through books, instruments, research, and things being built toward clearer understanding.
 permalink: /
 ---
 {% include entry-journey.html %}
