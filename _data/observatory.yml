@@ -1,9 +1,8 @@
-current_observation: /the-value-of-wonder/
+current_observation: /what-i-chose-to-do-with-the-time-i-have-left/
 featured:
-  - /the-value-of-wonder/
-  - /the-view-changes-when-you-climb/
-  - /everything-is-connected-but-not-everything-is-related/
-  - /the-difference-between-information-and-understanding/
+  - /what-i-chose-to-do-with-the-time-i-have-left/
+  - /stepping-stones/
+  - /the-garage-im-trying-to-build/
 forms:
   - id: essays
     label: Essays

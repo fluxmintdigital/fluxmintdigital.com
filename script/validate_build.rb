@@ -38,6 +38,9 @@ required_routes = %w[
   /the-view-changes-when-you-climb/
   /everything-is-connected-but-not-everything-is-related/
   /the-difference-between-information-and-understanding/
+  /what-i-chose-to-do-with-the-time-i-have-left/
+  /stepping-stones/
+  /the-garage-im-trying-to-build/
   /studio-blog/
 ]
 
@@ -300,10 +303,10 @@ errors << "Observatory canonical desktop v002 source missing" unless observatory
 errors << "Observatory canonical mobile v003 source missing" unless observatory_html.include?("FMD_SCENE_OBSERVATORY_BASE_MOBILE_DEFAULT_v003.png")
 errors << "Observatory superseded desktop v001 must not be used" if observatory_html.include?("FMD_SCENE_OBSERVATORY_BASE_DESKTOP_DEFAULT_v001.png")
 errors << "Observatory superseded mobile v002 must not be used" if observatory_html.include?("FMD_SCENE_OBSERVATORY_BASE_MOBILE_DEFAULT_v002.png")
-errors << "Observatory current observation must use The Value of Wonder" unless observatory_html.include?("Read the current observation: The Value of Wonder")
+errors << "Observatory current observation must use the stewardship essay" unless observatory_html.include?("Read the current observation: What I Chose to Do With the Time I Have Left")
 errors << "Observatory must expose all four canonical forms" unless observatory_html.scan(/class="surface-card">\s*<h3>(?:Essays|Discoveries|Field Notes|Workshop Notes)<\/h3>/).length == 4
 errors << "Observatory scene must expose four forms, archive, and return" unless observatory_html.scan(/class="observatory-hotspot observatory-hotspot--/).length == 6
-errors << "Observatory must expose four selected real pieces" unless observatory_html.scan(/class="observatory-card surface-card"/).length == 4
+errors << "Observatory must expose the three-essay constellation" unless observatory_html.scan(/class="observatory-card surface-card"/).length == 3
 errors << "Observatory publication boundary missing" unless observatory_html.include?("When a question needs formal evidence and examination, it belongs on the Architecture Wall")
 errors << "Architecture Wall warrant leaked into Observatory as a positive state" if observatory_html.match?(/(?:confidence|AEG warrant)\s*[:=]\s*(?:supported|verified|high|canonical)/i)
 
@@ -442,7 +445,7 @@ errors << "Unreleased-application SEO invented a date" if unreleased_seo_html.ma
 
 archive_html = SITE.join("studio-blog/index.html").read
 errors << "Observatory archive must identify chronology as a history view" unless archive_html.include?("Browse Observatory pieces from newest to oldest")
-errors << "Observatory archive must contain all public posts" unless archive_html.scan(/class="post-card"/).length == 20
+errors << "Observatory archive must contain all public posts" unless archive_html.scan(/class="post-card"/).length == 23
 archive_dates = archive_html.scan(/<time datetime="([^"]+)"/).flatten
 errors << "Observatory archive is not reverse chronological" unless archive_dates == archive_dates.sort.reverse
 

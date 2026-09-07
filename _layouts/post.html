@@ -28,17 +28,31 @@ layout: default
     </div>
 
     {% assign post_relationships = site.data.relationships | where: 'source', page.slug %}
-    {% if post_relationships.size > 0 %}
+    {% assign incoming_post_relationships = site.data.relationships | where: 'target', page.slug %}
+    {% assign visible_post_relationship_count = post_relationships.size | plus: incoming_post_relationships.size %}
+    {% if visible_post_relationship_count > 0 %}
     <aside class="artifact-lineage" aria-labelledby="post-relationships-heading">
       <p class="semantic-kicker">Connected work</p>
       <h2 id="post-relationships-heading">Follow this idea into the Studio</h2>
       <ul class="research-relationship-list">
         {% for relationship in post_relationships %}
           {% assign relationship_target = site.artifacts | where: 'artifact_id', relationship.target | first %}
-          {% if relationship_target and relationship_target.visibility == 'public' %}
+          {% unless relationship_target %}{% assign relationship_target = site.posts | where: 'slug', relationship.target | first %}{% endunless %}
+          {% if relationship.target == site.data.studio.owner.id %}{% assign relationship_target_title = site.data.studio.owner.name %}{% assign relationship_target_url = '/meet-dj/' %}{% else %}{% assign relationship_target_title = relationship_target.title %}{% assign relationship_target_url = relationship_target.url %}{% endif %}
+          {% if relationship_target_title and relationship_target_url %}
           <li>
-            <a href="{{ relationship_target.url | relative_url }}">{{ relationship.type | replace: '_', ' ' | capitalize }}: {{ relationship_target.title }}</a>
-            <span>An authored connection. The arrow shows direction, not cause and effect.</span>
+            <a href="{{ relationship_target_url | relative_url }}">{{ relationship.type | replace: '_', ' ' | capitalize }}: {{ relationship_target_title }}</a>
+            <span>{% if relationship.provenance == 'editorial' %}An editorial connection.{% else %}An authored connection.{% endif %} The arrow shows direction, not cause and effect.</span>
+          </li>
+          {% endif %}
+        {% endfor %}
+        {% for relationship in incoming_post_relationships %}
+          {% assign relationship_source = site.artifacts | where: 'artifact_id', relationship.source | first %}
+          {% unless relationship_source %}{% assign relationship_source = site.posts | where: 'slug', relationship.source | first %}{% endunless %}
+          {% if relationship_source and relationship_source.visibility == 'public' %}
+          <li>
+            <a href="{{ relationship_source.url | relative_url }}">{{ relationship.type | replace: '_', ' ' | capitalize }} this piece: {{ relationship_source.title }}</a>
+            <span>{% if relationship.provenance == 'editorial' %}An editorial connection.{% else %}An authored connection.{% endif %} The arrow shows direction, not cause and effect.</span>
           </li>
           {% endif %}
         {% endfor %}
