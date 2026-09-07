@@ -13,4 +13,16 @@ seo:
 permalink: /library/dj-field-guide/
 ---
 
-The DJ Field Guide Series has its own place in the Library. More volumes will appear here as the series grows.
+## What it is
+
+The DJ Field Guide Series is a curiosity-driven path into science, systems, history, nature, technology, and other subjects worth exploring.
+
+## Why it exists
+
+Foundational knowledge should feel like an invitation, not a wall of terminology. The series begins with ordinary questions and builds understanding through approachable explanations, humor, and memorable illustrations.
+
+## The reading experience
+
+Each Field Guide follows a consistent structure, giving curious readers of different ages a familiar trail through a new subject without flattening it into disconnected facts.
+
+More volumes will appear here as the series grows.

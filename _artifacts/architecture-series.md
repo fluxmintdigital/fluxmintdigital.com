@@ -13,4 +13,14 @@ seo:
 permalink: /library/architecture-series/
 ---
 
-The Architecture Series brings sustained explorations together in a clear reading order. Each volume has its own subject, identity, and history within the larger series.
+## What it is
+
+The Architecture Series is the Library’s home for long-form inquiries into the structures that shape people, systems, knowledge, and reality.
+
+## Why it exists
+
+Some questions need more room than a single essay or framework can provide. This series lets an inquiry unfold across whole books while keeping each volume connected to a larger line of thought.
+
+## The reading experience
+
+These are sustained explorations rather than a set of interchangeable topics. Each volume has its own subject and identity, and the reading order keeps its place in the larger journey clear.

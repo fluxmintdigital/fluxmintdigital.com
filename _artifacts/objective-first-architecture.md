@@ -16,6 +16,18 @@ seo:
 permalink: /architecture-wall/frameworks/objective-first-architecture/
 ---
 
-Objective-First Architecture begins by clarifying what a system or intervention is genuinely intended to accomplish before choosing how to build it.
+## What it is
 
-This is the Studio’s current introduction to the framework. The framework still has to earn support for its individual claims; appearing here does not make those claims scientifically true.
+Objective-First Architecture™ is a focused practice within Architectural Thinking: clarify what you are genuinely trying to accomplish before choosing or optimizing a solution.
+
+## Why it exists
+
+People are often quick to solve the problem as first described. But an elegant answer to the wrong objective is still the wrong answer. This framework creates room to examine the destination, assumptions, constraints, and meaning of success before committing to a path.
+
+## What makes it different
+
+Architectural Thinking looks broadly at the structures producing an outcome. Objective-First Architecture begins with one specific part of that structure—the objective—and uses it to orient the decisions that follow. Objectives may still change as understanding grows.
+
+## Where it is now
+
+This is the Studio’s maintained introduction to the framework. Its usefulness does not make every claim scientifically true, and the framework does not grant evidence or warrant to itself.

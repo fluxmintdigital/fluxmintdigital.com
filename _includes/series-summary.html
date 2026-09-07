@@ -5,7 +5,7 @@
   {% assign series_members = site.artifacts | where: 'series_id', include.artifact.artifact_id | where: 'visibility', 'public' | sort: 'sequence' %}
   <p class="series-summary__lineage">
     {% if series_members.size > 0 %}
-      {{ series_members.size }} published volume{% if series_members.size != 1 %}s{% endif %}
+      {{ series_members.size }} volume{% if series_members.size != 1 %}s{% endif %} in the series
     {% else %}
       No volumes announced yet
     {% endif %}

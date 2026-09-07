@@ -3,7 +3,7 @@ layout: redirect
 redirect_to: /library/
 redirect_label: the Library
 title: Books
-description: The FluxMintDigital Books Division — multi-domain books that make the world clearer through structure, compassion, and systems thinking.
+description: Visit the Library to explore FluxMintDigital books, publications, and their series.
 permalink: /books/
 eyebrow: Room / Studio Map — The Library
 subhead: Every journey of understanding leaves behind field notes. Take your time. Browse the shelves. Follow your curiosity.

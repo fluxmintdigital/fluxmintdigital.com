@@ -3,7 +3,7 @@ layout: redirect
 redirect_to: /meeting-table/
 redirect_label: the Meeting Table
 title: Architecture Services
-description: The FluxMintDigital Architecture Services Division — structured, high-clarity consulting for individuals, creators, and businesses.
+description: Visit the Meeting Table to bring a problem, clarify it, and decide what a useful next step could be.
 permalink: /services/
 eyebrow: Room / Studio Map — The Meeting Table
 subhead: Every system deserves to be understood before it's redesigned. There's always room at the table.

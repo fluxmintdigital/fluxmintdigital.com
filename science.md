@@ -3,7 +3,7 @@ layout: redirect
 redirect_to: /architecture-wall/
 redirect_label: the Architecture Wall
 title: Science
-description: The FluxMintDigital Science Division — scientific models, physical frameworks, and testable hypotheses built from structural clarity and falsifiable architecture.
+description: Visit the Architecture Wall to examine public frameworks and the structure of inquiry at FluxMintDigital.
 permalink: /science/
 eyebrow: Room / Studio Map — The Architecture Wall
 subhead: Understanding the structure behind everything.

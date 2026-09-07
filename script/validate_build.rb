@@ -102,6 +102,8 @@ errors << "Library publication accessible name missing" unless library_html.incl
 errors << "Library series access must remain available outside the scene" unless library_html.scan(/class="series-summary surface-card"/).length == 3
 errors << "Library keyboard order must present the primary publication before series and return hotspots" unless library_html.index("class=\"library-publication\"") < library_html.index("<nav class=\"library-scene__hotspots\"")
 errors << "Library scene must retain one non-overlapping featured publication" unless library_html.scan(/class="library-publication"/).length == 1
+errors << "Library series counts must derive all three real first volumes" unless library_html.scan(/1 volume in the series/).length == 3
+errors << "Library contains stale or lifecycle-inaccurate series-count copy" if library_html.match?(/No volumes announced yet|published volume/)
 
 volume_html = SITE.join("library/architecture-series/the-architecture-of-being-human-volume-i/index.html").read
 errors << "Volume I must render Published lifecycle" unless volume_html.include?('status-indicator__label">Published</span>')
@@ -152,6 +154,10 @@ mint_pro_html = SITE.join("workshop/mint-pro/index.html").read
 errors << "Mint Pro must render On the workbench lifecycle" unless mint_pro_html.include?('status-indicator__label">On the workbench</span>')
 errors << "Mint Pro must not invent availability" if mint_pro_html.include?("<dt>Availability</dt>")
 errors << "Mint Pro must not invent a version or release" if mint_pro_html.match?(/<dt>(?:Version|Release)<\/dt>/)
+%w[What\ it\ is Why\ it\ exists What\ makes\ it\ different Where\ it\ is\ now].each do |heading|
+  errors << "Mint Pro depth section missing: #{heading}" unless mint_pro_html.include?(">#{heading}<")
+end
+errors << "Mint Pro publishing architecture lost" unless mint_pro_html.include?("structured manuscripts") && mint_pro_html.include?("controlled templates") && mint_pro_html.include?("deterministic layout") && mint_pro_html.include?("EPUB/PDF output")
 
 wall_html = SITE.join("architecture-wall/index.html").read
 errors << "Architecture Wall canonical desktop v002 source missing" unless wall_html.include?("FMD_SCENE_ARCHITECTUREWALL_BASE_DESKTOP_DEFAULT_v002.png")
@@ -170,6 +176,12 @@ errors << "Architecture Wall must reject a combined AEG score" unless wall_html.
 errors << "Architecture Wall must reject AI warrant self-promotion" unless wall_html.include?("cannot grant warrant to its own proposal")
 errors << "Architecture Wall must expose all three AEG assertion kinds" unless wall_html.scan(/Nothing publicly asserted yet/).length == 3
 errors << "Architecture Wall environmental raster must be identified as non-record content" unless wall_html.include?("papers and diagrams in the room are atmosphere, not research findings")
+
+architectural_thinking_html = SITE.join("architecture-wall/frameworks/architectural-thinking/index.html").read
+objective_first_html = SITE.join("architecture-wall/frameworks/objective-first-architecture/index.html").read
+errors << "Architectural Thinking depth explanation missing" unless architectural_thinking_html.include?("What architecture produced this?") && architectural_thinking_html.include?("does not count as evidence for itself")
+errors << "Objective-First Architecture depth explanation missing" unless objective_first_html.include?("what you are genuinely trying to accomplish") && objective_first_html.include?("elegant answer to the wrong objective")
+errors << "Framework distinction missing" unless objective_first_html.include?("Architectural Thinking looks broadly") && objective_first_html.include?("the objective")
 
 observatory_html = SITE.join("observatory/index.html").read
 errors << "Observatory canonical desktop v002 source missing" unless observatory_html.include?("FMD_SCENE_OBSERVATORY_BASE_DESKTOP_DEFAULT_v002.png")
@@ -251,6 +263,8 @@ search_html = SITE.join("search/index.html").read
 errors << "Search semantic index missing Rooms" unless search_html.scan(/\"type\":\"Room\"/).length == 6
 errors << "Search semantic index missing public Artifacts" unless search_html.scan(/\"room\":\"(?:library|workshop|architecture-wall)\"/).length >= 7
 errors << "Search results state missing" unless search_html.include?("id=\"search-status\" role=\"status\"") && search_html.include?("id=\"search-results\" aria-live=\"polite\"")
+errors << "Search excerpt for Wild Side Volume I remains a status stub" unless search_html.include?("A playful exploration of how changing your point of view can change what you notice and understand.")
+errors << "Search excerpt for DJ Field Guide Volume I remains a status stub" unless search_html.include?("An approachable, illustrated exploration of matter—the stuff we can see and the stuff we cannot.")
 
 relationships_html = SITE.join("relationships/index.html").read
 expected_relationships = YAML.safe_load_file(ROOT.join("_data/relationships.yml"), aliases: true).length

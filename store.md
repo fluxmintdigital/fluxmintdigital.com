@@ -3,7 +3,7 @@ layout: redirect
 redirect_to: /explorer-outfitters/
 redirect_label: Explorer Outfitters
 title: Store
-description: The FluxMintDigital Store — the central hub for all books, apps, and digital products, plus made-to-order explorer gear.
+description: Visit Explorer Outfitters to find books, tools, and other Studio work that is genuinely available to take with you.
 permalink: /store/
 eyebrow: Room / Studio Map — Explorer Outfitters
 subhead: Instead of shopping, prepare for your next expedition. What do you need before you head back out?

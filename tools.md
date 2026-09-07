@@ -3,7 +3,7 @@ layout: redirect
 redirect_to: /workshop/
 redirect_label: the Workshop
 title: Tools
-description: The FluxMintDigital Tools Division — cognitive, math, and historical frameworks that help people think clearly and navigate complexity.
+description: Visit the Workshop to explore the applications and tools DJ is building at FluxMintDigital.
 permalink: /tools/
 eyebrow: Room / Studio Map — The Workshop
 subhead: 'One room, two divisions: the tool wall holds Tools, the shelf holds Apps.'

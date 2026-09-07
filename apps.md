@@ -3,7 +3,7 @@ layout: redirect
 redirect_to: /workshop/
 redirect_label: the Workshop
 title: Apps
-description: The FluxMintDigital Apps Division — practical, structured, architecture-driven tools designed to help people work smarter and organize their lives.
+description: Visit the Workshop to explore the applications and tools DJ is building at FluxMintDigital.
 permalink: /apps/
 eyebrow: Room / Studio Map — The Workshop
 subhead: 'One room, two divisions: the tool wall holds Tools, the shelf holds Apps.'

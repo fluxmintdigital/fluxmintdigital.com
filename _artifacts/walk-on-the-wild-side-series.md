@@ -13,4 +13,16 @@ seo:
 permalink: /library/walk-on-the-wild-side/
 ---
 
-Walk on the Wild Side With DJ has its own place in the Library. More volumes will appear here as the series grows.
+## What it is
+
+Walk on the Wild Side With DJ explores big questions, contradictions, and hidden structures through humor, storytelling, and playful changes in perspective.
+
+## Why it exists
+
+Sometimes an idea becomes easier to approach when it is allowed to be surprising—or funny. The series creates room to wander across philosophy, psychology, science, and culture without pretending those fields are all the same.
+
+## The reading experience
+
+Each book invites readers to walk around a familiar idea and see what looks different from another side. Curiosity leads; certainty does not have to arrive first.
+
+More volumes will appear here as the series grows.
