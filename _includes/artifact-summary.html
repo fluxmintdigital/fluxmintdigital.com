@@ -1,6 +1,6 @@
 <article class="artifact-summary surface-card{% unless include.artifact.cover %} artifact-summary--text-only{% endunless %}">
   {% if include.artifact.cover %}
-  <img class="artifact-summary__media" src="{{ include.artifact.cover | relative_url }}" alt="" width="1086" height="1448" loading="lazy">
+  {% include artifact-cover.html artifact=include.artifact class='artifact-summary__media' alt='' loading='lazy' sizes='(max-width: 767px) 6rem, 8rem' %}
   {% endif %}
   <div class="artifact-summary__body">
     <p class="semantic-kicker">{{ include.artifact.artifact_type }}{% if include.artifact.sequence %} · Volume {{ include.artifact.sequence }}{% endif %}</p>

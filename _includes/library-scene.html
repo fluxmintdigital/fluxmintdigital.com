@@ -14,7 +14,7 @@
       <p>Follow a publication, its sequence, or the larger lineage it belongs to.</p>
     </header>
 
-    {% for placement in publication_placements %}
+    {% for placement in publication_placements limit: 1 %}
       {% assign publication = site.artifacts | where: 'artifact_id', placement.artifact | first %}
       {% if publication and publication.visibility == 'public' %}
       <a class="library-publication" href="{{ publication.url | relative_url }}" aria-label="Read {{ publication.title }}, Volume {{ publication.sequence }}">

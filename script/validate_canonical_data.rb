@@ -3,6 +3,7 @@
 
 require "yaml"
 require "date"
+require "digest"
 
 ROOT = File.expand_path("..", __dir__)
 
@@ -89,6 +90,30 @@ availability.fetch("records", []).each_with_index do |record, index|
     end
   end
 end
+
+wild_side_id = "everything-looks-different-from-the-other-side-volume-i"
+wild_side_artifact = artifacts.map(&:last).find { |artifact| artifact["artifact_id"] == wild_side_id }
+wild_side_availability = availability.fetch("records", []).find { |record| record["artifact"] == wild_side_id }
+errors << "Walk on the Wild Side Volume I lifecycle must be awaiting publication" unless wild_side_artifact && wild_side_artifact["lifecycle"] == "awaiting_publication"
+errors << "Walk on the Wild Side Volume I must remain public and Library-owned" unless wild_side_artifact && wild_side_artifact["visibility"] == "public" && wild_side_artifact["canonical_room"] == "library"
+errors << "Walk on the Wild Side Volume I availability must be unavailable with no channels" unless wild_side_availability && wild_side_availability["status"] == "unavailable" && wild_side_availability.fetch("channels", []).empty?
+wild_side_relationship = relationships.find { |relationship| relationship["source"] == wild_side_id && relationship["type"] == "belongs_to" }
+errors << "Walk on the Wild Side Volume I series relationship or sequence changed" unless wild_side_relationship && wild_side_relationship["target"] == "walk-on-the-wild-side-series" && wild_side_relationship.dig("metadata", "sequence") == 1
+wild_side_source = File.join(ROOT, "FluxMintDigital_Website_Canonical_Package/Assets/source/FMD_SOURCE_LIBRARY_WALKONTHEWILDSIDE_VOL01_COVER_v001.png")
+approved_wild_side_sha = "7f0f7fa01a0d972b518d8c5963b53a97bf502a9453d23beff78d3f3b571a2c49"
+errors << "Approved Walk on the Wild Side Volume I source cover is missing or changed" unless File.file?(wild_side_source) && Digest::SHA256.file(wild_side_source).hexdigest == approved_wild_side_sha
+
+field_guide_id = "the-dj-field-guide-to-matter-volume-i"
+field_guide_artifact = artifacts.map(&:last).find { |artifact| artifact["artifact_id"] == field_guide_id }
+field_guide_availability = availability.fetch("records", []).find { |record| record["artifact"] == field_guide_id }
+errors << "DJ Field Guide Volume I lifecycle must be awaiting publication" unless field_guide_artifact && field_guide_artifact["lifecycle"] == "awaiting_publication"
+errors << "DJ Field Guide Volume I must remain public and Library-owned" unless field_guide_artifact && field_guide_artifact["visibility"] == "public" && field_guide_artifact["canonical_room"] == "library"
+errors << "DJ Field Guide Volume I availability must be unavailable with no channels" unless field_guide_availability && field_guide_availability["status"] == "unavailable" && field_guide_availability.fetch("channels", []).empty?
+field_guide_relationship = relationships.find { |relationship| relationship["source"] == field_guide_id && relationship["type"] == "belongs_to" }
+errors << "DJ Field Guide Volume I series relationship or sequence changed" unless field_guide_relationship && field_guide_relationship["target"] == "dj-field-guide-series" && field_guide_relationship.dig("metadata", "sequence") == 1
+field_guide_source = File.join(ROOT, "FluxMintDigital_Website_Canonical_Package/Assets/source/FMD_SOURCE_LIBRARY_DJFIELDGUIDE_MATTER_VOL01_COVER_v001.png")
+approved_field_guide_sha = "e88cc87cdb810e061c3dcd4bfe7ec07dbd3701cfa58d930e8425026a2593e1cc"
+errors << "Approved DJ Field Guide Volume I source cover is missing or changed" unless File.file?(field_guide_source) && Digest::SHA256.file(field_guide_source).hexdigest == approved_field_guide_sha
 
 volume_availability = availability.fetch("records", []).find { |record| record["artifact"] == "architecture-of-being-human-volume-i" }
 amazon_channel = volume_availability&.fetch("channels", [])&.find { |channel| channel["id"] == "amazon" }

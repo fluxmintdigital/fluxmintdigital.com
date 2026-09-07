@@ -4,6 +4,12 @@ disclosures:
   amazon_associates: "As an Amazon Associate, FluxMintDigital earns from qualifying purchases."
 
 records:
+  - artifact: the-dj-field-guide-to-matter-volume-i
+    status: unavailable
+    channels: []
+  - artifact: everything-looks-different-from-the-other-side-volume-i
+    status: unavailable
+    channels: []
   - artifact: architecture-of-being-human-volume-i
     status: available
     channels:

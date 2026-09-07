@@ -3,6 +3,7 @@ lifecycle:
   - on_the_workbench
   - under_examination
   - in_revision
+  - awaiting_publication
   - published
   - released
   - maintained

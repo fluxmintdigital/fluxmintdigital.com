@@ -10,6 +10,30 @@
   target: dj-boswell
   importance: primary
   provenance: canonical
+- source: everything-looks-different-from-the-other-side-volume-i
+  type: belongs_to
+  target: walk-on-the-wild-side-series
+  importance: primary
+  provenance: canonical
+  metadata:
+    sequence: 1
+- source: everything-looks-different-from-the-other-side-volume-i
+  type: authored_by
+  target: dj-boswell
+  importance: primary
+  provenance: canonical
+- source: the-dj-field-guide-to-matter-volume-i
+  type: belongs_to
+  target: dj-field-guide-series
+  importance: primary
+  provenance: canonical
+  metadata:
+    sequence: 1
+- source: the-dj-field-guide-to-matter-volume-i
+  type: authored_by
+  target: dj-boswell
+  importance: primary
+  provenance: canonical
 - source: architecture-series
   type: authored_by
   target: dj-boswell

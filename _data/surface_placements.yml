@@ -2,6 +2,14 @@
   artifact: architecture-of-being-human-volume-i
   role: published_artifact
   order: 1
+- surface: library-primary-workspace
+  artifact: everything-looks-different-from-the-other-side-volume-i
+  role: upcoming_publication
+  order: 2
+- surface: library-primary-workspace
+  artifact: the-dj-field-guide-to-matter-volume-i
+  role: upcoming_publication
+  order: 3
 - surface: library-series-access
   artifact: architecture-series
   role: series_lineage

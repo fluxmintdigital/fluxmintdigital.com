@@ -3,6 +3,7 @@
 
 require "pathname"
 require "uri"
+require "yaml"
 
 ROOT = Pathname.new(File.expand_path("..", __dir__))
 SITE = ROOT.join("_site")
@@ -24,7 +25,9 @@ required_routes = %w[
   /library/architecture-series/
   /library/architecture-series/the-architecture-of-being-human-volume-i/
   /library/walk-on-the-wild-side/
+  /library/walk-on-the-wild-side/everything-looks-different-from-the-other-side-volume-i/
   /library/dj-field-guide/
+  /library/dj-field-guide/the-dj-field-guide-to-matter-volume-i/
   /workshop/mint-pro/
   /architecture-wall/frameworks/architectural-thinking/
   /architecture-wall/frameworks/objective-first-architecture/
@@ -62,6 +65,10 @@ end
 
 sensitive = SITE.join("FluxMintDigital_Website_Canonical_Package/Assets/source/FMD_SOURCE_MEETDJ_APPROVED_LIKENESS_REFERENCE_v001.jpg")
 errors << "Controlled likeness source was emitted into the public build" if sensitive.exist?
+wild_side_source = SITE.join("FluxMintDigital_Website_Canonical_Package/Assets/source/FMD_SOURCE_LIBRARY_WALKONTHEWILDSIDE_VOL01_COVER_v001.png")
+errors << "Controlled Walk on the Wild Side cover master was emitted into the public build" if wild_side_source.exist?
+field_guide_source = SITE.join("FluxMintDigital_Website_Canonical_Package/Assets/source/FMD_SOURCE_LIBRARY_DJFIELDGUIDE_MATTER_VOL01_COVER_v001.png")
+errors << "Controlled DJ Field Guide cover master was emitted into the public build" if field_guide_source.exist?
 
 studio_html = SITE.join("studio/index.html").read
 home_html = SITE.join("index.html").read
@@ -94,10 +101,41 @@ errors << "Library Main Studio return threshold missing" unless library_html.inc
 errors << "Library publication accessible name missing" unless library_html.include?("aria-label=\"Read The Architecture of Being Human, Volume 1\"")
 errors << "Library series access must remain available outside the scene" unless library_html.scan(/class="series-summary surface-card"/).length == 3
 errors << "Library keyboard order must present the primary publication before series and return hotspots" unless library_html.index("class=\"library-publication\"") < library_html.index("<nav class=\"library-scene__hotspots\"")
+errors << "Library scene must retain one non-overlapping featured publication" unless library_html.scan(/class="library-publication"/).length == 1
 
 volume_html = SITE.join("library/architecture-series/the-architecture-of-being-human-volume-i/index.html").read
 errors << "Volume I must render Published lifecycle" unless volume_html.include?('status-indicator__label">Published</span>')
 errors << "Volume I series lineage missing" unless volume_html.include?("Part of The Architecture Series")
+
+wild_side_html = SITE.join("library/walk-on-the-wild-side/everything-looks-different-from-the-other-side-volume-i/index.html").read
+errors << "Walk on the Wild Side Volume I must render Awaiting publication lifecycle" unless wild_side_html.include?('status-indicator__label">Awaiting publication</span>')
+errors << "Walk on the Wild Side Volume I availability must remain unavailable" unless wild_side_html.include?("<dt>Availability</dt><dd>Not available yet</dd>")
+errors << "Walk on the Wild Side Volume I publication wording changed" unless wild_side_html.include?("Volume I is written and awaiting publication. It will be released soon.")
+errors << "Walk on the Wild Side Volume I series lineage missing" unless wild_side_html.include?("Part of Walk on the Wild Side With DJ")
+errors << "Walk on the Wild Side Volume I cover derivative missing" unless wild_side_html.include?("FMD_ARTIFACT_LIBRARY_WALKONTHEWILDSIDE_VOL01_COVER_768W_v001.webp")
+errors << "Walk on the Wild Side Volume I must not expose acquisition controls" if wild_side_html.include?("acquisition-actions")
+errors << "Walk on the Wild Side Volume I must not invent release or commerce facts" if wild_side_html.match?(/(?:amazon\.com|ISBN|\$\d|datePublished|dateModified|Publication date|Format)/i)
+
+wild_side_series_html = SITE.join("library/walk-on-the-wild-side/index.html").read
+errors << "Walk on the Wild Side series must expose exactly one real volume" unless wild_side_series_html.scan(/class="artifact-summary surface-card/).length == 1
+errors << "Walk on the Wild Side series must link Volume I" unless wild_side_series_html.include?("/library/walk-on-the-wild-side/everything-looks-different-from-the-other-side-volume-i/")
+errors << "Walk on the Wild Side series must retain future-volume language" unless wild_side_series_html.include?("More volumes will appear here as the series grows")
+errors << "Library must expose Walk on the Wild Side Volume I" unless library_html.include?("/library/walk-on-the-wild-side/everything-looks-different-from-the-other-side-volume-i/")
+
+field_guide_html = SITE.join("library/dj-field-guide/the-dj-field-guide-to-matter-volume-i/index.html").read
+errors << "DJ Field Guide Volume I must render Awaiting publication lifecycle" unless field_guide_html.include?('status-indicator__label">Awaiting publication</span>')
+errors << "DJ Field Guide Volume I availability must remain unavailable" unless field_guide_html.include?("<dt>Availability</dt><dd>Not available yet</dd>")
+errors << "DJ Field Guide Volume I publication wording changed" unless field_guide_html.include?("Volume I is written and awaiting publication. It will be released soon.")
+errors << "DJ Field Guide Volume I series lineage missing" unless field_guide_html.include?("Part of The DJ Field Guide Series")
+errors << "DJ Field Guide Volume I cover derivative missing" unless field_guide_html.include?("FMD_ARTIFACT_LIBRARY_DJFIELDGUIDE_MATTER_VOL01_COVER_768W_v001.webp")
+errors << "DJ Field Guide Volume I must not expose acquisition controls" if field_guide_html.include?("acquisition-actions")
+errors << "DJ Field Guide Volume I must not invent release or commerce facts" if field_guide_html.match?(/(?:amazon\.com|ISBN|\$\d|datePublished|dateModified|Publication date|Format)/i)
+
+field_guide_series_html = SITE.join("library/dj-field-guide/index.html").read
+errors << "DJ Field Guide series must expose exactly one real volume" unless field_guide_series_html.scan(/class="artifact-summary surface-card/).length == 1
+errors << "DJ Field Guide series must link Volume I" unless field_guide_series_html.include?("/library/dj-field-guide/the-dj-field-guide-to-matter-volume-i/")
+errors << "DJ Field Guide series must retain future-volume language" unless field_guide_series_html.include?("More volumes will appear here as the series grows")
+errors << "Library must expose DJ Field Guide Volume I" unless library_html.include?("/library/dj-field-guide/the-dj-field-guide-to-matter-volume-i/")
 
 workshop_html = SITE.join("workshop/index.html").read
 errors << "Workshop desktop source missing" unless workshop_html.include?("FMD_SCENE_WORKSHOP_BASE_DESKTOP_DEFAULT_v001.png")
@@ -215,7 +253,8 @@ errors << "Search semantic index missing public Artifacts" unless search_html.sc
 errors << "Search results state missing" unless search_html.include?("id=\"search-status\" role=\"status\"") && search_html.include?("id=\"search-results\" aria-live=\"polite\"")
 
 relationships_html = SITE.join("relationships/index.html").read
-errors << "Relationship Explorer must render every canonical relationship" unless relationships_html.scan(/class="surface-card"/).length == 9
+expected_relationships = YAML.safe_load_file(ROOT.join("_data/relationships.yml"), aliases: true).length
+errors << "Relationship Explorer must render every canonical relationship" unless relationships_html.scan(/class="surface-card"/).length == expected_relationships
 errors << "Relationship Explorer direction boundary missing" unless relationships_html.include?("An arrow shows the direction of the connection—not cause and effect")
 errors << "Relationship Explorer must link every real-person target to Meet DJ" unless relationships_html.scan(/href="\/meet-dj\/"/).length >= 7
 
