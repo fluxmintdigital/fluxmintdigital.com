@@ -359,16 +359,17 @@ errors << "Volume I Amazon Associates disclosure missing or duplicated" unless v
 errors << "Volume I availability must derive as available" unless volume_html.include?("<dt>Availability</dt><dd>Available</dd>")
 
 dj_html = SITE.join("meet-dj/index.html").read
-errors << "Meet DJ desktop source missing" unless dj_html.include?("FMD_SCENE_MEETDJ_BASE_DESKTOP_DEFAULT_v001.png")
-errors << "Meet DJ mobile source missing" unless dj_html.include?("FMD_SCENE_MEETDJ_BASE_MOBILE_DEFAULT_v002.png")
-errors << "Meet DJ production character missing" unless dj_html.include?("FMD_CHAR_MEETDJ_REALISTIC_RESPONSIVE_IDLE_v001.png")
-errors << "Meet DJ character must be decorative to semantic identity content" unless dj_html.match?(/class="dj-scene__character"[^>]+alt=""[^>]+aria-hidden="true"/)
+errors << "Meet DJ approved desktop likeness composition missing" unless dj_html.include?("FMD_SCENE_MEETDJ_LIKENESS_DESKTOP_DEFAULT_v003.webp")
+errors << "Meet DJ approved mobile likeness composition missing" unless dj_html.include?("FMD_SCENE_MEETDJ_LIKENESS_MOBILE_DEFAULT_v003.webp")
+errors << "Meet DJ must use deliberate mobile source selection" unless dj_html.match?(/<source media="\(max-width: 767px\)"[^>]+FMD_SCENE_MEETDJ_LIKENESS_MOBILE_DEFAULT_v003\.webp[^>]+width="941" height="1672"/)
+errors << "Superseded Meet DJ character remains publicly referenced" if dj_html.include?("FMD_CHAR_MEETDJ_REALISTIC_RESPONSIVE_IDLE_v001.png")
 errors << "Meet DJ must retain author, builder, and collaborator roles" unless dj_html.include?("Author · Builder · Collaborator")
 errors << "Meet DJ role cards changed" unless dj_html.scan(/class="surface-card"><h3>(?:Author|Builder|Collaborator)<\/h3>/).length == 3
 errors << "Meet DJ/Explorer identity boundary missing" unless dj_html.include?("The real DJ is the author, builder, and collaborator responsible for the work itself")
 errors << "ForgeSpark relationship changed" unless dj_html.include?("ForgeSpark Studios is a sibling studio with its own identity and work")
 errors << "Meet DJ Main Studio return missing" unless dj_html.scan(/href="\/studio\/"/).length >= 2
-errors << "Controlled likeness source leaked into Meet DJ HTML" if dj_html.include?("FMD_SOURCE_MEETDJ_APPROVED_LIKENESS_REFERENCE_v001")
+errors << "Controlled likeness source leaked into Meet DJ HTML" if dj_html.include?("FMD_SOURCE_MEETDJ_APPROVED_LIKENESS_REFERENCE")
+errors << "Controlled Meet DJ likeness PNG leaked into public build" if SITE.glob("**/FMD_SOURCE_MEETDJ_APPROVED_LIKENESS_REFERENCE_v00*.png").any?
 errors << "Meet DJ contains unsupported resume or social proof claims" if dj_html.match?(/(?:award-winning|years of experience|our clients|testimonial|certified|degree in)/i)
 
 search_html = SITE.join("search/index.html").read

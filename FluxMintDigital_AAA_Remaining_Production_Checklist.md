@@ -62,28 +62,29 @@ Observatory implementation now uses the corrected pet-free and person-free `FMD_
 
 Main Studio mobile implementation uses `FMD_SCENE_MAINSTUDIO_BASE_MOBILE_DEFAULT_v003.png`. Validation confirms a genuine 853×1844 opaque sRGB PNG with no pet, baked person, Room/navigation labels, CTA, copy, cards, or truth-bearing UI. Aperture remains the corporate identity, the framing is independently vertical, and the composition supports live Desk/Now, Studio Map, and threshold overlays. v003 supersedes v002 for implementation; v002 remains preserved as superseded visual evidence.
 
-## Character reconciliation — DONE
+## Superseded Meet DJ character evidence
 
-`FMD_CHAR_MEETDJ_REALISTIC_RESPONSIVE_IDLE_v001.png` is restored at its exact production path and validated as:
+`FMD_CHAR_MEETDJ_REALISTIC_RESPONSIVE_IDLE_v001.png` remains preserved at its exact production path as validated rollback evidence:
 
 - 1024×1536 PNG, sRGB, RGBA/TrueColorAlpha.
 - Transparent corners and a variable alpha channel are present.
-- Realistic DJ remains independent of the Meet DJ base environment for responsive placement.
+- The former realistic DJ character remains available as historical production evidence but is excluded from public delivery and no longer referenced by the Meet DJ Surface.
 - The approved author/builder/collaborator family is visually distinct from Explorer DJ.
 
-SHA-256 `6d4cd969e356109f66d17ee2ae844ce273a38c6d727f1e95f0c683c46dc7697a` matches the previously approved production asset. Result: `STILL REQUIRED` → `DONE`. It remains separate from the controlled JPEG likeness-reference source.
+SHA-256 `6d4cd969e356109f66d17ee2ae844ce273a38c6d727f1e95f0c683c46dc7697a` matches the previously approved production asset. It is now `NO LONGER REQUIRED` for implementation because DJ approved the responsive likeness compositions below. It remains preserved and is not overwritten.
 
-### Future Meet DJ character replacement contract
+### Meet DJ responsive likeness contract — APPROVED
 
-The current `FMD_CHAR_MEETDJ_REALISTIC_RESPONSIVE_IDLE_v001.png` remains the approved production character until DJ explicitly approves a successor. A future replacement must preserve the independent responsive-layer contract and meet all of the following requirements:
+DJ approved the responsive likeness compositions as the canonical Meet DJ production treatment. The former character remains rollback evidence. The approved treatment provides:
 
 - 100% recognizable likeness of DJ with a slightly art-styled, editorial treatment rather than glossy photoreal advertising.
 - Dark full groomed beard, backward dark cap, dark ear gauges, warm grounded expression, and simple dark/navy builder or explorer workwear.
-- No pet, baked slogan, identity-critical text, or exaggerated Explorer-character styling.
-- Transparent full-figure master with safe margins, warm lighting compatible with the existing Meet DJ scene, and enough separation for independent desktop/mobile positioning.
+- Intentional, DJ-approved animals that remain atmospheric rather than identity-bearing.
+- No baked slogan, identity-critical text, or exaggerated Explorer-character styling.
+- Independent wide and compact compositions with warm lighting and safe live-HTML zones.
 - Controlled likeness references remain excluded from public output.
 
-No replacement asset is requested or approved by this note, and the current character must not be removed, regenerated, or substituted without DJ's explicit visual approval.
+The approved source PNGs remain controlled and excluded. Only their WebP delivery derivatives enter the public build.
 
 ## Clean-scene and semantic-UI validation
 
@@ -124,13 +125,16 @@ This is recorded as the newly established canonical vector source, not as a reco
 
 `FMD_SOURCE_LIBRARY_ARCHITECTUREOFBEINGHUMAN_VOL01_COVER_v001.png` is registered at `FluxMintDigital_Website_Canonical_Package/Assets/source/FMD_SOURCE_LIBRARY_ARCHITECTUREOFBEINGHUMAN_VOL01_COVER_v001.png`. It validates as a genuine 1086×1448, 8-bit RGB, opaque sRGB PNG. Visual inspection confirms the approved *The Architecture of Being Human — Volume I* cover. SHA-256: `b23f61e0a65fa3e2ff9b006d09e4eef089aa42492171089603fa56f70be6ec9b`.
 
-### Meet DJ likeness source — DONE
+### Meet DJ responsive likeness sources — DONE
 
-`FMD_SOURCE_MEETDJ_APPROVED_LIKENESS_REFERENCE_v001.jpg` is registered at `FluxMintDigital_Website_Canonical_Package/Assets/source/FMD_SOURCE_MEETDJ_APPROVED_LIKENESS_REFERENCE_v001.jpg`. It validates as a genuine 1145×1374 baseline, opaque sRGB JPEG/JFIF. Visual inspection confirms the approved realistic DJ likeness authority. SHA-256: `83978e4dfa6b866924fee701d0d0aead00de277979a6de7f7c4a4ff7b2954fe7`.
+The former `FMD_SOURCE_MEETDJ_APPROVED_LIKENESS_REFERENCE_v001.jpg` is superseded by two DJ-supplied opaque PNG compositions. Its committed history remains the provenance record; it is not reconstructed or silently substituted.
 
-This remains the sole renamed likeness-source contract and is distinct from the transparent production character.
+- `FMD_SOURCE_MEETDJ_APPROVED_LIKENESS_REFERENCE_v001.png`: genuine 1672×941 8-bit opaque sRGB PNG; SHA-256 `adc20153e4dd254468b420f9c451ad9169798da01c4e5e8e4a7ae0d292de1612`; assigned to desktop/wide presentation.
+- `FMD_SOURCE_MEETDJ_APPROVED_LIKENESS_REFERENCE_v002.png`: genuine 941×1672 8-bit opaque sRGB PNG; SHA-256 `0d1dcbc598f3bc28b7f461c85a6cd3a04f226a7986dc6360310a08c7ea65e2ce`; assigned to compact/mobile presentation.
 
-The repository currently contains `Assets/final/FMD_SOURCE_MEETDJ_APPROVED_LIKENESS_REFERENCE_v001.png`, a 1024×1536 RGBA PNG. It was not renamed, transcoded, or treated as satisfying the exact `.jpg` source contract. There is only one Meet DJ source requirement. The independent transparent production-character record remains distinct and must be restored at its original exact path.
+Both sources remain excluded from public output. Non-destructive native-dimension WebP derivatives are delivered as `FMD_SCENE_MEETDJ_LIKENESS_DESKTOP_DEFAULT_v003.webp` and `FMD_SCENE_MEETDJ_LIKENESS_MOBILE_DEFAULT_v003.webp`. DJ passed the human visual gate for the integrated result. The animals visible in these compositions are an explicit DJ-approved Meet DJ exception and are not a recurring Studio pet system.
+
+The former transparent production character remains preserved at its original path as superseded rollback evidence and is excluded from public delivery.
 
 No canonical source imports remain. No additional visual generation is required.
 
