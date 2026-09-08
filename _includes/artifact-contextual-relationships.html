@@ -1,0 +1,31 @@
+{% assign outgoing_context = site.data.relationships | where: 'source', include.artifact_id %}
+{% assign incoming_context = site.data.relationships | where: 'target', include.artifact_id %}
+{% assign contextual_count = 0 %}
+{% for relationship in outgoing_context %}{% unless relationship.type == 'authored_by' or relationship.type == 'built_by' or relationship.type == 'belongs_to' %}{% assign contextual_count = contextual_count | plus: 1 %}{% endunless %}{% endfor %}
+{% for relationship in incoming_context %}{% unless relationship.type == 'authored_by' or relationship.type == 'built_by' or relationship.type == 'belongs_to' %}{% assign contextual_count = contextual_count | plus: 1 %}{% endunless %}{% endfor %}
+{% if contextual_count > 0 %}
+<section class="artifact-lineage artifact-connections" aria-labelledby="artifact-connections-heading">
+  <p class="semantic-kicker">Connected work</p>
+  <h2 id="artifact-connections-heading">{% if include.artifact_id == 'architecture-of-being-human-volume-i' %}Continue exploring this architecture{% else %}Follow this work through the Studio{% endif %}</h2>
+  <ul class="research-relationship-list">
+    {% for relationship in outgoing_context %}
+      {% unless relationship.type == 'authored_by' or relationship.type == 'built_by' or relationship.type == 'belongs_to' %}
+        {% assign target = site.artifacts | where: 'artifact_id', relationship.target | first %}
+        {% unless target %}{% assign target = site.posts | where: 'slug', relationship.target | first %}{% endunless %}
+        {% if target and target.visibility == 'public' %}
+        <li><a href="{{ target.url | relative_url }}">{{ target.title }}</a><span><strong>{{ relationship.type | replace: '_', ' ' | capitalize }}.</strong> {% include relationship-context.html type=relationship.type %}</span></li>
+        {% endif %}
+      {% endunless %}
+    {% endfor %}
+    {% for relationship in incoming_context %}
+      {% unless relationship.type == 'authored_by' or relationship.type == 'built_by' or relationship.type == 'belongs_to' %}
+        {% assign source = site.artifacts | where: 'artifact_id', relationship.source | first %}
+        {% unless source %}{% assign source = site.posts | where: 'slug', relationship.source | first %}{% endunless %}
+        {% if source and source.visibility == 'public' %}
+        <li><a href="{{ source.url | relative_url }}">{{ source.title }}</a><span><strong>{{ relationship.type | replace: '_', ' ' | capitalize }}.</strong> {% include relationship-context.html type=relationship.type %}</span></li>
+        {% endif %}
+      {% endunless %}
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}

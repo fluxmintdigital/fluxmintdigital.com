@@ -200,6 +200,12 @@ button,input,select,textarea{font:inherit}
 }
 @media(prefers-reduced-motion:reduce){.workshop-hotspot__marker{box-shadow:0 0 0 .35rem rgb(210 168 77 / 18%)}}
 
+/* WR-005 truth grouping and relationship exploration */
+.outfitters-group-heading{margin:var(--fmd-7) 0 var(--fmd-4);font-family:var(--fmd-display);font-size:var(--fmd-xl);font-weight:500}.outfitters-group-heading+.outfitters-listings{margin-top:0}.outfitters-listings--future{max-width:52rem;opacity:.9}
+.observatory-form-reserve{max-width:52rem;margin-top:var(--fmd-4);color:var(--text-muted)}.observatory-form-reserve summary{min-height:var(--fmd-target);display:flex;align-items:center;cursor:pointer}.observatory-form-reserve li+li{margin-top:var(--fmd-2)}
+.relationship-explorer{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--fmd-4);align-items:end;margin-top:var(--fmd-7)}.relationship-explorer section{display:grid;gap:var(--fmd-2);padding:var(--fmd-5);border-top:var(--fmd-border-action);background:rgb(33 26 20 / 45%)}.relationship-explorer h2{margin:0;font-family:var(--fmd-display);font-size:var(--fmd-xl);font-weight:500}.relationship-explorer label{color:var(--text-muted);font-size:var(--fmd-sm)}.relationship-explorer select{width:100%;min-height:var(--fmd-target);padding:0 var(--fmd-3);border:var(--fmd-border-default);border-radius:var(--fmd-radius-sm);background:var(--surface);color:var(--text)}.relationship-explorer>.button{grid-column:1/-1;justify-self:start}.relationship-filter-status{color:var(--text-muted)}.relationship-ledger-heading{margin-top:var(--fmd-7);font-family:var(--fmd-display);font-weight:500}.relationship-ledger-heading+.relationship-records{margin-top:var(--fmd-4)}
+@media(max-width:767px){.relationship-explorer{grid-template-columns:1fr}.relationship-explorer>.button{grid-column:auto;width:100%}}
+
 /* Architecture Wall environment and semantic research boundary */
 .wall-scene{width:min(100%,96rem);margin:0 auto;padding:var(--fmd-4)}
 .wall-scene__viewport{position:relative;isolation:isolate;overflow:hidden;aspect-ratio:3/2;border:var(--fmd-border-subtle);border-radius:var(--fmd-radius-lg);background:#0b0806;box-shadow:var(--fmd-shadow-scene)}
@@ -394,3 +400,4 @@ html{scroll-padding-top:5.25rem}
 /* Approved Meet DJ responsive likeness compositions. */
 .dj-scene__viewport{aspect-ratio:1672/941;min-height:0}
 @media(max-width:767px){.dj-scene__viewport{aspect-ratio:941/1672}}
+.relationship-explorer[hidden]{display:none}

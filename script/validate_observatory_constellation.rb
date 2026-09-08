@@ -55,6 +55,7 @@ records.each do |record|
   errors << "Authored body changed: #{record[:slug]}" unless actual_body == expected_body
   errors << "Title changed: #{record[:slug]}" unless data["title"] == record[:title]
   errors << "Constellation order changed: #{record[:slug]}" unless data["constellation_order"] == record[:order]
+  errors << "Same-date archive order changed: #{record[:slug]}" unless data["same_date_order"] == record[:order]
 end
 
 observatory = YAML.safe_load_file(ROOT.join("_data/observatory.yml"))

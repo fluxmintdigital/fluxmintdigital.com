@@ -23,9 +23,12 @@
 
     <nav class="observatory-scene__hotspots" aria-label="Observatory scene access">
       {% for form in site.data.observatory.forms %}
+      {% assign form_posts = site.posts | where: 'visibility', 'public' | where: 'artifact_type', form.artifact_type %}
+      {% if form_posts.size > 0 %}
       <a class="observatory-hotspot observatory-hotspot--{{ form.id }}" href="#observatory-{{ form.id }}" aria-label="Explore Observatory {{ form.label }}">
         <span class="observatory-hotspot__marker" aria-hidden="true"></span><span class="observatory-hotspot__label"><strong>{{ form.label }}</strong><small>Explore</small></span>
       </a>
+      {% endif %}
       {% endfor %}
       <a class="observatory-hotspot observatory-hotspot--archive" href="{{ '/studio-blog/' | relative_url }}" aria-label="Browse Observatory archive and history">
         <span class="observatory-hotspot__marker" aria-hidden="true"></span><span class="observatory-hotspot__label"><strong>Archive</strong><small>History</small></span>

@@ -3,9 +3,15 @@
   <h3><a class="card-link" href="{{ include.artifact.url | relative_url }}">{{ include.artifact.title }}</a></h3>
   <p>{{ include.artifact.description }}</p>
   {% assign series_members = site.artifacts | where: 'series_id', include.artifact.artifact_id | where: 'visibility', 'public' | sort: 'sequence' %}
+  {% assign published_members = series_members | where: 'lifecycle', 'published' %}
+  {% assign awaiting_members = series_members | where: 'lifecycle', 'awaiting_publication' %}
   <p class="series-summary__lineage">
-    {% if series_members.size > 0 %}
-      {{ series_members.size }} volume{% if series_members.size != 1 %}s{% endif %} in the series
+    {% if published_members.size > 0 and awaiting_members.size == 0 %}
+      {{ published_members.size }} published volume{% if published_members.size != 1 %}s{% endif %}
+    {% elsif awaiting_members.size > 0 and published_members.size == 0 %}
+      {{ awaiting_members.size }} volume{% if awaiting_members.size != 1 %}s{% endif %} awaiting publication
+    {% elsif series_members.size > 0 %}
+      {{ series_members.size }} volume{% if series_members.size != 1 %}s{% endif %} · {{ published_members.size }} published · {{ awaiting_members.size }} awaiting publication
     {% else %}
       No volumes announced yet
     {% endif %}

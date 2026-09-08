@@ -30,16 +30,24 @@ workspace_title: Notice from the Observatory
   </section>
 
   <section aria-labelledby="observatory-forms-heading">
-    <p class="semantic-kicker">Four ways to notice</p>
+    <p class="semantic-kicker">Ways to notice</p>
     <h2 id="observatory-forms-heading">Ways of noticing</h2>
     <div class="observatory-forms">
       {% for form in site.data.observatory.forms %}
         {% assign form_posts = site.posts | where: 'visibility', 'public' | where: 'artifact_type', form.artifact_type %}
+        {% if form_posts.size > 0 %}
         <article id="observatory-{{ form.id }}" class="surface-card">
           <h3>{{ form.label }}</h3><p>{{ form.description }}</p><span>{{ form_posts.size }} public {% if form_posts.size == 1 %}piece{% else %}pieces{% endif %}</span>
         </article>
+        {% endif %}
       {% endfor %}
     </div>
+    {% assign zero_form_count = 0 %}
+    {% for form in site.data.observatory.forms %}{% assign form_posts = site.posts | where: 'visibility', 'public' | where: 'artifact_type', form.artifact_type %}{% if form_posts.size == 0 %}{% assign zero_form_count = zero_form_count | plus: 1 %}{% endif %}{% endfor %}
+    {% if zero_form_count > 0 %}<details class="observatory-form-reserve">
+      <summary>Other forms the Observatory can hold</summary>
+      <ul>{% for form in site.data.observatory.forms %}{% assign form_posts = site.posts | where: 'visibility', 'public' | where: 'artifact_type', form.artifact_type %}{% if form_posts.size == 0 %}<li><strong>{{ form.label }}</strong> — {{ form.description }}</li>{% endif %}{% endfor %}</ul>
+    </details>{% endif %}
   </section>
 
   <section aria-labelledby="observatory-topics-heading">

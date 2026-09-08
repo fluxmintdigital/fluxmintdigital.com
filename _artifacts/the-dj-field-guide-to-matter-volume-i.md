@@ -40,4 +40,4 @@ The Field Guide approach uses a consistent, structured journey, memorable illust
 
 ## Where it is now
 
-Volume I is written and awaiting publication. It will be released soon.
+Volume I is written and awaiting publication.

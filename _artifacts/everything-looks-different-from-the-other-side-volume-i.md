@@ -40,4 +40,4 @@ The series makes room for humor, storytelling, and connections across philosophy
 
 ## Where it is now
 
-Volume I is written and awaiting publication. It will be released soon.
+Volume I is written and awaiting publication.

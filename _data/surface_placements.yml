@@ -31,9 +31,17 @@
   role: series_lineage
   order: 3
 - surface: studio-desk-now
-  artifact: architecture-of-being-human-volume-i
+  artifact: choice-audit
   role: recent_release
   order: 1
+- surface: studio-desk-now
+  artifact: everything-looks-different-from-the-other-side-volume-i
+  role: awaiting_publication
+  order: 2
+- surface: studio-desk-now
+  artifact: mint-pro
+  role: active_build
+  order: 3
 - surface: workshop-current-build
   artifact: mint-pro
   role: active_build
@@ -59,6 +67,10 @@
   role: publication_discovery
   order: 1
 - surface: explorer-outfitters-discovery
-  artifact: mint-pro
-  role: application_discovery
+  artifact: personal-architecture-map
+  role: instrument_discovery
   order: 2
+- surface: explorer-outfitters-discovery
+  artifact: mint-pro
+  role: future_application_discovery
+  order: 3

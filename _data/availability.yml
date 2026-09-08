@@ -26,6 +26,9 @@ records:
   - artifact: bidmaster
     status: unavailable
     channels: []
+  - artifact: mint-pro
+    status: unavailable
+    channels: []
   - artifact: the-dj-field-guide-to-matter-volume-i
     status: unavailable
     channels: []

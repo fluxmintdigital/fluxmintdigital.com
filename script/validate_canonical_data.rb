@@ -119,6 +119,9 @@ errors << "BidMaster must remain unavailable with no channels" unless bidmaster_
 errors << "BidMaster builder relationship changed" unless bidmaster_relationship && bidmaster_relationship["target"] == "dj-boswell"
 errors << "BidMaster must have only its Workshop application placement" unless bidmaster_placements.length == 1 && bidmaster_placements.first["surface"] == "workshop-applications"
 
+mint_pro_availability = availability.fetch("records", []).find { |record| record["artifact"] == "mint-pro" }
+errors << "Mint Pro availability must remain unavailable with no channels" unless mint_pro_availability && mint_pro_availability["status"] == "unavailable" && mint_pro_availability.fetch("channels", []).empty?
+
 wild_side_id = "everything-looks-different-from-the-other-side-volume-i"
 wild_side_artifact = artifacts.map(&:last).find { |artifact| artifact["artifact_id"] == wild_side_id }
 wild_side_availability = availability.fetch("records", []).find { |record| record["artifact"] == wild_side_id }
@@ -178,7 +181,12 @@ expected_choice_relationships.each do |source, type, target|
 end
 
 choice_placements = placements.select { |placement| %w[choice-audit personal-architecture-map].include?(placement["artifact"]) }
-expected_choice_placements = [["choice-audit", "workshop-instruments", 1], ["personal-architecture-map", "workshop-instruments", 2]]
+expected_choice_placements = [
+  ["choice-audit", "workshop-instruments", 1],
+  ["choice-audit", "studio-desk-now", 1],
+  ["personal-architecture-map", "workshop-instruments", 2],
+  ["personal-architecture-map", "explorer-outfitters-discovery", 2]
+]
 actual_choice_placements = choice_placements.map { |placement| placement.values_at("artifact", "surface", "order") }.sort
 errors << "Choice Audit Workshop placements changed" unless actual_choice_placements == expected_choice_placements.sort
 

@@ -133,8 +133,9 @@ errors << "Library publication accessible name missing" unless library_html.incl
 errors << "Library series access must remain available outside the scene" unless library_html.scan(/class="series-summary surface-card"/).length == 3
 errors << "Library keyboard order must present the primary publication before series and return hotspots" unless library_html.index("class=\"library-publication\"") < library_html.index("<nav class=\"library-scene__hotspots\"")
 errors << "Library scene must retain one non-overlapping featured publication" unless library_html.scan(/class="library-publication"/).length == 1
-errors << "Library series counts must derive all three real first volumes" unless library_html.scan(/1 volume in the series/).length == 3
-errors << "Library contains stale or lifecycle-inaccurate series-count copy" if library_html.match?(/No volumes announced yet|published volume/)
+errors << "Architecture Series lifecycle count changed" unless library_html.include?("1 published volume")
+errors << "Awaiting-publication series counts changed" unless library_html.scan(/1 volume awaiting publication/).length == 2
+errors << "Library contains stale series-count copy" if library_html.include?("No volumes announced yet")
 
 volume_html = SITE.join("library/architecture-series/the-architecture-of-being-human-volume-i/index.html").read
 errors << "Volume I must render Published lifecycle" unless volume_html.include?('status-indicator__label">Published</span>')
@@ -143,7 +144,8 @@ errors << "Volume I series lineage missing" unless volume_html.include?("Part of
 wild_side_html = SITE.join("library/walk-on-the-wild-side/everything-looks-different-from-the-other-side-volume-i/index.html").read
 errors << "Walk on the Wild Side Volume I must render Awaiting publication lifecycle" unless wild_side_html.include?('status-indicator__label">Awaiting publication</span>')
 errors << "Walk on the Wild Side Volume I availability must remain unavailable" unless wild_side_html.include?("<dt>Availability</dt><dd>Not available yet</dd>")
-errors << "Walk on the Wild Side Volume I publication wording changed" unless wild_side_html.include?("Volume I is written and awaiting publication. It will be released soon.")
+errors << "Walk on the Wild Side Volume I publication wording changed" unless wild_side_html.include?("Volume I is written and awaiting publication.")
+errors << "Walk on the Wild Side Volume I contains an unsupported timing promise" if wild_side_html.match?(/released soon|coming soon/i)
 errors << "Walk on the Wild Side Volume I series lineage missing" unless wild_side_html.include?("Part of Walk on the Wild Side With DJ")
 errors << "Walk on the Wild Side Volume I cover derivative missing" unless wild_side_html.include?("FMD_ARTIFACT_LIBRARY_WALKONTHEWILDSIDE_VOL01_COVER_768W_v001.webp")
 errors << "Walk on the Wild Side Volume I must not expose acquisition controls" if wild_side_html.include?("acquisition-actions")
@@ -158,7 +160,8 @@ errors << "Library must expose Walk on the Wild Side Volume I" unless library_ht
 field_guide_html = SITE.join("library/dj-field-guide/the-dj-field-guide-to-matter-volume-i/index.html").read
 errors << "DJ Field Guide Volume I must render Awaiting publication lifecycle" unless field_guide_html.include?('status-indicator__label">Awaiting publication</span>')
 errors << "DJ Field Guide Volume I availability must remain unavailable" unless field_guide_html.include?("<dt>Availability</dt><dd>Not available yet</dd>")
-errors << "DJ Field Guide Volume I publication wording changed" unless field_guide_html.include?("Volume I is written and awaiting publication. It will be released soon.")
+errors << "DJ Field Guide Volume I publication wording changed" unless field_guide_html.include?("Volume I is written and awaiting publication.")
+errors << "DJ Field Guide Volume I contains an unsupported timing promise" if field_guide_html.match?(/released soon|coming soon/i)
 errors << "DJ Field Guide Volume I series lineage missing" unless field_guide_html.include?("Part of The DJ Field Guide Series")
 errors << "DJ Field Guide Volume I cover derivative missing" unless field_guide_html.include?("FMD_ARTIFACT_LIBRARY_DJFIELDGUIDE_MATTER_VOL01_COVER_768W_v001.webp")
 errors << "DJ Field Guide Volume I must not expose acquisition controls" if field_guide_html.include?("acquisition-actions")
@@ -177,7 +180,7 @@ errors << "Workshop must expose exactly one canonical Current Build" unless work
 errors << "Workshop Current Build must be Mint Pro" unless workshop_html.include?("Inspect current Workshop build: Mint Pro")
 errors << "Workshop scene must expose applications, tool access, and return controls" unless workshop_html.scan(/class="workshop-hotspot workshop-hotspot--/).length == 3
 errors << "Workshop Main Studio return threshold missing" unless workshop_html.include?("aria-label=\"Return to the Main Studio\"")
-errors << "Workshop Current Build must remain available outside the scene" unless workshop_html.scan(/href="\/workshop\/mint-pro\/"/).length >= 3
+errors << "Workshop Current Build must remain available outside the scene" unless workshop_html.scan(/href="\/workshop\/mint-pro\/"/).length >= 2
 errors << "Workshop must not expose OmniShell" if workshop_html.match?(/OmniShell/i)
 errors << "Workshop must expose BidMaster exactly once in its conventional application list" unless workshop_html.scan(/href="\/workshop\/bidmaster\/"/).length == 1
 errors << "Workshop must expose both approved Instruments" unless workshop_html.include?('href="/workshop/choice-audit/"') && workshop_html.include?('href="/workshop/personal-architecture-map/"')
@@ -258,7 +261,8 @@ errors << "Personal Architecture Map relationship paths missing" unless map_html
 
 mint_pro_html = SITE.join("workshop/mint-pro/index.html").read
 errors << "Mint Pro must render On the workbench lifecycle" unless mint_pro_html.include?('status-indicator__label">On the workbench</span>')
-errors << "Mint Pro must not invent availability" if mint_pro_html.include?("<dt>Availability</dt>")
+errors << "Mint Pro availability truth changed" unless mint_pro_html.include?("<dt>Availability</dt><dd>Not available yet</dd>")
+errors << "Mint Pro must not expose acquisition controls" if mint_pro_html.include?("acquisition-actions")
 errors << "Mint Pro must not invent a version or release" if mint_pro_html.match?(/<dt>(?:Version|Release)<\/dt>/)
 errors << "Mint Pro must not expose an invented publication date" if mint_pro_html.include?("datePublished")
 %w[What\ it\ is Why\ it\ exists What\ makes\ it\ different Where\ it\ is\ now].each do |heading|
@@ -304,8 +308,9 @@ errors << "Observatory canonical mobile v003 source missing" unless observatory_
 errors << "Observatory superseded desktop v001 must not be used" if observatory_html.include?("FMD_SCENE_OBSERVATORY_BASE_DESKTOP_DEFAULT_v001.png")
 errors << "Observatory superseded mobile v002 must not be used" if observatory_html.include?("FMD_SCENE_OBSERVATORY_BASE_MOBILE_DEFAULT_v002.png")
 errors << "Observatory current observation must use the stewardship essay" unless observatory_html.include?("Read the current observation: What I Chose to Do With the Time I Have Left")
-errors << "Observatory must expose all four canonical forms" unless observatory_html.scan(/class="surface-card">\s*<h3>(?:Essays|Discoveries|Field Notes|Workshop Notes)<\/h3>/).length == 4
-errors << "Observatory scene must expose four forms, archive, and return" unless observatory_html.scan(/class="observatory-hotspot observatory-hotspot--/).length == 6
+errors << "Observatory must give primary emphasis only to populated forms" unless observatory_html.scan(/class="surface-card">\s*<h3>Essays<\/h3>/).length == 1 && observatory_html.scan(/class="surface-card">\s*<h3>(?:Discoveries|Field Notes|Workshop Notes)<\/h3>/).empty?
+errors << "Observatory must preserve empty form types quietly" unless %w[Discoveries Field\ Notes Workshop\ Notes].all? { |label| observatory_html.include?("<strong>#{label}</strong>") }
+errors << "Observatory scene must expose populated forms, archive, and return" unless observatory_html.scan(/class="observatory-hotspot observatory-hotspot--/).length == 3
 errors << "Observatory must expose the three-essay constellation" unless observatory_html.scan(/class="observatory-card surface-card"/).length == 3
 errors << "Observatory publication boundary missing" unless observatory_html.include?("When a question needs formal evidence and examination, it belongs on the Architecture Wall")
 errors << "Architecture Wall warrant leaked into Observatory as a positive state" if observatory_html.match?(/(?:confidence|AEG warrant)\s*[:=]\s*(?:supported|verified|high|canonical)/i)
@@ -344,17 +349,18 @@ errors << "Outfitters desktop source missing" unless outfitters_html.include?("F
 errors << "Outfitters mobile source missing" unless outfitters_html.include?("FMD_SCENE_EXPLOREROUTFITTERS_BASE_MOBILE_DEFAULT_v002.png")
 errors << "Outfitters scene must expose publications, tools, availability, and return" unless outfitters_html.scan(/class="outfitters-hotspot outfitters-hotspot--/).length == 4
 errors << "Outfitters return threshold missing" unless outfitters_html.include?("aria-label=\"Return to the Main Studio\"")
-errors << "Outfitters must derive exactly two discovery listings" unless outfitters_html.scan(/class="outfitters-listing surface-card"/).length == 2
+errors << "Outfitters must derive exactly three discovery listings" unless outfitters_html.scan(/class="outfitters-listing surface-card"/).length == 3
 errors << "Volume I identity duplicated or detached from Library" unless outfitters_html.include?("href=\"/library/architecture-series/the-architecture-of-being-human-volume-i/\"") && outfitters_html.include?("<dd>Library</dd>")
 errors << "Mint Pro identity duplicated or detached from Workshop" unless outfitters_html.include?("href=\"/workshop/mint-pro/\"") && outfitters_html.include?("<dd>Workshop</dd>")
+errors << "Personal Architecture Map is missing from Outfitters" unless outfitters_html.include?("href=\"/workshop/personal-architecture-map/\"") && outfitters_html.include?("<dd>Workshop</dd>")
 approved_amazon_url = "https://www.amazon.com/dp/B0HHSQT83Z/ref=cm_sw_r_as_gl_api_gl_i_HFKAKNGJ9HFXSDVK871C?linkCode=ml1&amp;tag=fluxmintdigit-20&amp;linkId=f4e6faba26d8121b4b4525d9c0358199&amp;gaOptInStatus=true"
 amazon_disclosure = "As an Amazon Associate, FluxMintDigital earns from qualifying purchases."
 errors << "Outfitters approved Amazon acquisition action missing or duplicated" unless outfitters_html.scan(approved_amazon_url).length == 1
 errors << "Outfitters Amazon action must use external-link security and affiliate semantics" unless outfitters_html.match?(/href="#{Regexp.escape(approved_amazon_url)}" target="_blank" rel="external noopener sponsored"/)
 errors << "Outfitters Amazon Associates disclosure missing or duplicated" unless outfitters_html.scan(amazon_disclosure).length == 1
-errors << "Outfitters availability summary did not reflect the approved channel" unless outfitters_html.include?("Real ways to take something with you")
+errors << "Outfitters availability grouping is missing" unless outfitters_html.include?("Available to take") && outfitters_html.include?("Not available yet")
 errors << "Outfitters environmental inventory boundary missing" unless outfitters_html.include?("only the items listed below are actually available through the Studio")
-errors << "Outfitters contains fabricated commerce" if outfitters_html.match?(/(?:google play|etsy|fake discount|limited time|only \d+ left|\$\d)/i)
+errors << "Outfitters contains fabricated commerce" if outfitters_html.match?(/(?:google play|etsy|fake discount|limited time|only \d+ left)/i)
 
 volume_html = SITE.join("library/architecture-series/the-architecture-of-being-human-volume-i/index.html").read
 errors << "Volume I approved Amazon acquisition action missing or duplicated" unless volume_html.scan(approved_amazon_url).length == 1

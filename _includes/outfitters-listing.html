@@ -1,6 +1,6 @@
 {% assign item = include.artifact %}
 {% assign availability = site.data.availability.records | where: 'artifact', item.artifact_id | first %}
-<article class="outfitters-listing surface-card" id="outfitters-{{ item.canonical_room }}">
+<article class="outfitters-listing surface-card" id="outfitters-{{ item.artifact_id }}">
   {% if item.cover %}{% capture outfitters_cover_alt %}Cover of {{ item.title }}{% endcapture %}{% include artifact-cover.html artifact=item alt=outfitters_cover_alt loading='lazy' sizes='(max-width: 767px) 6rem, 8rem' %}{% endif %}
   <div>
     <p class="semantic-kicker">{{ item.artifact_type }} · {{ item.canonical_room | replace: '-', ' ' | capitalize }}</p>

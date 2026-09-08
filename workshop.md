@@ -9,35 +9,22 @@ workspace_title: Build in the Workshop
 {% include workshop-scene.html %}
 
 <div class="workshop-orientation container">
-  <section id="workshop-current-build" aria-labelledby="workshop-current-heading">
+  <section id="workshop-applications" aria-labelledby="workshop-current-heading">
     <p class="semantic-kicker">On the workbench</p>
-    <h2 id="workshop-current-heading">Current Build</h2>
-    <p>What DJ is actively shaping in the Workshop right now.</p>
-    <div class="artifact-list">
-      {% assign current_build_placements = site.data.surface_placements | where: 'surface', 'workshop-current-build' | sort: 'order' %}
-      {% for placement in current_build_placements %}
-        {% assign current_build = site.artifacts | where: 'artifact_id', placement.artifact | first %}
-        {% if current_build and current_build.visibility == 'public' %}{% include artifact-summary.html artifact=current_build %}{% endif %}
-      {% endfor %}
-    </div>
-  </section>
-
-  <section id="workshop-applications" aria-labelledby="workshop-applications-heading">
-    <p class="semantic-kicker">Applications</p>
-    <h2 id="workshop-applications-heading">Things you can use</h2>
-    <p>Applications and tools that have grown from Studio ideas into working things.</p>
+    <h2 id="workshop-current-heading">Applications taking shape</h2>
+    <p>Work in progress—real applications, but not release or availability promises.</p>
     <div class="artifact-list">
       {% assign application_placements = site.data.surface_placements | where: 'surface', 'workshop-applications' | sort: 'order' %}
       {% for placement in application_placements %}
         {% assign application = site.artifacts | where: 'artifact_id', placement.artifact | first %}
-        {% if application and application.visibility == 'public' %}{% include artifact-summary.html artifact=application %}{% endif %}
+        {% if application and application.visibility == 'public' and application.lifecycle == 'on_the_workbench' %}{% include artifact-summary.html artifact=application %}{% endif %}
       {% endfor %}
     </div>
   </section>
 
   <section id="workshop-tool-access" aria-labelledby="workshop-tools-heading">
-    <p class="semantic-kicker">Curated workbench</p>
-    <h2 id="workshop-tools-heading">Tools, instruments, and making experiments</h2>
+    <p class="semantic-kicker">Released instruments</p>
+    <h2 id="workshop-tools-heading">Things ready to use</h2>
     <p>Structured instruments for looking more closely at a choice and the larger architecture around it.</p>
     <div class="artifact-list">
       {% assign instrument_placements = site.data.surface_placements | where: 'surface', 'workshop-instruments' | sort: 'order' %}

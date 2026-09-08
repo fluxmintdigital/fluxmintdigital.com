@@ -7,6 +7,7 @@ tags: ["research", "making", "infrastructure", "observatory"]
 permalink: /the-garage-im-trying-to-build/
 constellation: stewardship-stepping-stones-garage
 constellation_order: 3
+same_date_order: 3
 ---
 
 Behind my house is an old metal garage.  

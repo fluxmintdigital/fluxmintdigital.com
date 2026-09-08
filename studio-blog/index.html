@@ -13,7 +13,10 @@ permalink: /studio-blog/
     </div>
     <div class="posts-grid">
       {% assign studio_posts = site.posts | where: 'visibility', 'public' %}
-      {% for post in studio_posts %}
+      {% assign studio_post_dates = studio_posts | group_by_exp: 'post', "post.date | date: '%Y-%m-%d'" %}
+      {% for date_group in studio_post_dates %}
+      {% assign same_date_posts = date_group.items | sort: 'same_date_order' %}
+      {% for post in same_date_posts %}
       <article class="post-card" data-artifact-id="{{ post.artifact_id | default: post.slug }}">
         <div class="post-card-body">
           <span class="post-card-category">{{ post.artifact_type }}</span>
@@ -25,6 +28,7 @@ permalink: /studio-blog/
           </div>
         </div>
       </article>
+      {% endfor %}
       {% endfor %}
       {% if studio_posts.size == 0 %}
       <div class="empty-archive">

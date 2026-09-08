@@ -84,6 +84,9 @@ layout: default
     </section>
     {% endif %}
   {% endif %}
+  {% unless page.canonical_room == 'architecture-wall' %}
+    {% include artifact-contextual-relationships.html artifact_id=page.artifact_id %}
+  {% endunless %}
   <nav class="relationship-exits" aria-label="Continue exploring">
     {% if artifact_room %}{% include relationship-link.html url=artifact_room.route type='Home Room' label=artifact_room.name %}{% endif %}
     {% include relationship-link.html url='/studio/' type='Return' label='Main Studio' %}

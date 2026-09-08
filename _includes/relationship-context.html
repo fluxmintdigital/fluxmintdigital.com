@@ -1,0 +1,11 @@
+{% case include.type %}
+{% when 'companion_to' %}A companion path into related questions, designed to stand on its own.
+{% when 'expands' %}Carries this work into a wider structure without replacing it.
+{% when 'explains' %}An authored explanation of the connected work.
+{% when 'derived_from' %}Developed from the connected work while retaining its own identity.
+{% when 'precedes' %}Comes before the connected piece in an authored reading sequence.
+{% when 'belongs_to' %}Keeps this work in its established series lineage.
+{% when 'authored_by' %}Identifies the person responsible for the authored work.
+{% when 'built_by' %}Identifies the person responsible for building the work.
+{% else %}A connection maintained in the Studio’s relationship map.
+{% endcase %}

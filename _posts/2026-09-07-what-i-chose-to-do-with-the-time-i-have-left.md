@@ -7,6 +7,7 @@ tags: ["stewardship", "creation", "observatory"]
 permalink: /what-i-chose-to-do-with-the-time-i-have-left/
 constellation: stewardship-stepping-stones-garage
 constellation_order: 1
+same_date_order: 1
 ---
 
 There are periods of life when you think you are building something.  

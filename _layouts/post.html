@@ -42,7 +42,7 @@ layout: default
           {% if relationship_target_title and relationship_target_url %}
           <li>
             <a href="{{ relationship_target_url | relative_url }}">{{ relationship.type | replace: '_', ' ' | capitalize }}: {{ relationship_target_title }}</a>
-            <span>{% if relationship.provenance == 'editorial' %}An editorial connection.{% else %}An authored connection.{% endif %} The arrow shows direction, not cause and effect.</span>
+            <span>{% include relationship-context.html type=relationship.type %}</span>
           </li>
           {% endif %}
         {% endfor %}
@@ -52,7 +52,7 @@ layout: default
           {% if relationship_source and relationship_source.visibility == 'public' %}
           <li>
             <a href="{{ relationship_source.url | relative_url }}">{{ relationship.type | replace: '_', ' ' | capitalize }} this piece: {{ relationship_source.title }}</a>
-            <span>{% if relationship.provenance == 'editorial' %}An editorial connection.{% else %}An authored connection.{% endif %} The arrow shows direction, not cause and effect.</span>
+            <span>{% include relationship-context.html type=relationship.type %}</span>
           </li>
           {% endif %}
         {% endfor %}

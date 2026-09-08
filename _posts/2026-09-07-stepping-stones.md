@@ -7,6 +7,7 @@ tags: ["curiosity", "making", "infrastructure", "observatory"]
 permalink: /stepping-stones/
 constellation: stewardship-stepping-stones-garage
 constellation_order: 2
+same_date_order: 2
 ---
 
 There is a stream I keep imagining.  

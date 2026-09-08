@@ -18,8 +18,16 @@
         <div class="scene-panel__content">
           <p class="semantic-kicker">On the desk</p>
           <h2>What is happening now</h2>
+          {% assign current_observation = site.posts | where: 'url', site.data.observatory.current_observation | first %}
           {% assign now_placements = site.data.surface_placements | where: 'surface', 'studio-desk-now' | sort: 'order' %}
           <div class="scene-panel__items">
+          {% if current_observation and current_observation.visibility == 'public' %}
+            <article>
+              <p>Current observation</p>
+              <h3><a href="{{ current_observation.url | relative_url }}">{{ current_observation.title }}</a></h3>
+              {% include status-indicator.html kind='lifecycle' value=current_observation.lifecycle %}
+            </article>
+          {% endif %}
           {% for placement in now_placements limit: 5 %}
             {% assign artifact = site.artifacts | where: 'artifact_id', placement.artifact | first %}
             {% if artifact and artifact.visibility == 'public' %}
