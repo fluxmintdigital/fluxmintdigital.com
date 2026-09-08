@@ -41,6 +41,7 @@ required_routes = %w[
   /what-i-chose-to-do-with-the-time-i-have-left/
   /stepping-stones/
   /the-garage-im-trying-to-build/
+  /when-the-studio-started-talking-back/
   /studio-blog/
 ]
 
@@ -451,7 +452,8 @@ errors << "Unreleased-application SEO invented a date" if unreleased_seo_html.ma
 
 archive_html = SITE.join("studio-blog/index.html").read
 errors << "Observatory archive must identify chronology as a history view" unless archive_html.include?("Browse Observatory pieces from newest to oldest")
-errors << "Observatory archive must contain all public posts" unless archive_html.scan(/class="post-card"/).length == 23
+expected_public_post_count = ROOT.glob("_posts/*.md").length
+errors << "Observatory archive must contain all public posts" unless archive_html.scan(/class="post-card"/).length == expected_public_post_count
 archive_dates = archive_html.scan(/<time datetime="([^"]+)"/).flatten
 errors << "Observatory archive is not reverse chronological" unless archive_dates == archive_dates.sort.reverse
 

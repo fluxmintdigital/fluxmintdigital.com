@@ -191,3 +191,28 @@
   target: why-we-create
   importance: supporting
   provenance: editorial
+- source: when-the-studio-started-talking-back
+  type: companion_to
+  target: building-a-studio-instead-of-a-brand
+  importance: primary
+  provenance: editorial
+- source: when-the-studio-started-talking-back
+  type: companion_to
+  target: behind-the-studio
+  importance: primary
+  provenance: editorial
+- source: when-the-studio-started-talking-back
+  type: companion_to
+  target: nothing-meaningful-is-built-overnight
+  importance: supporting
+  provenance: editorial
+- source: when-the-studio-started-talking-back
+  type: companion_to
+  target: stepping-stones
+  importance: primary
+  provenance: editorial
+- source: when-the-studio-started-talking-back
+  type: companion_to
+  target: why-we-create
+  importance: supporting
+  provenance: editorial

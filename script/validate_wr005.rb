@@ -54,7 +54,8 @@ errors << "Architecture book constellation heading missing" unless book.include?
 errors << "Architecture book constellation paths missing" unless book.include?("/workshop/choice-audit/") && book.include?("/workshop/personal-architecture-map/")
 errors << "Relationship Explorer lacks by-work mode" unless relationships.include?("data-relationship-work")
 errors << "Relationship Explorer lacks derived thread mode" unless relationships.include?("data-relationship-thread")
-errors << "Relationship Explorer ledger changed" unless relationships.scan("data-relationship-record").length == 37
+canonical_relationship_count = YAML.safe_load_file(root.join("_data/relationships.yml")).length
+errors << "Relationship Explorer diverged from the canonical graph" unless relationships.scan("data-relationship-record").length == canonical_relationship_count
 errors << "Zero-count Observatory forms remain primary cards" if observatory.match?(/class="surface-card">\s*<h3>(?:Discoveries|Field Notes|Workshop Notes)<\/h3>/)
 errors << "Meet DJ Observatory continuation missing" unless meet_dj.include?('href="/observatory/">Read from the Observatory</a>')
 
@@ -71,4 +72,4 @@ site.glob("**/*.html").each do |path|
 end
 
 abort errors.join("\n") unless errors.empty?
-puts "WR-005 valid: truthful acquisition/lifecycle grouping, deterministic Observatory order, four-item Desk, contextual constellations, and one 37-record relationship graph."
+puts "WR-005 valid: truthful acquisition/lifecycle grouping, deterministic Observatory order, four-item Desk, contextual constellations, and one #{canonical_relationship_count}-record relationship graph."
