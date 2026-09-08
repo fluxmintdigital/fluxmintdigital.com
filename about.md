@@ -69,5 +69,5 @@ FluxMintDigital grew from that question — not to provide every answer, but to 
 You'll notice an explorer appears throughout this studio — backwards hat, blue hoodie, clipboard, flashlight, always recognizable. He's a companion, never a guru. He explores alongside visitors rather than lecturing them, because curiosity belongs to everyone.
 
 <div class="room-series-grid" markdown="0">
-  <div class="room-series-card"><h3>Contact</h3><p><a href="mailto:fluxmintdigital@gmail.com" class="link-btn">fluxmintdigital@gmail.com</a></p></div>
+  <div class="room-series-card"><h3>Contact</h3><p><a href="mailto:dj@fluxmintdigital.com" class="link-btn">dj@fluxmintdigital.com</a></p></div>
 </div>

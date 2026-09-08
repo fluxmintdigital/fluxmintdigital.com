@@ -59,7 +59,7 @@ content_data:
     badge: Overview
     body: 'Take a moment to ask yourself one question: what am I genuinely hoping to understand? You don''t need a perfect answer. You simply need a place to begin. That''s enough.'
     links:
-    - href: mailto:fluxmintdigital@gmail.com
+    - href: mailto:dj@fluxmintdigital.com
       label: Begin the Exploration →
 prev_href: /science/
 prev_label: The Architecture Wall
@@ -147,5 +147,5 @@ Builders. Creators. Educators. Founders. Teams. Students. Curious people. Everyo
 - General questions
 
 <div class="room-series-grid" markdown="0">
-  <div class="room-series-card"><h3>Email</h3><p><a href="mailto:fluxmintdigital@gmail.com" class="link-btn">fluxmintdigital@gmail.com</a></p></div>
+  <div class="room-series-card"><h3>Email</h3><p><a href="mailto:dj@fluxmintdigital.com" class="link-btn">dj@fluxmintdigital.com</a></p></div>
 </div>

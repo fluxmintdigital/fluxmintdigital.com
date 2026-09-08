@@ -467,11 +467,25 @@ errors << "Choice Audit released-use wording missing" unless choice_html.include
 
 meeting_handoff = meeting_html[/<div class="meeting-human-handoff">.*?<\/div>/m].to_s
 errors << "Meeting Table human handoff missing" unless meeting_handoff.include?("Ready to bring it to the table?") && meeting_handoff.include?("This worksheet has not been sent and stays on this device")
-errors << "Meeting Table handoff must use only the existing public contact destination" unless meeting_handoff.include?('href="mailto:fluxmintdigital@gmail.com"')
+errors << "Meeting Table handoff must use only the canonical public contact destination" unless meeting_handoff.include?('href="mailto:dj@fluxmintdigital.com"')
 errors << "Meeting Table handoff must not serialize worksheet data" if meeting_handoff.match?(/mailto:[^"']*[?&](?:subject|body)=|(?:problem|outcome|constraints)=/i)
 errors << "Meeting Table review control must be inert until its local controller is active" unless meeting_html.match?(/type="submit"[^>]*data-meeting-review(?:="")?[^>]*disabled(?:="")?/)
 meeting_controller = SITE.join("assets/js/meeting-table-intake.js").read
 errors << "Meeting Table local controller does not activate the review control" unless meeting_controller.include?("reviewButton.disabled = false")
+
+canonical_contact = "dj@fluxmintdigital.com"
+studio_data = YAML.safe_load_file(ROOT.join("_data/studio.yml"), aliases: true)
+errors << "Canonical public contact email changed or is missing" unless studio_data.dig("owner", "email") == canonical_contact
+html_files = Dir[SITE.join("**/*.html")]
+errors << "Superseded public Gmail address remains in generated HTML" if html_files.any? { |path| File.read(path).include?("fluxmintdigital@gmail.com") }
+html_files.each do |path|
+  File.read(path).scan(/href=["']mailto:([^"']+)["']/i).flatten.each do |destination|
+    errors << "Unexpected or parameterized mailto destination in #{path.sub(SITE.to_s + "/", "")}" unless destination == canonical_contact
+  end
+end
+errors << "Meet DJ direct email path missing" unless dj_html.include?(%Q(href="mailto:#{canonical_contact}">Email DJ</a>))
+errors << "Meet DJ collaboration path missing" unless dj_html.include?(%Q(href="/meeting-table/">Bring a problem to the Meeting Table</a>))
+errors << "Global footer direct-email label missing" unless File.read(SITE.join("index.html")).include?(%Q(href="mailto:#{canonical_contact}">Email DJ</a>))
 
 css = SITE.join("assets/css/canonical.css").read
 errors << "Reduced-motion contract missing" unless css.include?("prefers-reduced-motion:reduce")

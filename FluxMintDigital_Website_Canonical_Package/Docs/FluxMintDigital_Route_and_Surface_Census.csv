@@ -33,5 +33,5 @@ route_or_destination,type,source,layout_or_generation,surface,visual_asset,navig
 /feed.xml,generated,jekyll-feed plugin,generated,Atom feed,none,implicit,_config.yml:15-18;_layouts/default.html:14
 /sitemap.xml,generated,jekyll-sitemap plugin,generated,XML sitemap,none,implicit,_config.yml:15-18
 https://fluxmintdigital.github.io/,external destination,blog.md,n/a,Work-at-Home Equipment Blog,n/a,"hotspot panel and supplement links",blog.md:38-39;blog.md:74
-mailto:fluxmintdigital@gmail.com,external action,"default.html;about.md;services.md",n/a,email client,n/a,contact links,_layouts/default.html:70;about.md:68;services.md:58;services.md:146
+mailto:dj@fluxmintdigital.com,external action,"default.html;about.md;services.md",n/a,email client,n/a,contact links,_layouts/default.html:72;about.md:72;services.md:62;services.md:150
 #,placeholder destination,"default.html;store.md",n/a,"Newsletter; Amazon KDP; Etsy; Google Play",n/a,"no navigation; returns/top behavior browser-dependent",_layouts/default.html:69;store.md:37;store.md:50;store.md:64-65

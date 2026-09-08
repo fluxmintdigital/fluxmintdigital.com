@@ -10,6 +10,7 @@ owner:
   id: dj-boswell
   name: D.J. Boswell
   public_name: DJ Boswell
+  email: dj@fluxmintdigital.com
   roles:
     - author
     - builder

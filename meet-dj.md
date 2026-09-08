@@ -39,5 +39,5 @@ permalink: /meet-dj/
     <p>FluxMintDigital is this Studio. ForgeSpark Studios is a sibling studio with its own identity and work.</p>
   </section>
 
-  <nav class="relationship-exits" aria-label="Meet DJ pathways"><a href="mailto:fluxmintdigital@gmail.com">Contact DJ</a><a href="{{ '/observatory/' | relative_url }}">Read from the Observatory</a><a href="{{ '/library/' | relative_url }}">Authored work</a><a href="{{ '/workshop/' | relative_url }}">Built work</a><a href="{{ '/meeting-table/' | relative_url }}">Collaborate</a><a href="{{ '/studio/' | relative_url }}">Return to Main Studio</a></nav>
+  <nav class="relationship-exits" aria-label="Meet DJ pathways"><a href="mailto:{{ site.data.studio.owner.email | escape }}">Email DJ</a><a href="{{ '/meeting-table/' | relative_url }}">Bring a problem to the Meeting Table</a><a href="{{ '/observatory/' | relative_url }}">Read from the Observatory</a><a href="{{ '/library/' | relative_url }}">Authored work</a><a href="{{ '/workshop/' | relative_url }}">Built work</a><a href="{{ '/studio/' | relative_url }}">Return to Main Studio</a></nav>
 </article>
