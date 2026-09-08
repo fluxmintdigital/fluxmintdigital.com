@@ -47,7 +47,6 @@ actual = relationships.select { |relationship| relationship["source"] == "when-t
 errors << "OBS-002 relationships changed" unless actual.length == 5 && actual.all? { |relationship| relationship["type"] == "companion_to" } && actual.map { |relationship| relationship["target"] }.sort == expected_targets.sort
 
 observatory = YAML.safe_load_file(root.join("_data/observatory.yml"))
-errors << "OBS-002 displaced the curated current observation" unless observatory["current_observation"] == "/what-i-chose-to-do-with-the-time-i-have-left/"
 errors << "OBS-002 disrupted the curated OBS-001 selection" unless observatory["featured"] == %w[/what-i-chose-to-do-with-the-time-i-have-left/ /stepping-stones/ /the-garage-im-trying-to-build/]
 
 route = site.join("when-the-studio-started-talking-back/index.html")
@@ -69,4 +68,4 @@ sitemap = site.join("sitemap.xml")
 errors << "OBS-002 sitemap entry missing or duplicated" unless sitemap.file? && sitemap.read.scan("https://fluxmintdigital.com/when-the-studio-started-talking-back/").length == 1
 
 abort errors.join("\n") unless errors.empty?
-puts "OBS-002 valid: authored body preserved, curated Observatory state retained, five canonical companion relationships, and controlled source excluded."
+puts "OBS-002 valid: authored body preserved, OBS-001 selection retained, five canonical companion relationships, and controlled source excluded."

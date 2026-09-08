@@ -44,7 +44,7 @@ archive_positions = [
 errors << "Same-date Observatory order changed" unless archive_positions.all? && archive_positions == archive_positions.sort
 
 desk = studio[/<div class="scene-panel__items">.*?<\/div>\s*<\/div>\s*<\/details>/m].to_s
-desk_titles = ["What I Chose to Do With the Time I Have Left", "The Choice Audit", "Everything Looks Different from the Other Side", "Mint Pro"]
+desk_titles = ["What Deserves the Right to Change the Work?", "The Choice Audit", "Everything Looks Different from the Other Side", "Mint Pro"]
 errors << "Desk curation changed" unless desk_titles.all? { |title| desk.include?(title) } && desk.scan("<article>").length == 4
 
 errors << "Workshop workbench grouping changed" unless workshop.include?("Applications taking shape") && workshop.include?("Mint Pro") && workshop.include?("BidMaster")

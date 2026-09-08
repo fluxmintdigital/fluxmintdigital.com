@@ -308,7 +308,7 @@ errors << "Observatory canonical desktop v002 source missing" unless observatory
 errors << "Observatory canonical mobile v003 source missing" unless observatory_html.include?("FMD_SCENE_OBSERVATORY_BASE_MOBILE_DEFAULT_v003.png")
 errors << "Observatory superseded desktop v001 must not be used" if observatory_html.include?("FMD_SCENE_OBSERVATORY_BASE_DESKTOP_DEFAULT_v001.png")
 errors << "Observatory superseded mobile v002 must not be used" if observatory_html.include?("FMD_SCENE_OBSERVATORY_BASE_MOBILE_DEFAULT_v002.png")
-errors << "Observatory current observation must use the stewardship essay" unless observatory_html.include?("Read the current observation: What I Chose to Do With the Time I Have Left")
+errors << "Observatory current observation must use OBS-003" unless observatory_html.include?("Read the current observation: What Deserves the Right to Change the Work?")
 errors << "Observatory must give primary emphasis only to populated forms" unless observatory_html.scan(/class="surface-card">\s*<h3>Essays<\/h3>/).length == 1 && observatory_html.scan(/class="surface-card">\s*<h3>(?:Discoveries|Field Notes|Workshop Notes)<\/h3>/).empty?
 errors << "Observatory must preserve empty form types quietly" unless %w[Discoveries Field\ Notes Workshop\ Notes].all? { |label| observatory_html.include?("<strong>#{label}</strong>") }
 errors << "Observatory scene must expose populated forms, archive, and return" unless observatory_html.scan(/class="observatory-hotspot observatory-hotspot--/).length == 3

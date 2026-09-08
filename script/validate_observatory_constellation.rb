@@ -60,7 +60,6 @@ end
 
 observatory = YAML.safe_load_file(ROOT.join("_data/observatory.yml"))
 expected_urls = records.map { |record| "/#{record[:slug]}/" }
-errors << "Current observation changed" unless observatory["current_observation"] == expected_urls.first
 errors << "Constellation reading order changed" unless observatory["featured"] == expected_urls
 
 relationships = YAML.safe_load_file(ROOT.join("_data/relationships.yml"))

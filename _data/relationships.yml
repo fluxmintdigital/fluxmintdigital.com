@@ -216,3 +216,43 @@
   target: why-we-create
   importance: supporting
   provenance: editorial
+- source: what-deserves-the-right-to-change-the-work
+  type: companion_to
+  target: architecture-of-being-human-volume-i
+  importance: primary
+  provenance: editorial
+- source: what-deserves-the-right-to-change-the-work
+  type: companion_to
+  target: when-the-studio-started-talking-back
+  importance: primary
+  provenance: editorial
+- source: what-deserves-the-right-to-change-the-work
+  type: companion_to
+  target: stepping-stones
+  importance: supporting
+  provenance: editorial
+- source: what-deserves-the-right-to-change-the-work
+  type: companion_to
+  target: why-we-create
+  importance: supporting
+  provenance: editorial
+- source: what-deserves-the-right-to-change-the-work
+  type: companion_to
+  target: the-architecture-of-everyday-decisions
+  importance: primary
+  provenance: editorial
+- source: what-deserves-the-right-to-change-the-work
+  type: companion_to
+  target: living-an-examined-life
+  importance: supporting
+  provenance: editorial
+- source: what-deserves-the-right-to-change-the-work
+  type: companion_to
+  target: choice-audit
+  importance: primary
+  provenance: editorial
+- source: what-deserves-the-right-to-change-the-work
+  type: authored_by
+  target: dj-boswell
+  importance: primary
+  provenance: authored
