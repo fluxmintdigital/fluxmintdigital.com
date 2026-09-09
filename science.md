@@ -36,8 +36,8 @@ content_data:
   architecture-wall:
     eyebrow: The wall
     title: Every visible outcome is supported by an invisible architecture.
-    badge: Architectural Thinking™
-    body: 'Architectural Thinking™ is the practice of understanding systems by exploring the structures that produce their behavior rather than focusing only on their visible outcomes. Whether examining a business, a creative project, or our own lives, the same question remains: what architecture produced this?'
+    badge: Architectural Thinking
+    body: 'Architectural Thinking is the practice of understanding systems by exploring the structures that produce their behavior rather than focusing only on their visible outcomes. Whether examining a business, a creative project, or our own lives, the same question remains: what architecture produced this?'
   desk-books:
     eyebrow: On the desk
     title: Featured Scientific Frameworks
@@ -63,9 +63,9 @@ next_href: /services/
 next_label: The Meeting Table
 ---
 
-## What Is Architectural Thinking™?
+## What Is Architectural Thinking?
 
-Architectural Thinking™ is the practice of understanding systems by exploring the structures that produce their behavior rather than focusing only on their visible outcomes. Whether we're examining a business, a creative project, a team, a learning process, or our own lives, the same question remains: **what architecture produced this?**
+Architectural Thinking is the practice of understanding systems by exploring the structures that produce their behavior rather than focusing only on their visible outcomes. Whether we're examining a business, a creative project, a team, a learning process, or our own lives, the same question remains: **what architecture produced this?**
 
 That question shifts attention away from symptoms and toward the relationships that generate them. When architecture becomes visible, better decisions naturally follow.
 

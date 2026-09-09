@@ -285,8 +285,8 @@ errors << "Architecture Wall canonical mobile v003 source missing" unless wall_h
 errors << "Architecture Wall superseded desktop v001 must not be used" if wall_html.include?("FMD_SCENE_ARCHITECTUREWALL_BASE_DESKTOP_DEFAULT_v001.png")
 errors << "Architecture Wall superseded mobile v002 must not be used" if wall_html.include?("FMD_SCENE_ARCHITECTUREWALL_BASE_MOBILE_DEFAULT_v002.png")
 errors << "Architecture Wall aperture control missing" unless wall_html.include?("class=\"wall-aperture-control\"")
-errors << "Architecture Wall scene must expose frameworks, programs, evidence, and return" unless wall_html.scan(/class="wall-hotspot wall-hotspot--/).length == 4
-errors << "Architecture Wall must expose exactly two approved public Frameworks" unless wall_html.scan(/class="artifact-summary surface-card artifact-summary--text-only"/).length == 2
+errors << "Architecture Wall scene must expose ways, methods, evidence, and return" unless wall_html.scan(/class="wall-hotspot wall-hotspot--/).length == 4
+errors << "Architecture Wall must expose one public way of thinking and one method" unless wall_html.scan(/class="artifact-summary surface-card artifact-summary--text-only"/).length == 2 && wall_html.include?("Way of Thinking") && wall_html.include?("Method")
 errors << "Architecture Wall must not invent a deeper application route" if wall_html.match?(/href="[^"]*architecture-wall-(?:app|application)|href="[^"]*research-ide/i)
 errors << "Architecture Wall must identify the absence of unsupported public research" unless wall_html.include?("No formal claims, evidence, experiments, contradictions, confidence assessments, or validity limits are ready for public display")
 errors << "Architecture Wall must state the canonicality boundary" unless wall_html.include?("Being part of the Studio’s current body of work does not make an idea scientifically true")
@@ -301,7 +301,7 @@ architectural_thinking_html = SITE.join("architecture-wall/frameworks/architectu
 objective_first_html = SITE.join("architecture-wall/frameworks/objective-first-architecture/index.html").read
 errors << "Architectural Thinking depth explanation missing" unless architectural_thinking_html.include?("What architecture produced this?") && architectural_thinking_html.include?("does not count as evidence for itself")
 errors << "Objective-First Architecture depth explanation missing" unless objective_first_html.include?("what you are genuinely trying to accomplish") && objective_first_html.include?("elegant answer to the wrong objective")
-errors << "Framework distinction missing" unless objective_first_html.include?("Architectural Thinking looks broadly") && objective_first_html.include?("the objective")
+errors << "Way-of-thinking/method distinction missing" unless objective_first_html.include?("Architectural Thinking looks broadly") && objective_first_html.include?("the objective")
 
 observatory_html = SITE.join("observatory/index.html").read
 errors << "Observatory canonical desktop v002 source missing" unless observatory_html.include?("FMD_SCENE_OBSERVATORY_BASE_DESKTOP_DEFAULT_v002.png")
@@ -399,8 +399,8 @@ errors << "Relationship Explorer is missing the Objective-First essay explanatio
 
 architectural_thinking_essay_html = SITE.join("what-is-architectural-thinking/index.html").read
 objective_first_essay_html = SITE.join("why-i-created-objective-first-architecture/index.html").read
-errors << "Architectural Thinking essay must expose its approved framework relationship" unless architectural_thinking_essay_html.include?('Explains: Architectural Thinking™') && architectural_thinking_essay_html.include?('href="/architecture-wall/frameworks/architectural-thinking/"')
-errors << "Objective-First essay must expose its approved framework relationship" unless objective_first_essay_html.include?('Explains: Objective-First Architecture™') && objective_first_essay_html.include?('href="/architecture-wall/frameworks/objective-first-architecture/"')
+errors << "Architectural Thinking essay must expose its approved intellectual-object relationship" unless architectural_thinking_essay_html.include?('Explains: Architectural Thinking') && architectural_thinking_essay_html.include?('href="/architecture-wall/frameworks/architectural-thinking/"')
+errors << "Objective-First essay must expose its approved method relationship" unless objective_first_essay_html.include?('Explains: Objective-First Architecture™') && objective_first_essay_html.include?('href="/architecture-wall/frameworks/objective-first-architecture/"')
 
 unavailable_html = SITE.join("unavailable/index.html").read
 errors << "Unavailable state conflates identity and channel" unless unavailable_html.include?("The work still has a home in the Studio even when there is nowhere to purchase or download it yet")

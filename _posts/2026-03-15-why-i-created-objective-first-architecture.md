@@ -56,7 +56,7 @@ Objective-First Architecture™ isn't really about architecture. It's about inte
 
 ## Continue Exploring…
 
-**[What Is Architectural Thinking™?]({{ '/what-is-architectural-thinking/' | relative_url }})**  
+**[What Is Architectural Thinking?]({{ '/what-is-architectural-thinking/' | relative_url }})**<br>
 The broader philosophy that gave rise to Objective-First Architecture™.
 
 **[The Difference Between Information and Understanding]({{ '/the-difference-between-information-and-understanding/' | relative_url }})**  

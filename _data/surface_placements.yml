@@ -54,14 +54,14 @@
   artifact: bidmaster
   role: application
   order: 2
-- surface: architecture-wall-frameworks
+- surface: architecture-wall-ways-of-thinking
   artifact: architectural-thinking
-  role: public_framework
+  role: public_reasoning_lens
   order: 1
-- surface: architecture-wall-frameworks
+- surface: architecture-wall-methods
   artifact: objective-first-architecture
-  role: public_framework
-  order: 2
+  role: operational_method
+  order: 1
 - surface: explorer-outfitters-discovery
   artifact: architecture-of-being-human-volume-i
   role: publication_discovery

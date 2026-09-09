@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Architecture Wall
-description: Frameworks, research programs, models, experiments, and evidence examined at FluxMintDigital.
+description: Ways of thinking, methods in use, research programs, experiments, and evidence examined at FluxMintDigital.
 permalink: /architecture-wall/
 canonical_room: architecture-wall
 workspace_title: Examine the Architecture
@@ -16,24 +16,37 @@ workspace_title: Examine the Architecture
     <p>Being part of the Studio’s current body of work does not make an idea scientifically true. A large, bright, or central object is not automatically more important or better supported.</p>
   </section>
 
-  <section id="architecture-wall-frameworks" aria-labelledby="wall-frameworks-heading">
-    <p class="semantic-kicker">Ways of thinking</p>
-    <h2 id="wall-frameworks-heading">Frameworks</h2>
-    <p>Frameworks help organize thought. They are not the same as working software, and they do not count as evidence for their own claims.</p>
+  <section id="architecture-wall-ways" aria-labelledby="wall-ways-heading">
+    <p class="semantic-kicker">Ways of Thinking</p>
+    <h2 id="wall-ways-heading">Ways to look beneath the surface</h2>
+    <p>Ways of thinking help organize inquiry. They are not the same as working software, and they do not count as evidence for their own claims.</p>
     <div class="artifact-list">
-      {% assign framework_placements = site.data.surface_placements | where: 'surface', 'architecture-wall-frameworks' | sort: 'order' %}
-      {% for placement in framework_placements %}
-        {% assign framework = site.artifacts | where: 'artifact_id', placement.artifact | first %}
-        {% if framework and framework.visibility == 'public' %}{% include artifact-summary.html artifact=framework %}{% endif %}
+      {% assign way_placements = site.data.surface_placements | where: 'surface', 'architecture-wall-ways-of-thinking' | sort: 'order' %}
+      {% for placement in way_placements %}
+        {% assign way = site.artifacts | where: 'artifact_id', placement.artifact | first %}
+        {% if way and way.visibility == 'public' %}{% include artifact-summary.html artifact=way %}{% endif %}
       {% endfor %}
     </div>
   </section>
 
-  <section id="architecture-wall-programs" aria-labelledby="wall-programs-heading">
-    <p class="semantic-kicker">Research programs</p>
-    <h2 id="wall-programs-heading">Research programs</h2>
-    <p>No research programs are ready to share here yet.</p>
+  <section id="architecture-wall-methods" aria-labelledby="wall-methods-heading">
+    <p class="semantic-kicker">Methods in Use</p>
+    <h2 id="wall-methods-heading">Methods for deliberate work</h2>
+    <div class="artifact-list">
+      {% assign method_placements = site.data.surface_placements | where: 'surface', 'architecture-wall-methods' | sort: 'order' %}
+      {% for placement in method_placements %}
+        {% assign method = site.artifacts | where: 'artifact_id', placement.artifact | first %}
+        {% if method and method.visibility == 'public' %}{% include artifact-summary.html artifact=method %}{% endif %}
+      {% endfor %}
+    </div>
   </section>
+
+  {% assign program_placements = site.data.surface_placements | where: 'surface', 'architecture-wall-research-programs' | sort: 'order' %}
+  {% if program_placements.size > 0 %}<section id="architecture-wall-programs" aria-labelledby="wall-programs-heading">
+    <p class="semantic-kicker">Research Programs</p>
+    <h2 id="wall-programs-heading">Research under formal examination</h2>
+    <div class="artifact-list">{% for placement in program_placements %}{% assign program = site.artifacts | where: 'artifact_id', placement.artifact | first %}{% if program and program.visibility == 'public' %}{% include artifact-summary.html artifact=program %}{% endif %}{% endfor %}</div>
+  </section>{% endif %}
 
   <section id="architecture-wall-evidence" aria-labelledby="wall-evidence-heading">
     <p class="semantic-kicker">Experiments and evidence</p>

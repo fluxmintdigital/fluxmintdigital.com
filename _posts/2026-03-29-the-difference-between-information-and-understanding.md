@@ -57,7 +57,7 @@ Perhaps that's why curiosity remains so important. Curiosity reminds us that lea
 **[Why I Created Objective-First Architecture™]({{ '/why-i-created-objective-first-architecture/' | relative_url }})**  
 See how clarity begins before solutions.
 
-**[What Is Architectural Thinking™?]({{ '/what-is-architectural-thinking/' | relative_url }})**  
+**[What Is Architectural Thinking?]({{ '/what-is-architectural-thinking/' | relative_url }})**<br>
 Explore the discipline that connects ideas through relationships.
 
 **[The Architecture of Learning]({{ '/the-architecture-of-learning/' | relative_url }})**  

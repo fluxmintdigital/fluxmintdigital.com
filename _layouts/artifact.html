@@ -23,7 +23,7 @@ layout: default
   </div>
   {% if page.canonical_room == 'architecture-wall' %}
   <aside class="research-boundary-note" aria-label="Research warrant boundary">
-    <strong>A Studio framework is not automatically a scientific finding.</strong>
+    <strong>A Studio {{ page.artifact_type | downcase }} is not automatically a scientific finding.</strong>
     <span>Its stage, placement, or appearance does not tell you how strongly any individual claim is supported.</span>
   </aside>
   {% assign artifact_relationships = site.data.relationships | where: 'source', page.artifact_id %}

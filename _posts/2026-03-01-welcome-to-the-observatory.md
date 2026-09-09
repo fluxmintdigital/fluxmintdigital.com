@@ -56,7 +56,7 @@ Thank you for stopping by. Whether this is your first visit or one of many to co
 
 ## Continue Exploring…
 
-**[What Is Architectural Thinking™?]({{ '/what-is-architectural-thinking/' | relative_url }})**  
+**[What Is Architectural Thinking?]({{ '/what-is-architectural-thinking/' | relative_url }})**<br>
 Discover the philosophy that quietly connects every room in the studio.
 
 **[What Does It Mean to Become an Explorer?]({{ '/what-does-it-mean-to-become-an-explorer/' | relative_url }})**  

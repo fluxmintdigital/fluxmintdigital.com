@@ -56,5 +56,5 @@ See how relationships transform isolated knowledge into meaningful understanding
 **[The Courage to Change Your Mind]({{ '/the-courage-to-change-your-mind/' | relative_url }})**  
 Discover why refining an idea is often a sign of progress rather than failure.
 
-**[What Is Architectural Thinking™?]({{ '/what-is-architectural-thinking/' | relative_url }})**  
+**[What Is Architectural Thinking?]({{ '/what-is-architectural-thinking/' | relative_url }})**<br>
 Explore how careful observation reveals structures that quietly connect many different fields.

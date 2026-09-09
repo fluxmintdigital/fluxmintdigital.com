@@ -56,5 +56,5 @@ Discover why purpose shaped every room before a single product was released.
 **[Welcome to the Observatory]({{ '/welcome-to-the-observatory/' | relative_url }})**  
 Return to where the journey begins.
 
-**[What Is Architectural Thinking™?]({{ '/what-is-architectural-thinking/' | relative_url }})**  
+**[What Is Architectural Thinking?]({{ '/what-is-architectural-thinking/' | relative_url }})**<br>
 The philosophy that quietly connects every part of the studio.
