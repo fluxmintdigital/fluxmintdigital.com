@@ -18,6 +18,13 @@ layout: default
     {% if page.cover %}<figure>{% capture artifact_cover_alt %}Cover of {{ page.title }}{% if page.sequence %}, Volume {{ page.sequence }}{% endif %}{% endcapture %}{% include artifact-cover.html artifact=page alt=artifact_cover_alt loading='eager' sizes='(max-width: 767px) 52vw, 20rem' %}<figcaption>{% if page.artifact_type == 'Book' %}Publication cover{% else %}Artifact cover{% endif %}</figcaption></figure>{% endif %}
     <div class="prose">
       {{ content }}
+      {% include inside-the-work.html artifact=page %}
+      {% if page.evidence_image %}
+      <figure class="artifact-evidence">
+        <img src="{{ page.evidence_image | relative_url }}" alt="{{ page.evidence_image_alt | escape }}" loading="lazy" decoding="async">
+        <figcaption>Current evidence from the work in progress.</figcaption>
+      </figure>
+      {% endif %}
       {% include acquisition-actions.html availability=artifact_availability %}
     </div>
   </div>

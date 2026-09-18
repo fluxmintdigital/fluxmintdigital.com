@@ -1,0 +1,12 @@
+{% assign representative = site.artifacts | where: 'artifact_id', include.record.artifact | first %}
+{% if representative and representative.visibility == 'public' %}
+<article class="representative-work surface-card">
+  {% if representative.cover %}{% include artifact-cover.html artifact=representative alt=representative.title loading='lazy' sizes='(max-width: 767px) 5rem, 8rem' %}{% elsif representative.evidence_image %}<img class="representative-work__evidence" src="{{ representative.evidence_image | relative_url }}" alt="{{ representative.evidence_image_alt | escape }}" loading="lazy" decoding="async">{% endif %}
+  <div>
+    <p class="semantic-kicker">{{ include.record.category }}</p>
+    <h3><a href="{{ representative.url | relative_url }}">{{ representative.title }}</a></h3>
+    <p>{{ include.record.description }}</p>
+    <a href="{{ representative.url | relative_url }}">{{ include.record.action }}</a>
+  </div>
+</article>
+{% endif %}

@@ -13,16 +13,19 @@ governance: canonical
 author_id: dj-boswell
 seo:
   type: Book
-cover: /assets/images/books/FMD_ARTIFACT_LIBRARY_WALKONTHEWILDSIDE_VOL01_COVER_768W_v001.webp
-cover_srcset:
-  - src: /assets/images/books/FMD_ARTIFACT_LIBRARY_WALKONTHEWILDSIDE_VOL01_COVER_480W_v001.webp
-    width: 480
-  - src: /assets/images/books/FMD_ARTIFACT_LIBRARY_WALKONTHEWILDSIDE_VOL01_COVER_768W_v001.webp
-    width: 768
-  - src: /assets/images/books/FMD_ARTIFACT_LIBRARY_WALKONTHEWILDSIDE_VOL01_COVER_1024W_v001.webp
-    width: 1024
-cover_width: 2944
-cover_height: 4096
+cover: /assets/images/books/FMD_ARTIFACT_LIBRARY_WALKONTHEWILDSIDE_VOL01_COVER_v002.jpg
+cover_width: 1800
+cover_height: 2700
+inside_work:
+  - image: /assets/images/artifacts/walk-on-the-wild-side/full-title.jpg
+    alt: "The full title page of Everything Looks Different From the Other Side — Volume I."
+    caption: "Title page"
+  - image: /assets/images/artifacts/walk-on-the-wild-side/contents.jpg
+    alt: "The contents page from Everything Looks Different From the Other Side — Volume I."
+    caption: "Contents"
+  - image: /assets/images/artifacts/walk-on-the-wild-side/dedication.jpg
+    alt: "A dedication page from Everything Looks Different From the Other Side — Volume I."
+    caption: "Dedication"
 permalink: /library/walk-on-the-wild-side/everything-looks-different-from-the-other-side-volume-i/
 ---
 

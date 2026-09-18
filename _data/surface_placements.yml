@@ -35,13 +35,19 @@
   role: recent_release
   order: 1
 - surface: studio-desk-now
-  artifact: everything-looks-different-from-the-other-side-volume-i
-  role: recent_release
+  artifact: architecture-series
+  series_id: architecture-series
+  role: current_published_volume
   order: 2
+- surface: studio-desk-now
+  artifact: walk-on-the-wild-side-series
+  series_id: walk-on-the-wild-side-series
+  role: current_published_volume
+  order: 3
 - surface: studio-desk-now
   artifact: mint-pro
   role: active_build
-  order: 3
+  order: 4
 - surface: workshop-current-build
   artifact: mint-pro
   role: active_build

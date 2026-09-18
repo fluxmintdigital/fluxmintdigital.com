@@ -205,6 +205,18 @@ current_builds.each do |placement|
   errors << "Workshop Current Build must be on the workbench" unless artifact && artifact["lifecycle"] == "on_the_workbench"
 end
 
+desk_series_placements = placements.select { |placement| placement["surface"] == "studio-desk-now" && placement["role"] == "current_published_volume" }
+expected_desk_series = {
+  "architecture-series" => "architecture-series",
+  "walk-on-the-wild-side-series" => "walk-on-the-wild-side-series"
+}
+actual_desk_series = desk_series_placements.to_h { |placement| [placement["series_id"], placement["artifact"]] }
+errors << "Main Studio Desk must have one independent current-published placement per active book series" unless actual_desk_series == expected_desk_series
+desk_series_placements.each do |placement|
+  published_members = artifacts.map(&:last).select { |artifact| artifact["series_id"] == placement["series_id"] && artifact["lifecycle"] == "published" }
+  errors << "Main Studio Desk series placement has no published member: #{placement['series_id']}" if published_members.empty?
+end
+
 assertion_kinds = research_contract.fetch("assertion_kinds", []).map { |kind| kind["id"] }
 errors << "AEG assertion kinds must be exactly alignment, equivalence, and generation" unless assertion_kinds == %w[alignment equivalence generation]
 research_rules = research_contract.fetch("rules", {})

@@ -9,6 +9,8 @@ lifecycle: under_examination
 visibility: public
 governance: canonical
 author_id: dj-boswell
+evidence_image: /assets/images/artifacts/bidmaster/evidence.jpg
+evidence_image_alt: "BidMaster software evidence from a current qualification and testing workspace."
 seo:
   type: SoftwareApplication
 permalink: /workshop/bidmaster/

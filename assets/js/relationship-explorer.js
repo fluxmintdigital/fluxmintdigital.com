@@ -39,4 +39,10 @@
     applyFilter("all", "");
     work.focus();
   });
+
+  const firstWork = [...work.options].find((option) => option.value);
+  if (firstWork) {
+    work.value = firstWork.value;
+    applyFilter("work", work.value);
+  }
 })();

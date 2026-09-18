@@ -148,7 +148,10 @@ errors << "Walk on the Wild Side Volume I availability must render available sta
 errors << "Walk on the Wild Side Volume I publication wording changed" unless wild_side_html.include?("Volume I is published and begins the Walk on the Wild Side With DJ series.")
 errors << "Walk on the Wild Side Volume I contains an unsupported timing promise" if wild_side_html.match?(/released soon|coming soon/i)
 errors << "Walk on the Wild Side Volume I series lineage missing" unless wild_side_html.include?("Part of Walk on the Wild Side With DJ")
-errors << "Walk on the Wild Side Volume I cover derivative missing" unless wild_side_html.include?("FMD_ARTIFACT_LIBRARY_WALKONTHEWILDSIDE_VOL01_COVER_768W_v001.webp")
+errors << "Walk on the Wild Side Volume I canonical cover missing" unless wild_side_html.include?("FMD_ARTIFACT_LIBRARY_WALKONTHEWILDSIDE_VOL01_COVER_v002.jpg")
+errors << "Walk on the Wild Side old active cover reference remains" if SITE.glob("**/*.html").any? { |path| path.read.include?("FMD_ARTIFACT_LIBRARY_WALKONTHEWILDSIDE_VOL01_COVER_768W_v001.webp") }
+errors << "Architecture book Inside the Work preview missing" unless volume_html.include?("/assets/images/artifacts/architecture-of-being-human/full-title.jpg")
+errors << "Wild Side Inside the Work preview missing" unless wild_side_html.include?("/assets/images/artifacts/walk-on-the-wild-side/contents.jpg")
 errors << "Walk on the Wild Side Volume I Amazon acquisition action missing or duplicated" unless wild_side_html.scan("https://amzn.to/4yESLkH").length == 1
 errors << "Walk on the Wild Side Volume I must not invent release or commerce facts" if wild_side_html.match?(/(?:amazon\.com|ISBN|\$\d|Publication date|Format)/i)
 
@@ -156,6 +159,7 @@ wild_side_series_html = SITE.join("library/walk-on-the-wild-side/index.html").re
 errors << "Walk on the Wild Side series must expose exactly one real volume" unless wild_side_series_html.scan(/class="artifact-summary surface-card/).length == 1
 errors << "Walk on the Wild Side series must link Volume I" unless wild_side_series_html.include?("/library/walk-on-the-wild-side/everything-looks-different-from-the-other-side-volume-i/")
 errors << "Walk on the Wild Side series must retain future-volume language" unless wild_side_series_html.include?("More volumes will appear here as the series grows")
+errors << "Walk on the Wild Side series must render its active public lifecycle" unless wild_side_series_html.include?('status-indicator__label">Active</span>')
 errors << "Library must expose Walk on the Wild Side Volume I" unless library_html.include?("/library/walk-on-the-wild-side/everything-looks-different-from-the-other-side-volume-i/")
 
 field_guide_html = SITE.join("library/dj-field-guide/the-dj-field-guide-to-matter-volume-i/index.html").read
@@ -276,8 +280,13 @@ errors << "Mint Pro unfinished device and layout boundaries missing" unless mint
 bidmaster_html = SITE.join("workshop/bidmaster/index.html").read
 errors << "BidMaster lifecycle or availability changed" unless bidmaster_html.include?('status-indicator__label">Under examination</span>') && bidmaster_html.include?("<dt>Availability</dt><dd>Not available yet</dd>")
 errors << "BidMaster public purpose missing" unless bidmaster_html.include?("local-first estimating workspace") && bidmaster_html.include?("independent contractors and small crews") && bidmaster_html.include?("Calculations are deterministic")
+errors << "BidMaster evidence image missing" unless bidmaster_html.include?("/assets/images/artifacts/bidmaster/evidence.jpg")
 errors << "BidMaster must not expose acquisition controls" if bidmaster_html.include?("acquisition-actions")
 errors << "BidMaster must not invent release or commerce claims" if bidmaster_html.match?(/(?:play\.google\.com|Play Store|\$\d|datePublished|Release date|Buy|Get BidMaster|\bAI\b|image[- ]analysis)/i)
+
+desk_items = studio_html[/<div class="scene-panel__items">.*?<\/div>\s*<\/div>\s*<\/details>/m].to_s
+errors << "Main Studio Desk must show both current published book series volumes" unless desk_items.include?("The Architecture of Being Human") && desk_items.include?("Everything Looks Different from the Other Side")
+errors << "Main Studio Desk must not expose a purchase CTA" if desk_items.match?(/(?:amazon|amzn\.to|Find it on)/i)
 
 wall_html = SITE.join("architecture-wall/index.html").read
 errors << "Architecture Wall canonical desktop v002 source missing" unless wall_html.include?("FMD_SCENE_ARCHITECTUREWALL_BASE_DESKTOP_DEFAULT_v002.png")

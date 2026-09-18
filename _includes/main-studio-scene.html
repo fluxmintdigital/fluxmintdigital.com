@@ -29,7 +29,12 @@
             </article>
           {% endif %}
           {% for placement in now_placements limit: 5 %}
-            {% assign artifact = site.artifacts | where: 'artifact_id', placement.artifact | first %}
+            {% if placement.series_id %}
+              {% assign published_members = site.artifacts | where: 'series_id', placement.series_id | where: 'lifecycle', 'published' | sort: 'sequence' %}
+              {% assign artifact = published_members | last %}
+            {% else %}
+              {% assign artifact = site.artifacts | where: 'artifact_id', placement.artifact | first %}
+            {% endif %}
             {% if artifact and artifact.visibility == 'public' %}
             <article>
               <p>{{ artifact.artifact_type }}</p>

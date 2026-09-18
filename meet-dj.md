@@ -27,6 +27,15 @@ permalink: /meet-dj/
     </div>
   </section>
 
+  <section aria-labelledby="dj-work-heading">
+    <p class="semantic-kicker">Representative work</p>
+    <h2 id="dj-work-heading">Follow the person into the work</h2>
+    <p class="dj-work-intro">A few current examples show how the same person moves between authorship, usable instruments, and software still under examination.</p>
+    <div class="representative-work-grid">
+      {% for record in site.data.studio.representative_work %}{% include representative-work-card.html record=record %}{% endfor %}
+    </div>
+  </section>
+
   <section class="surface-panel dj-identity-boundary" aria-labelledby="dj-explorer-heading">
     <p class="semantic-kicker">DJ and the Explorer</p>
     <h2 id="dj-explorer-heading">DJ is not replaced by the Explorer</h2>
@@ -41,3 +50,16 @@ permalink: /meet-dj/
 
   <nav class="relationship-exits" aria-label="Meet DJ pathways"><a href="mailto:{{ site.data.studio.owner.email | escape }}">Email DJ</a><a href="{{ '/meeting-table/' | relative_url }}">Bring a problem to the Meeting Table</a><a href="{{ '/observatory/' | relative_url }}">Read from the Observatory</a><a href="{{ '/library/' | relative_url }}">Authored work</a><a href="{{ '/workshop/' | relative_url }}">Built work</a><a href="{{ '/studio/' | relative_url }}">Return to Main Studio</a></nav>
 </article>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "{{ site.url }}/meet-dj/#person",
+  "name": "{{ site.data.studio.owner.public_name }}",
+  "url": "{{ site.url }}/meet-dj/",
+  "worksFor": {
+    "@id": "{{ site.url }}/#organization"
+  },
+  "jobTitle": "Author, builder, and collaborator"
+}
+</script>

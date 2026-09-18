@@ -25,3 +25,16 @@ identity:
 external_boundaries:
   omnishell_public: false
   forgespark_relationship: sibling-studio
+representative_work:
+  - artifact: architecture-of-being-human-volume-i
+    category: Published work
+    description: A published book examining the structures through which human identity and experience take shape.
+    action: Read in the Library
+  - artifact: choice-audit
+    category: Usable instrument
+    description: A browser-native reflection instrument for noticing what participated in a choice.
+    action: Use the Choice Audit
+  - artifact: bidmaster
+    category: Software under examination
+    description: A local-first estimating workspace currently undergoing qualification and testing.
+    action: Inspect BidMaster

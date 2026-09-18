@@ -44,8 +44,8 @@ archive_positions = [
 errors << "Same-date Observatory order changed" unless archive_positions.all? && archive_positions == archive_positions.sort
 
 desk = studio[/<div class="scene-panel__items">.*?<\/div>\s*<\/div>\s*<\/details>/m].to_s
-desk_titles = ["What Deserves the Right to Change the Work?", "The Choice Audit", "Everything Looks Different from the Other Side", "Mint Pro"]
-errors << "Desk curation changed" unless desk_titles.all? { |title| desk.include?(title) } && desk.scan("<article>").length == 4
+desk_titles = ["What Deserves the Right to Change the Work?", "The Choice Audit", "The Architecture of Being Human", "Everything Looks Different from the Other Side", "Mint Pro"]
+errors << "Desk curation changed" unless desk_titles.all? { |title| desk.include?(title) } && desk.scan("<article>").length == 5
 
 errors << "Workshop workbench grouping changed" unless workshop.include?("Applications taking shape") && workshop.include?("Mint Pro") && workshop.include?("BidMaster")
 errors << "Workshop released grouping changed" unless workshop.include?("Released instruments") && workshop.include?("The Choice Audit") && workshop.include?("The Personal Architecture Map")
@@ -72,4 +72,4 @@ site.glob("**/*.html").each do |path|
 end
 
 abort errors.join("\n") unless errors.empty?
-puts "WR-005 valid: truthful acquisition/lifecycle grouping, deterministic Observatory order, four-item Desk, contextual constellations, and one #{canonical_relationship_count}-record relationship graph."
+puts "WR-005 valid: truthful acquisition/lifecycle grouping, deterministic Observatory order, five-item Desk, contextual constellations, and one #{canonical_relationship_count}-record relationship graph."

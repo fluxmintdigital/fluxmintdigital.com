@@ -14,6 +14,16 @@ author_id: dj-boswell
 seo:
   type: Book
 cover: /FluxMintDigital_Website_Canonical_Package/Assets/source/FMD_SOURCE_LIBRARY_ARCHITECTUREOFBEINGHUMAN_VOL01_COVER_v001.png
+inside_work:
+  - image: /assets/images/artifacts/architecture-of-being-human/full-title.jpg
+    alt: "The full title page of The Architecture of Being Human — How We Become Ourselves."
+    caption: "Title page"
+  - image: /assets/images/artifacts/architecture-of-being-human/dedication-1.jpg
+    alt: "A dedication page from The Architecture of Being Human."
+    caption: "Dedication"
+  - image: /assets/images/artifacts/architecture-of-being-human/dedication-2.jpg
+    alt: "A second dedication page from The Architecture of Being Human."
+    caption: "Dedication"
 permalink: /library/architecture-series/the-architecture-of-being-human-volume-i/
 ---
 

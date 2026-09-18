@@ -1,0 +1,17 @@
+{% if include.artifact.inside_work %}
+<section class="inside-the-work" aria-labelledby="inside-the-work-heading">
+  <p class="semantic-kicker">Evidence from the Artifact</p>
+  <h2 id="inside-the-work-heading">Inside the work</h2>
+  <p class="inside-the-work__intro">A few pages from the physical book, shared so you can inspect the work itself.</p>
+  <div class="inside-the-work__grid">
+    {% for item in include.artifact.inside_work %}
+    <figure class="inside-the-work__item">
+      <a href="{{ item.image | relative_url }}" target="_blank" rel="noopener" aria-label="Open larger view: {{ item.alt | escape }}">
+        <img src="{{ item.image | relative_url }}" alt="{{ item.alt | escape }}" loading="lazy" decoding="async">
+      </a>
+      {% if item.caption %}<figcaption>{{ item.caption }}</figcaption>{% endif %}
+    </figure>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

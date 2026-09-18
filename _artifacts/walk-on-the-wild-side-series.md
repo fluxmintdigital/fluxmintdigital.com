@@ -4,7 +4,7 @@ title: Walk on the Wild Side With DJ
 description: A series exploring philosophy, psychology, science, and culture through humor, storytelling, and playful perspective shifts.
 artifact_type: Series
 canonical_room: library
-lifecycle: seed
+lifecycle: maintained
 visibility: public
 governance: canonical
 author_id: dj-boswell

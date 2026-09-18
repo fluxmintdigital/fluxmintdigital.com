@@ -21,6 +21,7 @@
   "@context": "https://schema.org",
   "@type": "Book",
   "name": {{ page.title | jsonify }},
+  {% if page.subtitle %}"alternateName": {{ page.subtitle | jsonify }},{% endif %}
   "description": {{ seo_description | jsonify }},
   "url": {{ seo_url | jsonify }},
   "author": {

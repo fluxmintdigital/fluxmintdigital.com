@@ -56,9 +56,25 @@ workspace_title: Notice from the Observatory
     <p>Topics offer another way to follow an idea across essays, discoveries, Field Notes, and Workshop Notes.</p>
     <ul class="topic-list">
       {% assign sorted_topics = site.tags | sort %}
-      {% for topic in sorted_topics %}<li><span>{{ topic[0] }}</span><small>{{ topic[1].size }} pieces</small></li>{% endfor %}
+      {% for topic in sorted_topics %}<li><span>{{ topic[0] }}</span><small>{{ topic[1].size }} {% if topic[1].size == 1 %}piece{% else %}pieces{% endif %}</small></li>{% endfor %}
     </ul>
   </section>
+
+  {% assign reading_edges = site.data.relationships | where: 'type', 'precedes' %}
+  {% if reading_edges.size > 0 %}
+  <section class="observatory-reading-path" aria-labelledby="observatory-reading-path-heading">
+    <p class="semantic-kicker">A connected sequence</p>
+    <h2 id="observatory-reading-path-heading">Follow the work as it develops</h2>
+    <p>The Studio keeps a few pieces in sequence when one line of thought leads into the next.</p>
+    <ol>
+      {% for relationship in reading_edges %}
+        {% assign path_source = site.posts | where: 'slug', relationship.source | first %}
+        {% assign path_target = site.posts | where: 'slug', relationship.target | first %}
+        {% if path_source and path_target %}<li><a href="{{ path_source.url | relative_url }}">{{ path_source.title }}</a><span aria-hidden="true"> → </span><a href="{{ path_target.url | relative_url }}">{{ path_target.title }}</a></li>{% endif %}
+      {% endfor %}
+    </ol>
+  </section>
+  {% endif %}
 
   <nav class="relationship-exits" aria-label="Observatory exits">
     <a href="{{ '/library/' | relative_url }}">Read more in the Library</a>

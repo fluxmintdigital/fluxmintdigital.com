@@ -25,7 +25,11 @@
       article.className = 'surface-card search-result';
       var meta = document.createElement('p');
       meta.className = 'semantic-kicker';
-      meta.textContent = record.type + ' · ' + record.room.replaceAll('-', ' ');
+      var context = [record.type, record.room.replaceAll('-', ' ')];
+      if (record.status) context.push(record.status.replaceAll('_', ' '));
+      if (record.availability) context.push(record.availability.replaceAll('_', ' '));
+      if (record.series) context.push(record.series.replaceAll('-', ' '));
+      meta.textContent = context.join(' · ');
       var heading = document.createElement('h2');
       var link = document.createElement('a');
       link.href = record.url;

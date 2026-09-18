@@ -54,8 +54,10 @@ workspace_title: Examine the Architecture
     <p>No formal claims, evidence, experiments, contradictions, confidence assessments, or validity limits are ready for public display. The papers and diagrams in the room are atmosphere, not research findings.</p>
   </section>
 
-  {% include aeg-assertion-kinds.html %}
-
+  <details class="wall-governance surface-panel">
+    <summary>How examination works</summary>
+    <p>The Wall keeps inquiry, evidence, confidence, and review separate so an idea can be inspected without being dressed up as a finding.</p>
+    {% include aeg-assertion-kinds.html %}
   <details class="research-state-axes surface-panel">
     <summary id="research-state-heading">How research states stay separate</summary>
     <dl>
@@ -68,6 +70,7 @@ workspace_title: Examine the Architecture
       <div><dt>Working condition</dt><dd>Whether a tool is running, separate from whether its ideas are true.</dd></div>
       <div><dt>Origins and connections</dt><dd>Where something came from and how it relates to other work, without mistaking direction for causation.</dd></div>
     </dl>
+  </details>
   </details>
 
   <nav class="relationship-exits" aria-label="Architecture Wall exits">
