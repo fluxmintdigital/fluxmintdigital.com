@@ -34,7 +34,11 @@ records:
     channels: []
   - artifact: everything-looks-different-from-the-other-side-volume-i
     status: available
-    channels: []
+    channels:
+      - id: amazon
+        name: Amazon
+        action: Find it on Amazon
+        url: "https://amzn.to/4yESLkH"
   - artifact: architecture-of-being-human-volume-i
     status: available
     channels:

@@ -149,7 +149,7 @@ errors << "Walk on the Wild Side Volume I publication wording changed" unless wi
 errors << "Walk on the Wild Side Volume I contains an unsupported timing promise" if wild_side_html.match?(/released soon|coming soon/i)
 errors << "Walk on the Wild Side Volume I series lineage missing" unless wild_side_html.include?("Part of Walk on the Wild Side With DJ")
 errors << "Walk on the Wild Side Volume I cover derivative missing" unless wild_side_html.include?("FMD_ARTIFACT_LIBRARY_WALKONTHEWILDSIDE_VOL01_COVER_768W_v001.webp")
-errors << "Walk on the Wild Side Volume I must not expose empty acquisition controls" if wild_side_html.include?("acquisition-actions")
+errors << "Walk on the Wild Side Volume I Amazon acquisition action missing or duplicated" unless wild_side_html.scan("https://amzn.to/4yESLkH").length == 1
 errors << "Walk on the Wild Side Volume I must not invent release or commerce facts" if wild_side_html.match?(/(?:amazon\.com|ISBN|\$\d|Publication date|Format)/i)
 
 wild_side_series_html = SITE.join("library/walk-on-the-wild-side/index.html").read
@@ -350,7 +350,7 @@ errors << "Outfitters desktop source missing" unless outfitters_html.include?("F
 errors << "Outfitters mobile source missing" unless outfitters_html.include?("FMD_SCENE_EXPLOREROUTFITTERS_BASE_MOBILE_DEFAULT_v002.png")
 errors << "Outfitters scene must expose publications, tools, availability, and return" unless outfitters_html.scan(/class="outfitters-hotspot outfitters-hotspot--/).length == 4
 errors << "Outfitters return threshold missing" unless outfitters_html.include?("aria-label=\"Return to the Main Studio\"")
-errors << "Outfitters must derive exactly three discovery listings" unless outfitters_html.scan(/class="outfitters-listing surface-card"/).length == 3
+errors << "Outfitters must derive exactly four discovery listings" unless outfitters_html.scan(/class="outfitters-listing surface-card"/).length == 4
 errors << "Volume I identity duplicated or detached from Library" unless outfitters_html.include?("href=\"/library/architecture-series/the-architecture-of-being-human-volume-i/\"") && outfitters_html.include?("<dd>Library</dd>")
 errors << "Mint Pro identity duplicated or detached from Workshop" unless outfitters_html.include?("href=\"/workshop/mint-pro/\"") && outfitters_html.include?("<dd>Workshop</dd>")
 errors << "Personal Architecture Map is missing from Outfitters" unless outfitters_html.include?("href=\"/workshop/personal-architecture-map/\"") && outfitters_html.include?("<dd>Workshop</dd>")
@@ -360,6 +360,7 @@ errors << "Outfitters approved Amazon acquisition action missing or duplicated" 
 errors << "Outfitters Amazon action must use external-link security and affiliate semantics" unless outfitters_html.match?(/href="#{Regexp.escape(approved_amazon_url)}" target="_blank" rel="external noopener sponsored"/)
 errors << "Outfitters Amazon Associates disclosure missing or duplicated" unless outfitters_html.scan(amazon_disclosure).length == 1
 errors << "Outfitters availability grouping is missing" unless outfitters_html.include?("Available to take") && outfitters_html.include?("Not available yet")
+errors << "Walk on the Wild Side Volume I missing from Outfitters discovery" unless outfitters_html.include?("Everything Looks Different from the Other Side") && outfitters_html.include?("https://amzn.to/4yESLkH")
 errors << "Outfitters environmental inventory boundary missing" unless outfitters_html.include?("only the items listed below are actually available through the Studio")
 errors << "Outfitters contains fabricated commerce" if outfitters_html.match?(/(?:google play|etsy|fake discount|limited time|only \d+ left)/i)
 

@@ -67,10 +67,14 @@
   role: publication_discovery
   order: 1
 - surface: explorer-outfitters-discovery
+  artifact: everything-looks-different-from-the-other-side-volume-i
+  role: publication_discovery
+  order: 2
+- surface: explorer-outfitters-discovery
   artifact: personal-architecture-map
   role: instrument_discovery
-  order: 2
+  order: 3
 - surface: explorer-outfitters-discovery
   artifact: mint-pro
   role: future_application_discovery
-  order: 3
+  order: 4

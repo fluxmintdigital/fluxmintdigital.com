@@ -127,7 +127,8 @@ wild_side_artifact = artifacts.map(&:last).find { |artifact| artifact["artifact_
 wild_side_availability = availability.fetch("records", []).find { |record| record["artifact"] == wild_side_id }
 errors << "Walk on the Wild Side Volume I lifecycle must be published" unless wild_side_artifact && wild_side_artifact["lifecycle"] == "published"
 errors << "Walk on the Wild Side Volume I must remain public and Library-owned" unless wild_side_artifact && wild_side_artifact["visibility"] == "public" && wild_side_artifact["canonical_room"] == "library"
-errors << "Walk on the Wild Side Volume I availability must be available pending retailer URL" unless wild_side_availability && wild_side_availability["status"] == "available" && wild_side_availability.fetch("channels", []).empty?
+wild_side_amazon_channel = wild_side_availability&.fetch("channels", [])&.find { |channel| channel["id"] == "amazon" }
+errors << "Walk on the Wild Side Volume I availability must expose the operator-supplied Amazon URL" unless wild_side_availability && wild_side_availability["status"] == "available" && wild_side_amazon_channel && wild_side_amazon_channel["url"] == "https://amzn.to/4yESLkH"
 wild_side_relationship = relationships.find { |relationship| relationship["source"] == wild_side_id && relationship["type"] == "belongs_to" }
 errors << "Walk on the Wild Side Volume I series relationship or sequence changed" unless wild_side_relationship && wild_side_relationship["target"] == "walk-on-the-wild-side-series" && wild_side_relationship.dig("metadata", "sequence") == 1
 wild_side_source = File.join(ROOT, "FluxMintDigital_Website_Canonical_Package/Assets/source/FMD_SOURCE_LIBRARY_WALKONTHEWILDSIDE_VOL01_COVER_v001.png")
@@ -185,7 +186,7 @@ expected_choice_placements = [
   ["choice-audit", "workshop-instruments", 1],
   ["choice-audit", "studio-desk-now", 1],
   ["personal-architecture-map", "workshop-instruments", 2],
-  ["personal-architecture-map", "explorer-outfitters-discovery", 2]
+  ["personal-architecture-map", "explorer-outfitters-discovery", 3]
 ]
 actual_choice_placements = choice_placements.map { |placement| placement.values_at("artifact", "surface", "order") }.sort
 errors << "Choice Audit Workshop placements changed" unless actual_choice_placements == expected_choice_placements.sort
