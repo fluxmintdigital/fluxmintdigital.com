@@ -256,7 +256,7 @@ end
 map_html = SITE.join("workshop/personal-architecture-map/index.html").read
 errors << "Personal Architecture Map must remain a released Workshop Instrument" unless map_html.include?("Instrument · Workshop") && map_html.include?('status-indicator__label">Released</span>')
 errors << "Personal Architecture Map cover derivatives missing" unless %w[480W 768W 1024W].all? { |width| map_html.include?("FMD_ARTIFACT_WORKSHOP_PERSONALARCHITECTUREMAP_COVER_#{width}_v001.webp") }
-errors << "Personal Architecture Map canonical price treatment changed" unless map_html.include?("$12") && map_html.include?("You may pay more if you’d like.")
+errors << "Personal Architecture Map price leaked into public rendering" if map_html.match?(/\$12|You may pay more if you’d like\./)
 expected_gumroad = "https://fluxmint.gumroad.com/l/personal-architecture-map"
 expected_kofi = "https://ko-fi.com/s/d9287edf31"
 errors << "Personal Architecture Map Gumroad rail missing or duplicated" unless map_html.scan(expected_gumroad).length == 1
