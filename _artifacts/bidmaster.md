@@ -5,7 +5,7 @@ description: A local-first estimating workspace for independent contractors and 
 artifact_type: Application
 canonical_room: workshop
 division: applications
-lifecycle: on_the_workbench
+lifecycle: under_examination
 visibility: public
 governance: canonical
 author_id: dj-boswell
@@ -28,4 +28,4 @@ Calculations are deterministic and remain grounded in the information the contra
 
 ## Where it is now
 
-BidMaster is on the Workshop workbench. Its estimating, proposal, cost-tracking, documentation, and offline foundations are being prepared and checked for a future release, but no public release or way to obtain it has been announced.
+BidMaster is under examination in the Workshop. Active development includes field/device qualification, testing, and diagnostic or hotfix work across its estimating, proposal, cost-tracking, documentation, and offline foundations. It is not yet a finished commercial release, and no public way to obtain it has been announced.

@@ -7,7 +7,7 @@ artifact_type: Book
 canonical_room: library
 series_id: walk-on-the-wild-side-series
 sequence: 1
-lifecycle: awaiting_publication
+lifecycle: published
 visibility: public
 governance: canonical
 author_id: dj-boswell
@@ -40,4 +40,4 @@ The series makes room for humor, storytelling, and connections across philosophy
 
 ## Where it is now
 
-Volume I is written and awaiting publication.
+Volume I is published and begins the Walk on the Wild Side With DJ series. It is available wherever the Studio’s current purchase link points.

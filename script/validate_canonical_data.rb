@@ -114,7 +114,7 @@ bidmaster = artifacts.map(&:last).find { |artifact| artifact["artifact_id"] == "
 bidmaster_availability = availability.fetch("records", []).find { |record| record["artifact"] == "bidmaster" }
 bidmaster_relationship = relationships.find { |relationship| relationship["source"] == "bidmaster" && relationship["type"] == "built_by" }
 bidmaster_placements = placements.select { |placement| placement["artifact"] == "bidmaster" }
-errors << "BidMaster must remain a public Workshop Application on the workbench" unless bidmaster && bidmaster["artifact_type"] == "Application" && bidmaster["canonical_room"] == "workshop" && bidmaster["lifecycle"] == "on_the_workbench" && bidmaster["visibility"] == "public"
+errors << "BidMaster must remain a public Workshop Application under examination" unless bidmaster && bidmaster["artifact_type"] == "Application" && bidmaster["canonical_room"] == "workshop" && bidmaster["lifecycle"] == "under_examination" && bidmaster["visibility"] == "public"
 errors << "BidMaster must remain unavailable with no channels" unless bidmaster_availability && bidmaster_availability["status"] == "unavailable" && bidmaster_availability.fetch("channels", []).empty?
 errors << "BidMaster builder relationship changed" unless bidmaster_relationship && bidmaster_relationship["target"] == "dj-boswell"
 errors << "BidMaster must have only its Workshop application placement" unless bidmaster_placements.length == 1 && bidmaster_placements.first["surface"] == "workshop-applications"
@@ -125,9 +125,9 @@ errors << "Mint Pro availability must remain unavailable with no channels" unles
 wild_side_id = "everything-looks-different-from-the-other-side-volume-i"
 wild_side_artifact = artifacts.map(&:last).find { |artifact| artifact["artifact_id"] == wild_side_id }
 wild_side_availability = availability.fetch("records", []).find { |record| record["artifact"] == wild_side_id }
-errors << "Walk on the Wild Side Volume I lifecycle must be awaiting publication" unless wild_side_artifact && wild_side_artifact["lifecycle"] == "awaiting_publication"
+errors << "Walk on the Wild Side Volume I lifecycle must be published" unless wild_side_artifact && wild_side_artifact["lifecycle"] == "published"
 errors << "Walk on the Wild Side Volume I must remain public and Library-owned" unless wild_side_artifact && wild_side_artifact["visibility"] == "public" && wild_side_artifact["canonical_room"] == "library"
-errors << "Walk on the Wild Side Volume I availability must be unavailable with no channels" unless wild_side_availability && wild_side_availability["status"] == "unavailable" && wild_side_availability.fetch("channels", []).empty?
+errors << "Walk on the Wild Side Volume I availability must be available pending retailer URL" unless wild_side_availability && wild_side_availability["status"] == "available" && wild_side_availability.fetch("channels", []).empty?
 wild_side_relationship = relationships.find { |relationship| relationship["source"] == wild_side_id && relationship["type"] == "belongs_to" }
 errors << "Walk on the Wild Side Volume I series relationship or sequence changed" unless wild_side_relationship && wild_side_relationship["target"] == "walk-on-the-wild-side-series" && wild_side_relationship.dig("metadata", "sequence") == 1
 wild_side_source = File.join(ROOT, "FluxMintDigital_Website_Canonical_Package/Assets/source/FMD_SOURCE_LIBRARY_WALKONTHEWILDSIDE_VOL01_COVER_v001.png")

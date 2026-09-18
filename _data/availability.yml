@@ -33,7 +33,7 @@ records:
     status: unavailable
     channels: []
   - artifact: everything-looks-different-from-the-other-side-volume-i
-    status: unavailable
+    status: available
     channels: []
   - artifact: architecture-of-being-human-volume-i
     status: available

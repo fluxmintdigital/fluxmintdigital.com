@@ -135,7 +135,7 @@ errors << "Library series access must remain available outside the scene" unless
 errors << "Library keyboard order must present the primary publication before series and return hotspots" unless library_html.index("class=\"library-publication\"") < library_html.index("<nav class=\"library-scene__hotspots\"")
 errors << "Library scene must retain one non-overlapping featured publication" unless library_html.scan(/class="library-publication"/).length == 1
 errors << "Architecture Series lifecycle count changed" unless library_html.include?("1 published volume")
-errors << "Awaiting-publication series counts changed" unless library_html.scan(/1 volume awaiting publication/).length == 2
+errors << "Awaiting-publication series counts changed" unless library_html.scan(/1 volume awaiting publication/).length == 1
 errors << "Library contains stale series-count copy" if library_html.include?("No volumes announced yet")
 
 volume_html = SITE.join("library/architecture-series/the-architecture-of-being-human-volume-i/index.html").read
@@ -143,14 +143,14 @@ errors << "Volume I must render Published lifecycle" unless volume_html.include?
 errors << "Volume I series lineage missing" unless volume_html.include?("Part of The Architecture Series")
 
 wild_side_html = SITE.join("library/walk-on-the-wild-side/everything-looks-different-from-the-other-side-volume-i/index.html").read
-errors << "Walk on the Wild Side Volume I must render Awaiting publication lifecycle" unless wild_side_html.include?('status-indicator__label">Awaiting publication</span>')
-errors << "Walk on the Wild Side Volume I availability must remain unavailable" unless wild_side_html.include?("<dt>Availability</dt><dd>Not available yet</dd>")
-errors << "Walk on the Wild Side Volume I publication wording changed" unless wild_side_html.include?("Volume I is written and awaiting publication.")
+errors << "Walk on the Wild Side Volume I must render Published lifecycle" unless wild_side_html.include?('status-indicator__label">Published</span>')
+errors << "Walk on the Wild Side Volume I availability must render available state" unless wild_side_html.include?("<dt>Availability</dt><dd>Available</dd>")
+errors << "Walk on the Wild Side Volume I publication wording changed" unless wild_side_html.include?("Volume I is published and begins the Walk on the Wild Side With DJ series.")
 errors << "Walk on the Wild Side Volume I contains an unsupported timing promise" if wild_side_html.match?(/released soon|coming soon/i)
 errors << "Walk on the Wild Side Volume I series lineage missing" unless wild_side_html.include?("Part of Walk on the Wild Side With DJ")
 errors << "Walk on the Wild Side Volume I cover derivative missing" unless wild_side_html.include?("FMD_ARTIFACT_LIBRARY_WALKONTHEWILDSIDE_VOL01_COVER_768W_v001.webp")
-errors << "Walk on the Wild Side Volume I must not expose acquisition controls" if wild_side_html.include?("acquisition-actions")
-errors << "Walk on the Wild Side Volume I must not invent release or commerce facts" if wild_side_html.match?(/(?:amazon\.com|ISBN|\$\d|datePublished|dateModified|Publication date|Format)/i)
+errors << "Walk on the Wild Side Volume I must not expose empty acquisition controls" if wild_side_html.include?("acquisition-actions")
+errors << "Walk on the Wild Side Volume I must not invent release or commerce facts" if wild_side_html.match?(/(?:amazon\.com|ISBN|\$\d|Publication date|Format)/i)
 
 wild_side_series_html = SITE.join("library/walk-on-the-wild-side/index.html").read
 errors << "Walk on the Wild Side series must expose exactly one real volume" unless wild_side_series_html.scan(/class="artifact-summary surface-card/).length == 1
@@ -274,7 +274,7 @@ errors << "Mint Pro verified EPUB detail missing" unless mint_pro_html.include?(
 errors << "Mint Pro unfinished device and layout boundaries missing" unless mint_pro_html.include?("PDF appearance and behavior still need continued device confirmation") && mint_pro_html.include?("tablet-specific two-pane editing layout")
 
 bidmaster_html = SITE.join("workshop/bidmaster/index.html").read
-errors << "BidMaster lifecycle or availability changed" unless bidmaster_html.include?('status-indicator__label">On the workbench</span>') && bidmaster_html.include?("<dt>Availability</dt><dd>Not available yet</dd>")
+errors << "BidMaster lifecycle or availability changed" unless bidmaster_html.include?('status-indicator__label">Under examination</span>') && bidmaster_html.include?("<dt>Availability</dt><dd>Not available yet</dd>")
 errors << "BidMaster public purpose missing" unless bidmaster_html.include?("local-first estimating workspace") && bidmaster_html.include?("independent contractors and small crews") && bidmaster_html.include?("Calculations are deterministic")
 errors << "BidMaster must not expose acquisition controls" if bidmaster_html.include?("acquisition-actions")
 errors << "BidMaster must not invent release or commerce claims" if bidmaster_html.match?(/(?:play\.google\.com|Play Store|\$\d|datePublished|Release date|Buy|Get BidMaster|\bAI\b|image[- ]analysis)/i)
@@ -441,10 +441,10 @@ end
 expected_site_description = "FluxMintDigital is a Studio where curiosity explores hidden architecture through books, instruments, research, and things being built toward clearer understanding."
 errors << "Homepage Studio metadata changed" unless home_html.include?(%(content="#{expected_site_description}"))
 
-awaiting_seo_html = SITE.join("library/walk-on-the-wild-side/everything-looks-different-from-the-other-side-volume-i/index.html").read
-errors << "Awaiting-publication SEO type changed" unless awaiting_seo_html.include?('<meta property="og:type" content="book">') && awaiting_seo_html.include?('"@type": "Book"')
-errors << "Awaiting-publication social image missing" unless awaiting_seo_html.include?('meta property="og:image"') && awaiting_seo_html.include?('meta name="twitter:image"')
-errors << "Awaiting-publication SEO invented a date" if awaiting_seo_html.match?(/datePublished|dateModified/)
+published_book_seo_html = SITE.join("library/walk-on-the-wild-side/everything-looks-different-from-the-other-side-volume-i/index.html").read
+errors << "Published-book SEO type changed" unless published_book_seo_html.include?('<meta property="og:type" content="book">') && published_book_seo_html.include?('"@type": "Book"')
+errors << "Published-book social image missing" unless published_book_seo_html.include?('meta property="og:image"') && published_book_seo_html.include?('meta name="twitter:image"')
+errors << "Published-book SEO invented a date" if published_book_seo_html.match?(/datePublished|dateModified/)
 
 unreleased_seo_html = SITE.join("workshop/mint-pro/index.html").read
 errors << "Unreleased-application SEO type changed" unless unreleased_seo_html.include?('"@type": "SoftwareApplication"') && unreleased_seo_html.include?('<meta property="og:type" content="website">')

@@ -17,7 +17,9 @@ workspace_title: Build in the Workshop
       {% assign application_placements = site.data.surface_placements | where: 'surface', 'workshop-applications' | sort: 'order' %}
       {% for placement in application_placements %}
         {% assign application = site.artifacts | where: 'artifact_id', placement.artifact | first %}
-        {% if application and application.visibility == 'public' and application.lifecycle == 'on_the_workbench' %}{% include artifact-summary.html artifact=application %}{% endif %}
+        {% if application and application.visibility == 'public' %}
+          {% if application.lifecycle == 'on_the_workbench' or application.lifecycle == 'under_examination' %}{% include artifact-summary.html artifact=application %}{% endif %}
+        {% endif %}
       {% endfor %}
     </div>
   </section>

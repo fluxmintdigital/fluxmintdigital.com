@@ -30,7 +30,7 @@ errors << "Mint Pro missing from the future Outfitters group" unless future.incl
 errors << "Choice Audit was forced into Outfitters" if outfitters.include?("outfitters-choice-audit")
 
 errors << "Architecture Series count is not lifecycle-derived" unless library.include?("1 published volume")
-errors << "Awaiting-publication counts are not lifecycle-derived" unless library.scan("1 volume awaiting publication").length == 2
+errors << "Awaiting-publication counts are not lifecycle-derived" unless library.scan("1 volume awaiting publication").length == 1
 errors << "Unsupported publication timing promise remains" if [
   read.call("library/walk-on-the-wild-side/everything-looks-different-from-the-other-side-volume-i"),
   read.call("library/dj-field-guide/the-dj-field-guide-to-matter-volume-i")

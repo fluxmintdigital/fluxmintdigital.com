@@ -12,7 +12,7 @@
   order: 1
 - surface: library-primary-workspace
   artifact: everything-looks-different-from-the-other-side-volume-i
-  role: upcoming_publication
+  role: published_artifact
   order: 2
 - surface: library-primary-workspace
   artifact: the-dj-field-guide-to-matter-volume-i
@@ -36,7 +36,7 @@
   order: 1
 - surface: studio-desk-now
   artifact: everything-looks-different-from-the-other-side-volume-i
-  role: awaiting_publication
+  role: recent_release
   order: 2
 - surface: studio-desk-now
   artifact: mint-pro

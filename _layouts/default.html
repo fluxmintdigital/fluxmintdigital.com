@@ -15,9 +15,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
   {% if page.redirect_to %}
     {% include seo-redirect.html %}
+  {% elsif page.artifact_type == 'Book' and page.lifecycle == 'published' %}
+    {% include seo-published-book.html %}
   {% elsif page.lifecycle == 'awaiting_publication' %}
     {% include seo-awaiting-publication.html %}
   {% elsif page.artifact_type == 'Application' and page.lifecycle == 'on_the_workbench' %}
+    {% include seo-unreleased-application.html %}
+  {% elsif page.artifact_type == 'Application' and page.lifecycle == 'under_examination' %}
     {% include seo-unreleased-application.html %}
   {% else %}
     {% seo %}

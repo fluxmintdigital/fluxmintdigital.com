@@ -49,6 +49,7 @@ exclude:
   - FluxMintDigital_Scene_Decomposition_Plan.md
   - FluxMintDigital_Experience_and_Interaction_Audit.md
   - FluxMintDigital_Website_Canonical_Package/Docs
+  - FluxMintDigital_Website_Canonical_Package/Updates
   - FluxMintDigital_Website_Canonical_Package/Assets/archived
   - FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_UI_*
   - FluxMintDigital_Website_Canonical_Package/Assets/final/FMD_SOURCE_*
