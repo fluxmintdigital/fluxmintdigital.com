@@ -35,6 +35,18 @@ workspace_title: Build in the Workshop
         {% if instrument and instrument.visibility == 'public' %}{% include artifact-summary.html artifact=instrument %}{% endif %}
       {% endfor %}
     </div>
+    <section id="workshop-practical-tools" aria-labelledby="workshop-practical-tools-heading">
+      <p class="semantic-kicker">Practical Tools</p>
+      <h2 id="workshop-practical-tools-heading">Practical Tools</h2>
+      <p>Small, focused utilities for everyday browser and working-system friction.</p>
+      <div class="room-series-grid">
+        <article class="room-series-card">
+          <p class="semantic-kicker">Preparing for Chrome Web Store release</p>
+          <h3><a href="{{ '/tools/link-restore/' | relative_url }}">Link Restore</a></h3>
+          <p>Make broken links behave like ordinary browser links again.</p>
+        </article>
+      </div>
+    </section>
     <ul class="workshop-collection-index">
       <li><strong>Companion tools</strong><span>Nothing shared yet</span></li>
       <li><strong>Making experiments and prototypes</strong><span>Nothing shared yet</span></li>

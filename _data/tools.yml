@@ -14,3 +14,8 @@
     - "Cultural Signature System"
     - "Origin Story Engine"
     - "Compression Trees"
+- name: "Link Restore"
+  description: "A small browser utility that restores standard modified-link behavior when websites interfere with it."
+  url: "/tools/link-restore/"
+  examples:
+    - "Chrome release in preparation"

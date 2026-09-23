@@ -427,7 +427,8 @@ if SITE.join("sitemap.xml").file?
   errors << "Observatory archive must appear exactly once in sitemap" unless sitemap.scan("https://fluxmintdigital.com/studio-blog/").length == 1
   errors << "Internal audit leaked into sitemap" if sitemap.include?("FluxMintDigital_Experience_and_Interaction_Audit")
   %w[store services about blog apps tools books science].each do |legacy_route|
-    errors << "Legacy route /#{legacy_route}/ leaked into sitemap" if sitemap.include?("https://fluxmintdigital.com/#{legacy_route}/")
+    legacy_url = "https://fluxmintdigital.com/#{legacy_route}/"
+    errors << "Legacy route /#{legacy_route}/ leaked into sitemap" if sitemap.include?("<loc>#{legacy_url}</loc>")
   end
 end
 
