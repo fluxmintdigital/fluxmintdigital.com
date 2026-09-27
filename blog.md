@@ -2,8 +2,8 @@
 layout: redirect
 redirect_to: /observatory/
 redirect_label: the Observatory
-title: Blog
-description: Visit the Observatory for essays, discoveries, field notes, and Workshop notes from FluxMintDigital.
+title: Observatory
+description: This legacy route now points to the Observatory, the canonical home for FluxMintDigital observational writing.
 permalink: /blog/
 sitemap: false
 robots: noindex, follow

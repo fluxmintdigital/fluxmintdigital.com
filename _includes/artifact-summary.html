@@ -4,7 +4,7 @@
   {% endif %}
   <div class="artifact-summary__body">
     <p class="semantic-kicker">{{ include.artifact.artifact_type }}{% if include.artifact.sequence %} · Volume {{ include.artifact.sequence }}{% endif %}</p>
-    <h3><a class="card-link" href="{{ include.artifact.url | relative_url }}">{{ include.artifact.title }}</a></h3>
+    <h3><a class="card-link" href="{{ include.artifact.url | relative_url }}"{% if include.depth_event %} data-depth-transition="{{ include.depth_event }}"{% endif %}>{{ include.artifact.title }}</a></h3>
     <p>{{ include.artifact.description }}</p>
     {% include status-indicator.html kind='lifecycle' value=include.artifact.lifecycle %}
   </div>

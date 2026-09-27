@@ -7,6 +7,11 @@
 <script>
   window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
   plausible.init()
+  document.addEventListener('click', function (event) {
+    var link = event.target.closest('[data-depth-transition]');
+    if (!link || typeof window.plausible !== 'function') return;
+    window.plausible(link.dataset.depthTransition);
+  });
 </script>
 <script type="application/ld+json">
 {

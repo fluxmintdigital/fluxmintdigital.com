@@ -43,6 +43,9 @@ required_routes = %w[
   /the-garage-im-trying-to-build/
   /when-the-studio-started-talking-back/
   /studio-blog/
+  /tools/link-restore/
+  /privacy/link-restore/
+  /support/link-restore/
 ]
 
 def target_for(url)
@@ -68,6 +71,34 @@ html_files.each do |file|
     next unless reference.start_with?("/") && !reference.start_with?("//")
     errors << "#{file.relative_path_from(SITE)}: missing #{reference}" unless target_for(reference).file?
   end
+end
+
+canonical_expectations = {
+  "/" => "/",
+  "/observatory/" => "/observatory/",
+  "/library/" => "/library/",
+  "/workshop/" => "/workshop/",
+  "/architecture-wall/" => "/architecture-wall/",
+  "/meeting-table/" => "/meeting-table/",
+  "/explorer-outfitters/" => "/explorer-outfitters/",
+  "/meet-dj/" => "/meet-dj/",
+  "/relationships/" => "/relationships/",
+  "/library/architecture-series/" => "/library/architecture-series/",
+  "/library/architecture-series/the-architecture-of-being-human-volume-i/" => "/library/architecture-series/the-architecture-of-being-human-volume-i/",
+  "/library/walk-on-the-wild-side/" => "/library/walk-on-the-wild-side/",
+  "/library/walk-on-the-wild-side/everything-looks-different-from-the-other-side-volume-i/" => "/library/walk-on-the-wild-side/everything-looks-different-from-the-other-side-volume-i/",
+  "/library/dj-field-guide/" => "/library/dj-field-guide/",
+  "/library/dj-field-guide/the-dj-field-guide-to-matter-volume-i/" => "/library/dj-field-guide/the-dj-field-guide-to-matter-volume-i/",
+  "/tools/link-restore/" => "/tools/link-restore/",
+  "/privacy/link-restore/" => "/privacy/link-restore/",
+  "/support/link-restore/" => "/support/link-restore/",
+  "/studio-blog/" => "/observatory/",
+  "/blog/" => "/observatory/"
+}
+canonical_expectations.each do |route, canonical_route|
+  html = target_for(route).read
+  expected = "<link rel=\"canonical\" href=\"#{URI.join('https://fluxmintdigital.com', canonical_route)}\""
+  errors << "#{route}: canonical URL is not #{canonical_route}" unless html.include?(expected)
 end
 
 sensitive = SITE.join("FluxMintDigital_Website_Canonical_Package/Assets/source/FMD_SOURCE_MEETDJ_APPROVED_LIKENESS_REFERENCE_v001.jpg")
@@ -425,10 +456,15 @@ errors << "Sitemap missing" unless SITE.join("sitemap.xml").file?
 if SITE.join("sitemap.xml").file?
   sitemap = SITE.join("sitemap.xml").read
   errors << "Legacy Observatory archive must remain excluded from sitemap" if sitemap.include?("https://fluxmintdigital.com/studio-blog/")
+  errors << "Legacy blog route must remain excluded from sitemap" if sitemap.include?("https://fluxmintdigital.com/blog/")
   errors << "Internal audit leaked into sitemap" if sitemap.include?("FluxMintDigital_Experience_and_Interaction_Audit")
   %w[store services about blog apps tools books science].each do |legacy_route|
     legacy_url = "https://fluxmintdigital.com/#{legacy_route}/"
     errors << "Legacy route /#{legacy_route}/ leaked into sitemap" if sitemap.include?("<loc>#{legacy_url}</loc>")
+  end
+  %w[/ /observatory/ /library/ /workshop/ /architecture-wall/ /meeting-table/ /explorer-outfitters/ /meet-dj/ /relationships/ /library/architecture-series/ /library/architecture-series/the-architecture-of-being-human-volume-i/ /library/walk-on-the-wild-side/ /library/walk-on-the-wild-side/everything-looks-different-from-the-other-side-volume-i/ /library/dj-field-guide/ /library/dj-field-guide/the-dj-field-guide-to-matter-volume-i/ /tools/link-restore/ /privacy/link-restore/ /support/link-restore/].each do |route|
+    expected_url = "https://fluxmintdigital.com#{route}"
+    errors << "Canonical public route missing from sitemap: #{route}" unless sitemap.include?("<loc>#{expected_url}</loc>")
   end
 end
 
@@ -469,7 +505,7 @@ errors << "Observatory Record is not reverse chronological" unless record_dates 
 
 errors << "Explorer Entry orientation must remain a quiet Observatory link" unless home_html.include?('<p class="entry-stage__aside">Not sure where to begin? <a href="/observatory/">Visit the Observatory.</a></p>')
 errors << "Explorer Entry orientation must not become a button or hotspot" if home_html.match?(/class="[^"]*(?:button|hotspot)[^"]*"[^>]*href="\/observatory\/"/)
-errors << "Observatory Library continuation missing" unless observatory_html.include?('href="/library/">Enter the Library') && observatory_html.include?("Some questions need more room.")
+errors << "Observatory Library continuation missing" unless observatory_html.match?(/href="\/library\/"[^>]*>Enter the Library/) && observatory_html.include?("Some questions need more room.")
 errors << "Observatory Workshop continuation missing" unless observatory_html.include?('href="/workshop/">Explore what is being built</a>')
 
 errors << "Choice Audit retains stale workbench lifecycle wording" if choice_html.include?("browser-native instrument is on the Workshop workbench")

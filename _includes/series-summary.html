@@ -1,6 +1,6 @@
 <article class="series-summary surface-card">
   <p class="semantic-kicker">{{ include.artifact.artifact_type }}</p>
-  <h3><a class="card-link" href="{{ include.artifact.url | relative_url }}">{{ include.artifact.title }}</a></h3>
+  <h3><a class="card-link" href="{{ include.artifact.url | relative_url }}" data-depth-transition="library_to_artifact">{{ include.artifact.title }}</a></h3>
   <p>{{ include.artifact.description }}</p>
   {% assign series_members = site.artifacts | where: 'series_id', include.artifact.artifact_id | where: 'visibility', 'public' | sort: 'sequence' %}
   {% assign published_members = series_members | where: 'lifecycle', 'published' %}

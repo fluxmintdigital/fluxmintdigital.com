@@ -3,7 +3,7 @@
 <div class="acquisition-actions" aria-label="Ways to get this item">
   <div class="acquisition-actions__links">
     {% for channel in acquisition.channels %}
-    <a class="button" href="{{ channel.url | escape }}" target="_blank" rel="external noopener{% if channel.affiliate %} sponsored{% endif %}">{{ channel.action }}<span class="visually-hidden"> from {{ channel.name }} (opens an external site in a new tab)</span></a>
+    <a class="button" href="{{ channel.url | escape }}" target="_blank" rel="external noopener{% if channel.affiliate %} sponsored{% endif %}" data-depth-transition="{% if include.artifact_page %}artifact_to_availability{% else %}outfitters_to_availability{% endif %}">{{ channel.action }}<span class="visually-hidden"> from {{ channel.name }} (opens an external site in a new tab)</span></a>
     {% endfor %}
   </div>
   {% assign disclosure_ids = acquisition.channels | map: 'disclosure' | compact | uniq %}

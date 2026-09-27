@@ -48,7 +48,7 @@ layout: default
       <aside class="artifact-lineage" aria-labelledby="post-relationships-heading">
         <p class="semantic-kicker">{% if relationship_target.canonical_room == 'library' %}A continuing question{% else %}Connected work{% endif %}</p>
         <h2 id="post-relationships-heading">{% if relationship_target.canonical_room == 'library' %}This question continued…{% else %}Follow this idea into the Studio{% endif %}</h2>
-        <p>{% unless relationship_target.canonical_room == 'library' %}{{ primary_relationship.type | replace: '_', ' ' | capitalize }}: {% endunless %}<a href="{{ relationship_target.url | relative_url }}">{{ relationship_target.title }}</a></p>
+        <p>{% unless relationship_target.canonical_room == 'library' %}{{ primary_relationship.type | replace: '_', ' ' | capitalize }}: {% endunless %}<a href="{{ relationship_target.url | relative_url }}"{% if relationship_target.canonical_room == 'library' %} data-depth-transition="observation_to_artifact"{% endif %}>{{ relationship_target.title }}</a></p>
         <p>{% include relationship-context.html type=primary_relationship.type %}</p>
       </aside>
       {% endif %}

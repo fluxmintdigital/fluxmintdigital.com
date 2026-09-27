@@ -81,7 +81,18 @@ git push
 ```
 
 Check the **Actions** tab on GitHub to watch the build; it's usually live
-within a couple of minutes.
+within a couple of minutes. After Pages reports success, confirm that the
+commit actually deployed before reporting production completion:
+
+```bash
+ruby script/validate_production_alignment.rb \
+  --deployed-sha <github-pages-deployed-sha> \
+  --workflow-result success
+```
+
+Website deployment PASS requires local `HEAD`, `origin/main`, and the
+deployed GitHub Pages SHA to match. A local Jekyll build alone is not
+production evidence.
 
 ## Known open items
 

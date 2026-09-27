@@ -29,7 +29,7 @@ workspace_title: Read in the Library
       {% assign publication_placements = site.data.surface_placements | where: 'surface', 'library-primary-workspace' | sort: 'order' %}
       {% for placement in publication_placements %}
         {% assign publication = site.artifacts | where: 'artifact_id', placement.artifact | first %}
-        {% if publication and publication.visibility == 'public' %}{% include artifact-summary.html artifact=publication %}{% endif %}
+        {% if publication and publication.visibility == 'public' %}{% include artifact-summary.html artifact=publication depth_event='library_to_artifact' %}{% endif %}
       {% endfor %}
     </div>
   </section>

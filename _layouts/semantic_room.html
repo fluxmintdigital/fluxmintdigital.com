@@ -22,7 +22,7 @@ layout: default
       {% assign room_artifacts = site.artifacts | where: 'canonical_room', 'library' | sort: 'sequence' %}
       {% for artifact in room_artifacts %}
         {% if artifact.visibility == 'public' and artifact.artifact_type != 'Series' %}
-        {% include artifact-summary.html artifact=artifact %}
+        {% include artifact-summary.html artifact=artifact depth_event='library_to_artifact' %}
         {% endif %}
       {% endfor %}
       </div>

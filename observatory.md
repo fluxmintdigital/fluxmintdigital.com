@@ -103,7 +103,7 @@ workspace_title: Notice from the Observatory
     <p class="semantic-kicker">From observation to work</p>
     <h2 id="observatory-library-bridge-heading">Some questions need more room.</h2>
     <p>When an idea grows beyond an observation, it may continue in the Library.</p>
-    <a class="relationship-link" href="{{ '/library/' | relative_url }}">Enter the Library <span aria-hidden="true">→</span></a>
+    <a class="relationship-link" href="{{ '/library/' | relative_url }}" data-depth-transition="observatory_to_library">Enter the Library <span aria-hidden="true">→</span></a>
   </section>
 
   <nav class="relationship-exits" aria-label="Observatory exits">

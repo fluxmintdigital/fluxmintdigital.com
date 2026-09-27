@@ -16,7 +16,7 @@ permalink: /search/
   </form>
   <p class="search-status" id="search-status" role="status">Enter a word or phrase to search the Rooms, Artifacts, and Observatory writing shared here.</p>
   <div class="search-results" id="search-results" aria-live="polite"></div>
-  <noscript><p class="surface-panel">Search requires JavaScript. All Rooms remain available through the Studio navigation, and public writing remains available through the Observatory archive.</p></noscript>
+  <noscript><p class="surface-panel">Search requires JavaScript. All Rooms remain available through the Studio navigation, and public writing remains available through the Observatory Record.</p></noscript>
 </section>
 <script id="studio-search-data" type="application/json">
 {
