@@ -2,8 +2,8 @@
 layout: redirect
 redirect_to: /library/
 redirect_label: the Library
-title: Books
-description: Visit the Library to explore FluxMintDigital books, publications, and their series.
+title: Library
+description: This legacy route now points to the Library, the canonical home for FluxMintDigital publications and series.
 permalink: /books/
 sitemap: false
 robots: noindex, follow

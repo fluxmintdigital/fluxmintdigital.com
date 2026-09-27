@@ -2,8 +2,8 @@
 layout: redirect
 redirect_to: /meeting-table/
 redirect_label: the Meeting Table
-title: Architecture Services
-description: Visit the Meeting Table to bring a problem, clarify it, and decide what a useful next step could be.
+title: Meeting Table
+description: This legacy route now points to the Meeting Table, the canonical FluxMintDigital problem-solving surface.
 permalink: /services/
 sitemap: false
 robots: noindex, follow

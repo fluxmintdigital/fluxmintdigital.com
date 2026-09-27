@@ -2,8 +2,8 @@
 layout: redirect
 redirect_to: /meet-dj/
 redirect_label: Meet DJ
-title: About
-description: Meet D.J. Boswell, the author, builder, and collaborator behind FluxMintDigital.
+title: Meet DJ
+description: This legacy route now points to Meet DJ, the canonical FluxMintDigital contact and orientation surface.
 permalink: /about/
 sitemap: false
 robots: noindex, follow

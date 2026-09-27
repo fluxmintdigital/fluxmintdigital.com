@@ -2,8 +2,8 @@
 layout: redirect
 redirect_to: /architecture-wall/
 redirect_label: the Architecture Wall
-title: Science
-description: Visit the Architecture Wall to examine public frameworks and the structure of inquiry at FluxMintDigital.
+title: Architecture Wall
+description: This legacy route now points to the Architecture Wall, the canonical home for FluxMintDigital frameworks and inquiry.
 permalink: /science/
 sitemap: false
 robots: noindex, follow

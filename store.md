@@ -2,8 +2,8 @@
 layout: redirect
 redirect_to: /explorer-outfitters/
 redirect_label: Explorer Outfitters
-title: Store
-description: Visit Explorer Outfitters to find books, tools, and other Studio work that is genuinely available to take with you.
+title: Explorer Outfitters
+description: This legacy route now points to Explorer Outfitters, the canonical availability-oriented surface.
 permalink: /store/
 sitemap: false
 robots: noindex, follow

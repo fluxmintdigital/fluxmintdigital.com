@@ -2,8 +2,8 @@
 layout: redirect
 redirect_to: /workshop/
 redirect_label: the Workshop
-title: Tools
-description: Visit the Workshop to explore the applications and tools DJ is building at FluxMintDigital.
+title: Workshop
+description: This legacy route now points to the Workshop, the canonical home for FluxMintDigital applications and tools.
 permalink: /tools/
 sitemap: false
 robots: noindex, follow

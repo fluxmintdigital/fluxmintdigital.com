@@ -485,11 +485,24 @@ legacy_redirects = {
   "books" => "/library/",
   "science" => "/architecture-wall/"
 }
+legacy_titles = {
+  "about" => "Meet DJ",
+  "tools" => "Workshop",
+  "apps" => "Workshop",
+  "science" => "Architecture Wall",
+  "store" => "Explorer Outfitters",
+  "services" => "Meeting Table",
+  "books" => "Library",
+  "blog" => "Observatory",
+  "studio-blog" => "Observatory"
+}
 legacy_redirects.each do |route, target|
   redirect_html = SITE.join(route, "index.html").read
   errors << "Legacy route /#{route}/ lost its redirect" unless redirect_html.include?("url=#{target}") && redirect_html.include?("window.location.replace(\"#{target}\")")
   errors << "Legacy route /#{route}/ missing noindex, follow" unless redirect_html.include?('<meta name="robots" content="noindex, follow">')
   errors << "Legacy route /#{route}/ canonical target changed" unless redirect_html.include?(%(<link rel="canonical" href="https://fluxmintdigital.com#{target}">))
+  expected_title = legacy_titles.fetch(route)
+  errors << "Legacy route /#{route}/ retains obsolete page title" unless redirect_html.include?("<title>#{expected_title} | FluxMintDigital</title>")
 end
 
 expected_site_description = "FluxMintDigital is a Studio where curiosity explores hidden architecture through books, instruments, research, and things being built toward clearer understanding."
