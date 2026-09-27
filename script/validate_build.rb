@@ -357,7 +357,8 @@ errors << "Observatory superseded mobile v002 must not be used" if observatory_h
 errors << "Observatory current observation must use OBS-003" unless observatory_html.include?("Read the current observation: What Deserves the Right to Change the Work?")
 errors << "Observatory must give primary emphasis only to populated forms" unless observatory_html.scan(/class="surface-card">\s*<h3>Essays<\/h3>/).length == 1 && observatory_html.scan(/class="surface-card">\s*<h3>(?:Discoveries|Field Notes|Workshop Notes)<\/h3>/).empty?
 errors << "Observatory must preserve empty form types quietly" unless %w[Discoveries Field\ Notes Workshop\ Notes].all? { |label| observatory_html.include?("<strong>#{label}</strong>") }
-errors << "Observatory scene must expose populated forms, archive, and return" unless observatory_html.scan(/class="observatory-hotspot observatory-hotspot--/).length == 3
+errors << "Observatory scene must expose populated forms, archive, Library, and return" unless observatory_html.scan(/class="observatory-hotspot observatory-hotspot--/).length == 4
+errors << "Observatory scene Library threshold missing" unless observatory_html.include?('href="/library/"') && observatory_html.include?('data-depth-transition="observatory_to_library"') && observatory_html.include?('<strong>Library</strong><small>Continue</small>')
 errors << "Observatory must expose the three-essay constellation" unless observatory_html.scan(/class="observatory-card surface-card"/).length == 3
 errors << "Observatory publication boundary missing" unless observatory_html.include?("When a question needs formal evidence and examination, it belongs on the Architecture Wall")
 errors << "Architecture Wall warrant leaked into Observatory as a positive state" if observatory_html.match?(/(?:confidence|AEG warrant)\s*[:=]\s*(?:supported|verified|high|canonical)/i)
