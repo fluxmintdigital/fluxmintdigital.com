@@ -60,6 +60,29 @@ workspace_title: Notice from the Observatory
     </ul>
   </section>
 
+  <section id="observatory-record" aria-labelledby="observatory-record-heading">
+    <p class="semantic-kicker">The accumulated record</p>
+    <h2 id="observatory-record-heading">The Observatory Record</h2>
+    <p>The Observatory contains the accumulated record of what has been observed. Browse the public writing by date, form, and its existing orientation without turning every piece into a feature.</p>
+    <div class="observatory-record" role="list">
+      {% assign record_posts = site.posts | where: 'visibility', 'public' %}
+      {% assign record_dates = record_posts | group_by_exp: 'post', "post.date | date: '%Y-%m-%d'" %}
+      {% for date_group in record_dates %}
+        {% assign same_date_posts = date_group.items | sort: 'same_date_order' %}
+        {% for post in same_date_posts %}
+        <article class="observatory-record__item" role="listitem">
+          <div class="observatory-record__meta">
+            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+            <span>{{ post.artifact_type }}</span>
+          </div>
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          {% if post.description %}<p>{{ post.description }}</p>{% endif %}
+        </article>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </section>
+
   {% assign reading_edges = site.data.relationships | where: 'type', 'precedes' %}
   {% if reading_edges.size > 0 %}
   <section class="observatory-reading-path" aria-labelledby="observatory-reading-path-heading">
@@ -76,10 +99,15 @@ workspace_title: Notice from the Observatory
   </section>
   {% endif %}
 
+  <section class="observatory-library-bridge" aria-labelledby="observatory-library-bridge-heading">
+    <p class="semantic-kicker">From observation to work</p>
+    <h2 id="observatory-library-bridge-heading">Some questions need more room.</h2>
+    <p>When an idea grows beyond an observation, it may continue in the Library.</p>
+    <a class="relationship-link" href="{{ '/library/' | relative_url }}">Enter the Library <span aria-hidden="true">→</span></a>
+  </section>
+
   <nav class="relationship-exits" aria-label="Observatory exits">
-    <a href="{{ '/library/' | relative_url }}">Read more in the Library</a>
     <a href="{{ '/workshop/' | relative_url }}">Explore what is being built</a>
-    <a href="{{ '/studio-blog/' | relative_url }}">Browse archive and history</a>
     <a href="{{ '/studio/' | relative_url }}">Return to Main Studio</a>
     <a href="{{ '/search/' | relative_url }}">Search this Studio</a>
   </nav>

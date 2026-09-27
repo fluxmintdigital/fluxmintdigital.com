@@ -11,7 +11,7 @@ layout: default
     <dl class="artifact-facts">
       <div><dt>Status</dt><dd>{% include status-indicator.html kind='lifecycle' value=page.lifecycle %}</dd></div>
       {% if page.sequence %}<div><dt>In the series</dt><dd>Volume {{ page.sequence }}</dd></div>{% endif %}
-      {% if page.artifact_id == 'choice-audit' %}<div><dt>Use</dt><dd>Free browser instrument</dd></div>{% elsif artifact_availability %}<div><dt>Availability</dt><dd>{% if artifact_availability.status == 'unavailable' %}Not available yet{% else %}{{ artifact_availability.status | replace: '_', ' ' | capitalize }}{% endif %}</dd></div>{% endif %}
+      {% if page.artifact_id == 'choice-audit' %}<div><dt>Use</dt><dd>Free browser instrument</dd></div>{% endif %}
     </dl>
   </header>
   <div class="artifact-detail__content">
@@ -25,7 +25,6 @@ layout: default
         <figcaption>Current evidence from the work in progress.</figcaption>
       </figure>
       {% endif %}
-      {% include acquisition-actions.html availability=artifact_availability %}
     </div>
   </div>
   {% if page.canonical_room == 'architecture-wall' %}
@@ -94,6 +93,18 @@ layout: default
   {% unless page.canonical_room == 'architecture-wall' %}
     {% include artifact-contextual-relationships.html artifact_id=page.artifact_id %}
   {% endunless %}
+  {% if artifact_availability %}
+  <section class="artifact-availability inside-the-work" aria-labelledby="artifact-availability-heading">
+    <p class="semantic-kicker">Availability</p>
+    <h2 id="artifact-availability-heading">Take This With You</h2>
+    {% if artifact_availability.status == 'available' and artifact_availability.channels.size > 0 %}
+      <p>This work is available outside the Studio.</p>
+      {% include acquisition-actions.html availability=artifact_availability artifact_page=true %}
+    {% else %}
+      <p>This work is not available outside the Studio yet.</p>
+    {% endif %}
+  </section>
+  {% endif %}
   <nav class="relationship-exits" aria-label="Continue exploring">
     {% if artifact_room %}{% include relationship-link.html url=artifact_room.route type='Home Room' label=artifact_room.name %}{% endif %}
     {% include relationship-link.html url='/studio/' type='Return' label='Main Studio' %}

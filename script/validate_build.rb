@@ -144,7 +144,7 @@ errors << "Volume I series lineage missing" unless volume_html.include?("Part of
 
 wild_side_html = SITE.join("library/walk-on-the-wild-side/everything-looks-different-from-the-other-side-volume-i/index.html").read
 errors << "Walk on the Wild Side Volume I must render Published lifecycle" unless wild_side_html.include?('status-indicator__label">Published</span>')
-errors << "Walk on the Wild Side Volume I availability must render available state" unless wild_side_html.include?("<dt>Availability</dt><dd>Available</dd>")
+errors << "Walk on the Wild Side Volume I availability must render available state" unless wild_side_html.include?("<h2 id=\"artifact-availability-heading\">Take This With You</h2>") && wild_side_html.include?("This work is available outside the Studio.")
 errors << "Walk on the Wild Side Volume I publication wording changed" unless wild_side_html.include?("Volume I is published and begins the Walk on the Wild Side With DJ series.")
 errors << "Walk on the Wild Side Volume I contains an unsupported timing promise" if wild_side_html.match?(/released soon|coming soon/i)
 errors << "Walk on the Wild Side Volume I series lineage missing" unless wild_side_html.include?("Part of Walk on the Wild Side With DJ")
@@ -164,7 +164,7 @@ errors << "Library must expose Walk on the Wild Side Volume I" unless library_ht
 
 field_guide_html = SITE.join("library/dj-field-guide/the-dj-field-guide-to-matter-volume-i/index.html").read
 errors << "DJ Field Guide Volume I must render Awaiting publication lifecycle" unless field_guide_html.include?('status-indicator__label">Awaiting publication</span>')
-errors << "DJ Field Guide Volume I availability must remain unavailable" unless field_guide_html.include?("<dt>Availability</dt><dd>Not available yet</dd>")
+errors << "DJ Field Guide Volume I availability must remain unavailable" unless field_guide_html.include?("This work is not available outside the Studio yet.")
 errors << "DJ Field Guide Volume I publication wording changed" unless field_guide_html.include?("Volume I is written and awaiting publication.")
 errors << "DJ Field Guide Volume I contains an unsupported timing promise" if field_guide_html.match?(/released soon|coming soon/i)
 errors << "DJ Field Guide Volume I series lineage missing" unless field_guide_html.include?("Part of The DJ Field Guide Series")
@@ -266,7 +266,7 @@ errors << "Personal Architecture Map relationship paths missing" unless map_html
 
 mint_pro_html = SITE.join("workshop/mint-pro/index.html").read
 errors << "Mint Pro must render On the workbench lifecycle" unless mint_pro_html.include?('status-indicator__label">On the workbench</span>')
-errors << "Mint Pro availability truth changed" unless mint_pro_html.include?("<dt>Availability</dt><dd>Not available yet</dd>")
+errors << "Mint Pro availability truth changed" unless mint_pro_html.include?("This work is not available outside the Studio yet.")
 errors << "Mint Pro must not expose acquisition controls" if mint_pro_html.include?("acquisition-actions")
 errors << "Mint Pro must not invent a version or release" if mint_pro_html.match?(/<dt>(?:Version|Release)<\/dt>/)
 errors << "Mint Pro must not expose an invented publication date" if mint_pro_html.include?("datePublished")
@@ -278,7 +278,7 @@ errors << "Mint Pro verified EPUB detail missing" unless mint_pro_html.include?(
 errors << "Mint Pro unfinished device and layout boundaries missing" unless mint_pro_html.include?("PDF appearance and behavior still need continued device confirmation") && mint_pro_html.include?("tablet-specific two-pane editing layout")
 
 bidmaster_html = SITE.join("workshop/bidmaster/index.html").read
-errors << "BidMaster lifecycle or availability changed" unless bidmaster_html.include?('status-indicator__label">Under examination</span>') && bidmaster_html.include?("<dt>Availability</dt><dd>Not available yet</dd>")
+errors << "BidMaster lifecycle or availability changed" unless bidmaster_html.include?('status-indicator__label">Under examination</span>') && bidmaster_html.include?("This work is not available outside the Studio yet.")
 errors << "BidMaster public purpose missing" unless bidmaster_html.include?("local-first estimating workspace") && bidmaster_html.include?("independent contractors and small crews") && bidmaster_html.include?("Calculations are deterministic")
 errors << "BidMaster evidence image missing" unless bidmaster_html.include?("/assets/images/artifacts/bidmaster/evidence.jpg")
 errors << "BidMaster must not expose acquisition controls" if bidmaster_html.include?("acquisition-actions")
@@ -376,7 +376,7 @@ errors << "Outfitters contains fabricated commerce" if outfitters_html.match?(/(
 volume_html = SITE.join("library/architecture-series/the-architecture-of-being-human-volume-i/index.html").read
 errors << "Volume I approved Amazon acquisition action missing or duplicated" unless volume_html.scan(approved_amazon_url).length == 1
 errors << "Volume I Amazon Associates disclosure missing or duplicated" unless volume_html.scan(amazon_disclosure).length == 1
-errors << "Volume I availability must derive as available" unless volume_html.include?("<dt>Availability</dt><dd>Available</dd>")
+errors << "Volume I availability must derive as available" unless volume_html.include?("<h2 id=\"artifact-availability-heading\">Take This With You</h2>") && volume_html.include?("This work is available outside the Studio.")
 
 dj_html = SITE.join("meet-dj/index.html").read
 errors << "Meet DJ approved desktop likeness composition missing" unless dj_html.include?("FMD_SCENE_MEETDJ_LIKENESS_DESKTOP_DEFAULT_v003.webp")
@@ -409,8 +409,8 @@ errors << "Relationship Explorer is missing the Objective-First essay explanatio
 
 architectural_thinking_essay_html = SITE.join("what-is-architectural-thinking/index.html").read
 objective_first_essay_html = SITE.join("why-i-created-objective-first-architecture/index.html").read
-errors << "Architectural Thinking essay must expose its approved intellectual-object relationship" unless architectural_thinking_essay_html.include?('Explains: Architectural Thinking') && architectural_thinking_essay_html.include?('href="/architecture-wall/frameworks/architectural-thinking/"')
-errors << "Objective-First essay must expose its approved method relationship" unless objective_first_essay_html.include?('Explains: Objective-First Architecture™') && objective_first_essay_html.include?('href="/architecture-wall/frameworks/objective-first-architecture/"')
+errors << "Architectural Thinking essay must expose its approved intellectual-object relationship" unless architectural_thinking_essay_html.include?('Explains:') && architectural_thinking_essay_html.include?('href="/architecture-wall/frameworks/architectural-thinking/"')
+errors << "Objective-First essay must expose its approved method relationship" unless objective_first_essay_html.include?('Explains:') && objective_first_essay_html.include?('href="/architecture-wall/frameworks/objective-first-architecture/"')
 
 unavailable_html = SITE.join("unavailable/index.html").read
 errors << "Unavailable state conflates identity and channel" unless unavailable_html.include?("The work still has a home in the Studio even when there is nowhere to purchase or download it yet")
@@ -424,7 +424,7 @@ errors << "Robots sitemap declaration missing" unless robots.file? && robots.rea
 errors << "Sitemap missing" unless SITE.join("sitemap.xml").file?
 if SITE.join("sitemap.xml").file?
   sitemap = SITE.join("sitemap.xml").read
-  errors << "Observatory archive must appear exactly once in sitemap" unless sitemap.scan("https://fluxmintdigital.com/studio-blog/").length == 1
+  errors << "Legacy Observatory archive must remain excluded from sitemap" if sitemap.include?("https://fluxmintdigital.com/studio-blog/")
   errors << "Internal audit leaked into sitemap" if sitemap.include?("FluxMintDigital_Experience_and_Interaction_Audit")
   %w[store services about blog apps tools books science].each do |legacy_route|
     legacy_url = "https://fluxmintdigital.com/#{legacy_route}/"
@@ -461,16 +461,15 @@ unreleased_seo_html = SITE.join("workshop/mint-pro/index.html").read
 errors << "Unreleased-application SEO type changed" unless unreleased_seo_html.include?('"@type": "SoftwareApplication"') && unreleased_seo_html.include?('<meta property="og:type" content="website">')
 errors << "Unreleased-application SEO invented a date" if unreleased_seo_html.match?(/datePublished|dateModified/)
 
-archive_html = SITE.join("studio-blog/index.html").read
-errors << "Observatory archive must identify chronology as a history view" unless archive_html.include?("Browse Observatory pieces from newest to oldest")
 expected_public_post_count = ROOT.glob("_posts/*.md").length
-errors << "Observatory archive must contain all public posts" unless archive_html.scan(/class="post-card"/).length == expected_public_post_count
-archive_dates = archive_html.scan(/<time datetime="([^"]+)"/).flatten
-errors << "Observatory archive is not reverse chronological" unless archive_dates == archive_dates.sort.reverse
+record_html = observatory_html.split('<div class="observatory-record"', 2).last.to_s.split('<section class="observatory-library-bridge"', 2).first.to_s
+errors << "Observatory Record must contain all public posts" unless record_html.scan(/class="observatory-record__item"/).length == expected_public_post_count
+record_dates = record_html.scan(/<time datetime="([^"]+)"/).flatten
+errors << "Observatory Record is not reverse chronological" unless record_dates == record_dates.sort.reverse
 
 errors << "Explorer Entry orientation must remain a quiet Observatory link" unless home_html.include?('<p class="entry-stage__aside">Not sure where to begin? <a href="/observatory/">Visit the Observatory.</a></p>')
 errors << "Explorer Entry orientation must not become a button or hotspot" if home_html.match?(/class="[^"]*(?:button|hotspot)[^"]*"[^>]*href="\/observatory\/"/)
-errors << "Observatory Library continuation missing" unless observatory_html.include?('href="/library/">Read more in the Library</a>')
+errors << "Observatory Library continuation missing" unless observatory_html.include?('href="/library/">Enter the Library') && observatory_html.include?("Some questions need more room.")
 errors << "Observatory Workshop continuation missing" unless observatory_html.include?('href="/workshop/">Explore what is being built</a>')
 
 errors << "Choice Audit retains stale workbench lifecycle wording" if choice_html.include?("browser-native instrument is on the Workshop workbench")

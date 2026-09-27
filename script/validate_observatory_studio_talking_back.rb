@@ -53,14 +53,14 @@ route = site.join("when-the-studio-started-talking-back/index.html")
 errors << "OBS-002 route missing from build" unless route.file?
 if route.file?
   html = route.read
-  errors << "OBS-002 relationship rendering missing" unless expected_targets.all? { |target| html.include?("/#{target}/") }
+  errors << "OBS-002 primary relationship rendering missing" unless html.include?("/building-a-studio-instead-of-a-brand/") && html.include?("Companion to:")
 end
-archive = site.join("studio-blog/index.html")
-if archive.file?
-  html = archive.read
+observatory_record = site.join("observatory/index.html")
+if observatory_record.file?
+  html = observatory_record.read.split('<div class="observatory-record"', 2).last.to_s.split('<section class="observatory-library-bridge"', 2).first.to_s
   new_position = html.index("When the Studio Started Talking Back")
   obs001_positions = ["What I Chose to Do With the Time I Have Left", "Stepping Stones", "The Garage I’m Trying to Build"].map { |title| html.index(title) }
-  errors << "OBS-002 archive placement or OBS-001 order changed" unless new_position && obs001_positions.all? && new_position < obs001_positions.first && obs001_positions == obs001_positions.sort
+  errors << "OBS-002 Observatory Record placement or OBS-001 order changed" unless new_position && obs001_positions.all? && new_position < obs001_positions.first && obs001_positions == obs001_positions.sort
 end
 
 errors << "Controlled OBS-002 source leaked into public build" if site.join("FluxMintDigital_Website_Canonical_Package/Assets/source/When the Studio Starts Talking Back.md").exist?

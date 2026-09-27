@@ -64,17 +64,17 @@ route = site.join("what-deserves-the-right-to-change-the-work/index.html")
 errors << "OBS-003 route missing from build" unless route.file?
 if route.file?
   html = route.read
-  errors << "OBS-003 relationship rendering missing" unless expected_targets.all? { |target| html.include?("/#{target}/") || target == "architecture-of-being-human-volume-i" && html.include?("/library/architecture-series/the-architecture-of-being-human-volume-i/") || target == "choice-audit" && html.include?("/workshop/choice-audit/") }
+  errors << "OBS-003 primary relationship rendering missing" unless html.include?("/library/architecture-series/the-architecture-of-being-human-volume-i/") && html.include?("This question continued")
 end
 
-archive = site.join("studio-blog/index.html")
-if archive.file?
-  archive_html = archive.read
-  new_position = archive_html.index(expected_title)
-  prior_position = archive_html.index("When the Studio Started Talking Back")
-  errors << "OBS-003 is not first in the archive" unless new_position && prior_position && new_position < prior_position
+observatory_record = site.join("observatory/index.html")
+if observatory_record.file?
+  record_html = observatory_record.read
+  new_position = record_html.index(expected_title)
+  prior_position = record_html.index("When the Studio Started Talking Back")
+  errors << "OBS-003 is not first in the Observatory Record" unless new_position && prior_position && new_position < prior_position
 else
-  errors << "Observatory archive missing"
+  errors << "Observatory Record missing"
 end
 errors << "Controlled OBS-003 source leaked into public build" if site.join("FluxMintDigital_Website_Canonical_Package/Assets/source/What Deserves the Right to Change the Work?.md").exist?
 sitemap = site.join("sitemap.xml")

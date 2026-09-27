@@ -14,7 +14,7 @@ outfitters = read.call("explorer-outfitters")
 library = read.call("library")
 workshop = read.call("workshop")
 studio = read.call("studio")
-archive = read.call("studio-blog")
+archive = read.call("observatory")
 book = read.call("library/architecture-series/the-architecture-of-being-human-volume-i")
 relationships = read.call("relationships")
 observatory = read.call("observatory")
@@ -42,6 +42,7 @@ archive_positions = [
   "The Garage I’m Trying to Build"
 ].map { |title| archive.index(title) }
 errors << "Same-date Observatory order changed" unless archive_positions.all? && archive_positions == archive_positions.sort
+errors << "Observatory Record is incomplete" unless observatory.scan('class="observatory-record__item"').length == Dir[root.join("_posts", "*.md")].length
 
 desk = studio[/<div class="scene-panel__items">.*?<\/div>\s*<\/div>\s*<\/details>/m].to_s
 desk_titles = ["What Deserves the Right to Change the Work?", "The Choice Audit", "The Architecture of Being Human", "Everything Looks Different from the Other Side", "Mint Pro"]

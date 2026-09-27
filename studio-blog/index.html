@@ -1,40 +1,10 @@
 ---
-layout: default
+layout: redirect
+redirect_to: /observatory/
+redirect_label: the Observatory
 title: Observatory Archive
-description: Chronological history of public essays, field notes, discoveries, and workshop notes from the FluxMintDigital Observatory.
+description: The Observatory is now the single home for FluxMintDigital observational writing and its accumulated record.
 permalink: /studio-blog/
+sitemap: false
+robots: noindex, follow
 ---
-<div class="archive-page observatory-archive">
-  <div class="container">
-    <div class="archive-header">
-      <p class="semantic-kicker">Observatory · History</p>
-      <h1>Observatory Archive</h1>
-      <p>Browse Observatory pieces from newest to oldest, or return to the Observatory to explore by form and topic.</p>
-    </div>
-    <div class="posts-grid">
-      {% assign studio_posts = site.posts | where: 'visibility', 'public' %}
-      {% assign studio_post_dates = studio_posts | group_by_exp: 'post', "post.date | date: '%Y-%m-%d'" %}
-      {% for date_group in studio_post_dates %}
-      {% assign same_date_posts = date_group.items | sort: 'same_date_order' %}
-      {% for post in same_date_posts %}
-      <article class="post-card" data-artifact-id="{{ post.artifact_id | default: post.slug }}">
-        <div class="post-card-body">
-          <span class="post-card-category">{{ post.artifact_type }}</span>
-          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-          <p>{{ post.description | default: post.excerpt | strip_html | truncate: 120 }}</p>
-          <div class="post-card-meta">
-            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %d, %Y" }}</time>
-            <a href="{{ post.url | relative_url }}" class="read-more">Read more →</a>
-          </div>
-        </div>
-      </article>
-      {% endfor %}
-      {% endfor %}
-      {% if studio_posts.size == 0 %}
-      <div class="empty-archive">
-        <p>The first Studio Blog post is on its way — check back shortly.</p>
-      </div>
-      {% endif %}
-    </div>
-  </div>
-</div>
