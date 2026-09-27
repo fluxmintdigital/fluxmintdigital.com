@@ -221,6 +221,12 @@ errors << "Workshop must not expose OmniShell" if workshop_html.match?(/OmniShel
 errors << "Workshop must expose BidMaster exactly once in its conventional application list" unless workshop_html.scan(/href="\/workshop\/bidmaster\/"/).length == 1
 errors << "Workshop must expose both approved Instruments" unless workshop_html.include?('href="/workshop/choice-audit/"') && workshop_html.include?('href="/workshop/personal-architecture-map/"')
 
+link_restore_html = SITE.join("tools/link-restore/index.html").read
+errors << "Link Restore must render released Chrome Web Store state" unless workshop_html.include?("Released · Chrome Web Store") && link_restore_html.include?("Released · v0.1.0")
+errors << "Link Restore release-pending language remains" if link_restore_html.match?(/Preparing for Chrome Web Store release|public Chrome Web Store listing is not being claimed/i)
+errors << "Link Restore verified Chrome Web Store URL missing" unless link_restore_html.include?("https://chromewebstore.google.com/detail/link-restore/iphibkpilnjboadhbfohgdbiholchonm")
+errors << "Link Restore availability transition event missing" unless link_restore_html.include?('data-depth-transition="tool_to_availability"')
+
 choice_html = SITE.join("workshop/choice-audit/index.html").read
 errors << "Choice Audit must remain a released Workshop Instrument" unless choice_html.include?("Instrument · Workshop") && choice_html.include?('status-indicator__label">Released</span>')
 errors << "Choice Audit browser usability is still conflated with acquisition availability" if choice_html.include?("<dt>Availability</dt><dd>Not available yet</dd>")

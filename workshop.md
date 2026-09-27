@@ -41,8 +41,8 @@ workspace_title: Build in the Workshop
       <p>Small, focused utilities for everyday browser and working-system friction.</p>
       <div class="room-series-grid">
         <article class="room-series-card">
-          <p class="semantic-kicker">Preparing for Chrome Web Store release</p>
-          <h3><a href="{{ '/tools/link-restore/' | relative_url }}">Link Restore</a></h3>
+          <p class="semantic-kicker">Released · Chrome Web Store</p>
+          <h3><a href="{{ '/tools/link-restore/' | relative_url }}">View Link Restore <span aria-hidden="true">→</span></a></h3>
           <p>Make broken links behave like ordinary browser links again.</p>
         </article>
       </div>

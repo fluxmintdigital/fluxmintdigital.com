@@ -32,9 +32,11 @@ canonical_room: workshop
         <p class="semantic-lede">No account. No ads. No analytics. No browsing-history collection. Settings stay local.</p>
       </section>
 
-      <section class="inside-the-work" aria-labelledby="link-restore-release-heading">
-        <h2 id="link-restore-release-heading">Release state</h2>
-        <p>Preparing for Chrome Web Store release. A public Chrome Web Store listing is not being claimed until it is verified.</p>
+      <section class="inside-the-work" aria-labelledby="link-restore-availability-heading">
+        <p class="semantic-kicker">Released · v0.1.0</p>
+        <h2 id="link-restore-availability-heading">Get Link Restore</h2>
+        <p>Available for Chrome through the Chrome Web Store.</p>
+        <p><a class="button" href="https://chromewebstore.google.com/detail/link-restore/iphibkpilnjboadhbfohgdbiholchonm" target="_blank" rel="external noopener" data-depth-transition="tool_to_availability">Chrome Web Store <span aria-hidden="true">↗</span><span class="visually-hidden"> (opens in a new tab)</span></a></p>
       </section>
 
       <nav class="relationship-exits" aria-label="Link Restore resources">
