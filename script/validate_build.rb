@@ -152,7 +152,7 @@ errors << "Main Studio desktop source missing" unless studio_html.include?("FMD_
 errors << "Main Studio canonical mobile v003 source missing" unless studio_html.include?("FMD_SCENE_MAINSTUDIO_BASE_MOBILE_DEFAULT_v003.png")
 errors << "Main Studio must expose exactly six semantic thresholds" unless studio_html.scan(/class="scene-threshold scene-threshold--/).length == 6
 errors << "Main Studio threshold accessible names missing" unless studio_html.scan(/aria-label="Enter the /).length == 6
-errors << "Main Studio coarse-pointer labels must remain persistently visible" unless SITE.join("assets/css/canonical.css").read.include?("@media(hover:none) and (pointer:coarse){.studio-scene .scene-threshold__label{opacity:.88")
+errors << "Main Studio mobile labels must remain persistently visible" unless SITE.join("assets/css/canonical.css").read.include?(".scene-threshold__label{position:absolute;left:50%;bottom:calc(100% + .25rem);width:max-content;max-width:9rem;opacity:.88;transform:translateX(-50%);pointer-events:none}")
 errors << "Main Studio Desk\/Now and Map disclosures missing" unless studio_html.scan(/<details class="scene-panel/).length == 2
 errors << "Main Studio focus order must present Desk\/Map before Room thresholds" unless studio_html.index("<details class=\"scene-panel") < studio_html.index("<nav class=\"scene-thresholds")
 
