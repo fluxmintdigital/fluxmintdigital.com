@@ -32,13 +32,13 @@ layout: default
     {% for relationship in post_relationships %}
       {% assign candidate = site.artifacts | where: 'artifact_id', relationship.target | first %}
       {% unless candidate %}{% assign candidate = site.posts | where: 'slug', relationship.target | first %}{% endunless %}
-      {% if candidate and candidate.visibility == 'public' and relationship.importance == 'primary' and relationship.type != 'authored_by' and relationship.type != 'built_by' and candidate.canonical_room == 'library' and primary_relationship == nil %}{% assign primary_relationship = relationship %}{% endif %}
+      {% if candidate and candidate.visibility == 'public' and relationship.importance == 'primary' and relationship.type != 'authored_by' and relationship.type != 'built_by' and relationship.type != 'precedes' and candidate.canonical_room == 'library' and primary_relationship == nil %}{% assign primary_relationship = relationship %}{% endif %}
     {% endfor %}
     {% if primary_relationship == nil %}
       {% for relationship in post_relationships %}
         {% assign candidate = site.artifacts | where: 'artifact_id', relationship.target | first %}
         {% unless candidate %}{% assign candidate = site.posts | where: 'slug', relationship.target | first %}{% endunless %}
-        {% if candidate and candidate.visibility == 'public' and relationship.importance == 'primary' and relationship.type != 'authored_by' and relationship.type != 'built_by' and primary_relationship == nil %}{% assign primary_relationship = relationship %}{% endif %}
+        {% if candidate and candidate.visibility == 'public' and relationship.importance == 'primary' and relationship.type != 'authored_by' and relationship.type != 'built_by' and relationship.type != 'precedes' and primary_relationship == nil %}{% assign primary_relationship = relationship %}{% endif %}
       {% endfor %}
     {% endif %}
     {% if primary_relationship %}
@@ -52,6 +52,63 @@ layout: default
         <p>{% include relationship-context.html type=primary_relationship.type %}</p>
       </aside>
       {% endif %}
+    {% endif %}
+
+    {% assign continuation_count = 0 %}
+    {% if primary_relationship %}{% assign continuation_count = 1 %}{% endif %}
+    {% assign has_more_continuations = false %}
+    {% for relationship in post_relationships %}
+      {% if relationship.importance == 'primary' and relationship.type != 'authored_by' and relationship.type != 'built_by' and relationship.type != 'precedes' and relationship.target != primary_relationship.target %}
+        {% assign candidate = site.artifacts | where: 'artifact_id', relationship.target | first %}
+        {% unless candidate %}{% assign candidate = site.posts | where: 'slug', relationship.target | first %}{% endunless %}
+        {% if candidate and candidate.visibility == 'public' and continuation_count < 3 %}{% assign has_more_continuations = true %}{% endif %}
+      {% endif %}
+    {% endfor %}
+    {% if has_more_continuations %}
+    <nav class="observatory-continuations" aria-label="More connected work">
+      <p class="semantic-kicker">More from this thread</p>
+      <ul>
+        {% for relationship in post_relationships %}
+          {% if relationship.importance == 'primary' and relationship.type != 'authored_by' and relationship.type != 'built_by' and relationship.type != 'precedes' and relationship.target != primary_relationship.target %}
+            {% assign candidate = site.artifacts | where: 'artifact_id', relationship.target | first %}
+            {% unless candidate %}{% assign candidate = site.posts | where: 'slug', relationship.target | first %}{% endunless %}
+            {% if candidate and candidate.visibility == 'public' and continuation_count < 3 %}
+              <li><a href="{{ candidate.url | relative_url }}">{{ candidate.title }}</a><span>{{ relationship.type | replace: '_', ' ' | capitalize }}</span></li>
+              {% assign continuation_count = continuation_count | plus: 1 %}
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
+    {% endif %}
+
+    {% assign sequence_previous = nil %}
+    {% assign sequence_previous_count = 0 %}
+    {% assign incoming_sequence = site.data.relationships | where: 'target', page.slug %}
+    {% for relationship in incoming_sequence %}
+      {% if relationship.type == 'precedes' %}
+        {% assign sequence_candidate = site.posts | where: 'slug', relationship.source | first %}
+        {% if sequence_candidate and sequence_candidate.visibility == 'public' %}{% assign sequence_previous_count = sequence_previous_count | plus: 1 %}{% assign sequence_previous = sequence_candidate %}{% endif %}
+      {% endif %}
+    {% endfor %}
+    {% if sequence_previous_count != 1 %}{% assign sequence_previous = nil %}{% endif %}
+    {% assign sequence_next = nil %}
+    {% assign sequence_next_count = 0 %}
+    {% for relationship in post_relationships %}
+      {% if relationship.type == 'precedes' %}
+        {% assign sequence_candidate = site.posts | where: 'slug', relationship.target | first %}
+        {% if sequence_candidate and sequence_candidate.visibility == 'public' %}{% assign sequence_next_count = sequence_next_count | plus: 1 %}{% assign sequence_next = sequence_candidate %}{% endif %}
+      {% endif %}
+    {% endfor %}
+    {% if sequence_next_count != 1 %}{% assign sequence_next = nil %}{% endif %}
+    {% if sequence_previous or sequence_next %}
+    <nav class="observatory-sequence-nav" aria-label="Authored reading sequence">
+      <p class="semantic-kicker">An authored sequence</p>
+      <div>
+        {% if sequence_previous %}<a rel="prev" href="{{ sequence_previous.url | relative_url }}"><span>Previous</span><strong>{{ sequence_previous.title }}</strong></a>{% endif %}
+        {% if sequence_next %}<a rel="next" href="{{ sequence_next.url | relative_url }}"><span>Next</span><strong>{{ sequence_next.title }}</strong></a>{% endif %}
+      </div>
+    </nav>
     {% endif %}
 
     <div class="post-footer">
