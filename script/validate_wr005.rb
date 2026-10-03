@@ -45,7 +45,7 @@ errors << "Same-date Observatory order changed" unless archive_positions.all? &&
 errors << "Observatory Record is incomplete" unless observatory.scan('class="observatory-record__item"').length == Dir[root.join("_posts", "*.md")].length
 
 desk = studio[/<div class="scene-panel__items">.*?<\/div>\s*<\/div>\s*<\/details>/m].to_s
-desk_titles = ["What Deserves the Right to Change the Work?", "The Choice Audit", "The Architecture of Being Human", "Everything Looks Different from the Other Side", "Mint Pro"]
+desk_titles = ["Gravity Well Architecture", "The Choice Audit", "The Architecture of Being Human", "Everything Looks Different from the Other Side", "Mint Pro"]
 errors << "Desk curation changed" unless desk_titles.all? { |title| desk.include?(title) } && desk.scan("<article>").length == 5
 
 errors << "Workshop workbench grouping changed" unless workshop.include?("Applications taking shape") && workshop.include?("Mint Pro") && workshop.include?("BidMaster")
@@ -57,7 +57,8 @@ errors << "Relationship Explorer lacks by-work mode" unless relationships.includ
 errors << "Relationship Explorer lacks derived thread mode" unless relationships.include?("data-relationship-thread")
 canonical_relationship_count = YAML.safe_load_file(root.join("_data/relationships.yml")).length
 errors << "Relationship Explorer diverged from the canonical graph" unless relationships.scan("data-relationship-record").length == canonical_relationship_count
-errors << "Zero-count Observatory forms remain primary cards" if observatory.match?(/class="surface-card">\s*<h3>(?:Discoveries|Field Notes|Workshop Notes)<\/h3>/)
+errors << "Field Notes must be a populated Observatory form" unless observatory.match?(/class="surface-card">\s*<h3>Field Notes<\/h3>.*?1 public piece/m)
+errors << "Zero-count Discoveries or Workshop Notes remain primary cards" if observatory.match?(/class="surface-card">\s*<h3>(?:Discoveries|Workshop Notes)<\/h3>/)
 errors << "Meet DJ Observatory continuation missing" unless meet_dj.include?('href="/observatory/">Read from the Observatory</a>')
 
 home_document = Nokogiri::HTML(home)

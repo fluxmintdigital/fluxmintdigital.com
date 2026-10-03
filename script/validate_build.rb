@@ -41,6 +41,7 @@ required_routes = %w[
   /what-i-chose-to-do-with-the-time-i-have-left/
   /stepping-stones/
   /the-garage-im-trying-to-build/
+  /gravity-well-architecture/
   /when-the-studio-started-talking-back/
   /studio-blog/
   /tools/link-restore/
@@ -355,10 +356,10 @@ errors << "Observatory canonical desktop v002 source missing" unless observatory
 errors << "Observatory canonical mobile v003 source missing" unless observatory_html.include?("FMD_SCENE_OBSERVATORY_BASE_MOBILE_DEFAULT_v003.png")
 errors << "Observatory superseded desktop v001 must not be used" if observatory_html.include?("FMD_SCENE_OBSERVATORY_BASE_DESKTOP_DEFAULT_v001.png")
 errors << "Observatory superseded mobile v002 must not be used" if observatory_html.include?("FMD_SCENE_OBSERVATORY_BASE_MOBILE_DEFAULT_v002.png")
-errors << "Observatory current observation must use OBS-003" unless observatory_html.include?("Read the current observation: What Deserves the Right to Change the Work?")
-errors << "Observatory must give primary emphasis only to populated forms" unless observatory_html.scan(/class="surface-card">\s*<h3>Essays<\/h3>/).length == 1 && observatory_html.scan(/class="surface-card">\s*<h3>(?:Discoveries|Field Notes|Workshop Notes)<\/h3>/).empty?
-errors << "Observatory must preserve empty form types quietly" unless %w[Discoveries Field\ Notes Workshop\ Notes].all? { |label| observatory_html.include?("<strong>#{label}</strong>") }
-errors << "Observatory scene must expose populated forms, archive, Library, and return" unless observatory_html.scan(/class="observatory-hotspot observatory-hotspot--/).length == 4
+errors << "Observatory current observation must use Gravity Well Architecture" unless observatory_html.include?("Read the current observation: Gravity Well Architecture")
+errors << "Observatory must emphasize its populated Essay and Field Note forms" unless ["Essays", "Field Notes"].all? { |label| observatory_html.scan(/class="surface-card">\s*<h3>#{label}<\/h3>/).length == 1 }
+errors << "Observatory must preserve remaining empty form types quietly" unless %w[Discoveries Workshop\ Notes].all? { |label| observatory_html.include?("<strong>#{label}</strong>") }
+errors << "Observatory scene must expose populated forms, archive, Library, and return" unless observatory_html.scan(/class="observatory-hotspot observatory-hotspot--/).length == 5
 errors << "Observatory scene Library threshold missing" unless observatory_html.include?('href="/library/"') && observatory_html.include?('data-depth-transition="observatory_to_library"') && observatory_html.include?('<strong>Library</strong><small>Continue</small>')
 errors << "Observatory must expose the three-essay constellation" unless observatory_html.scan(/class="observatory-card surface-card"/).length == 3
 errors << "Observatory publication boundary missing" unless observatory_html.include?("When a question needs formal evidence and examination, it belongs on the Architecture Wall")

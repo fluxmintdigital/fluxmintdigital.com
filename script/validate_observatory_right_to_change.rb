@@ -57,7 +57,7 @@ errors << "OBS-003 authorship relationship missing" unless authorship.length == 
 errors << "OBS-003 has duplicate relationship records" unless relationships.map { |relationship| relationship.values_at("source", "type", "target") }.uniq.length == relationships.length
 
 observatory = YAML.safe_load_file(root.join("_data/observatory.yml"))
-errors << "OBS-003 is not the current observation" unless observatory["current_observation"] == expected_route
+errors << "Gravity Well Architecture is not the current observation" unless observatory["current_observation"] == "/gravity-well-architecture/"
 errors << "OBS-001 selection changed" unless observatory["featured"] == %w[/what-i-chose-to-do-with-the-time-i-have-left/ /stepping-stones/ /the-garage-im-trying-to-build/]
 
 route = site.join("what-deserves-the-right-to-change-the-work/index.html")
@@ -81,4 +81,4 @@ sitemap = site.join("sitemap.xml")
 errors << "OBS-003 sitemap entry missing or duplicated" unless sitemap.file? && sitemap.read.scan("https://fluxmintdigital.com#{expected_route}").length == 1
 
 abort errors.join("\n") unless errors.empty?
-puts "OBS-003 valid: authored body preserved, current observation designated, seven contextual companions plus authorship, and controlled source excluded."
+puts "OBS-003 valid: authored body preserved, previous current observation remains published and archived, seven contextual companions plus authorship, and controlled source excluded."
